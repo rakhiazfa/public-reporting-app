@@ -4,7 +4,7 @@ import Layout from "../components/Layouts/Layout";
 
 const Home = () => {
     return (
-        <Layout title="Lapmas - Home">
+        <Layout title="Home - Lapmas">
             <section className="py-16">
                 <div className="wrapper">
                     <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
