@@ -16,7 +16,7 @@ const Home = () => {
                                 </span>
                             </h1>
                             <p className="text-lg text-gray-400 font-medium mb-7">
-                                Cepat dalam menangani laporan anda.
+                                Siap untuk menangani laporan anda.
                             </p>
                             <Link
                                 className="button bg-blue-600 hover:bg-blue-700 text-white rounded-full"
@@ -26,7 +26,7 @@ const Home = () => {
                             </Link>
                         </div>
                         <img
-                            className="w-[400px] order-1 lg:order-2"
+                            className="w-[450px] mx-auto order-1 lg:order-2"
                             src={
                                 import.meta.env.VITE_BACKEND_URL +
                                 "/assets/images/hero-image.svg"
