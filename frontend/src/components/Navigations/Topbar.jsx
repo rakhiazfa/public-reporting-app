@@ -10,7 +10,7 @@ const links = [
         icon: FcHome,
     },
     {
-        content: "Tentang Lapor Pak",
+        content: "Tentang Lapmas",
         to: "/about",
         icon: FcAbout,
     },
@@ -35,7 +35,7 @@ const Topbar = () => {
                         alt="Logo"
                     />
                     <span className="hidden sm:block text-lg md:text-xl lg:text-2xl font-bold text-blue-600 whitespace-nowrap">
-                        LAPOR PAK
+                        LAPMAS
                     </span>
                 </div>
                 <nav className="topbar-center">
