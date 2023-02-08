@@ -26,11 +26,13 @@
 
 .topbar .topbar-menu {
     @apply flex justify-center items-center 
-    gap-8 sm:gap-10 md:gap-16;
+    gap-8 sm:gap-10 md:gap-10;
 }
 
 .topbar .topbar-link {
-    @apply text-sm md:text-smd lg:text-base font-medium lg:font-normal;
+    @apply text-sm md:text-smd lg:text-base 
+    font-medium lg:font-normal flex flex-col 
+    items-center gap-2;
 }
 
 .topbar .topbar-link.active {

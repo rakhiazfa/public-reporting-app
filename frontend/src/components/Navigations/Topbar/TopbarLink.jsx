@@ -1,7 +1,7 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
 
-const TopbarLink = ({ content, to }) => {
+const TopbarLink = ({ content, to, icon: Icon }) => {
     return (
         <NavLink
             className={({ isActive }) =>
@@ -9,7 +9,8 @@ const TopbarLink = ({ content, to }) => {
             }
             to={to}
         >
-            {content}
+            {Icon && <Icon className="block lg:hidden text-2xl" />}
+            <span>{content}</span>
         </NavLink>
     );
 };

@@ -1,20 +1,23 @@
 import React from "react";
 import TopbarDropdown from "./Topbar/TopbarDropdown";
 import TopbarLink from "./Topbar/TopbarLink";
-import { AiOutlineMenu } from "react-icons/ai";
+import { FcHome, FcAbout, FcDocument } from "react-icons/fc";
 
 const links = [
     {
         content: "Home",
         to: "/",
+        icon: FcHome,
     },
     {
         content: "Tentang Lapor Pak",
         to: "/about",
+        icon: FcAbout,
     },
     {
         content: "Laporan",
         to: "/report",
+        icon: FcDocument,
     },
 ];
 
@@ -42,6 +45,7 @@ const Topbar = () => {
                                 <TopbarLink
                                     content={link?.content}
                                     to={link?.to}
+                                    icon={link?.icon}
                                 />
                             </li>
                         ))}
