@@ -10,7 +10,7 @@ import {
 const About = () => {
     return (
         <Layout title="Tentang Lapmas - Lapmas">
-            <section className="pt-10 pb-16 md:pt-16">
+            <section className="pt-10 pb-16">
                 <div className="wrapper">
                     <div className="mb-10">
                         <h1 className="text-2xl md:text-3xl font-semibold mb-7">
