@@ -24,6 +24,14 @@
         @apply transition-all duration-300;
     }
 
+    label {
+        @apply block font-medium mb-2;
+    }
+
+    input, textarea {
+        @apply outline-none;
+    }
+
     ::-webkit-scrollbar {
         @apply w-[8px] h-[8px];
     }
@@ -49,6 +57,11 @@
         @apply outline-none flex justify-center items-center 
         gap-3 font-medium rounded-md w-max px-8 py-3 
         shadow-lg text-sm md:text-base;
+    }
+
+    .field {
+        @apply block w-full focus:outline-blue-400 
+        placeholder:text-smd border rounded-md px-3 py-2;
     }
 
 }
