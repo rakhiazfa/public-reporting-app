@@ -1,0 +1,27 @@
+/* 
+| Google Fonts
+*/
+
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap');
+
+/* 
+| Tailwind CSS
+*/
+
+@tailwind base;
+
+@tailwind components;
+
+@tailwind utilities;
+
+@layer base {
+
+    * {
+        @apply font-montserrat font-normal antialiased;
+    }
+
+    a, button {
+        @apply transition-all duration-300;
+    }
+
+}
