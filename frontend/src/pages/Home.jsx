@@ -15,7 +15,7 @@ const Home = () => {
                                     LAPMAS
                                 </span>
                             </h1>
-                            <p className="text-lg text-gray-400 font-medium mb-7">
+                            <p className="text-lg text-gray-500 font-medium mb-7">
                                 Siap untuk menangani laporan anda.
                             </p>
                             <Link
