@@ -25,3 +25,12 @@
     }
 
 }
+
+@layer components {
+
+    .wrapper {
+        @apply w-full lg:max-w-[1280px] 2xl:max-w-[1560px] 
+        mx-auto px-6 sm:px-8 md:px-12;
+    }
+
+}
