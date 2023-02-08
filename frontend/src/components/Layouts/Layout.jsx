@@ -11,7 +11,7 @@ const Layout = ({ children, title, className }) => {
         <div className={className}>
             <Topbar />
 
-            <main>{children}</main>
+            <main className="pb-20 lg:pb-0">{children}</main>
         </div>
     );
 };
