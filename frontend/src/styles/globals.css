@@ -24,6 +24,18 @@
         @apply transition-all duration-300;
     }
 
+    ::-webkit-scrollbar {
+        @apply w-[8px] h-[8px];
+    }
+  
+    ::-webkit-scrollbar-track {
+        background: #f1f1f1;
+    }
+    
+    ::-webkit-scrollbar-thumb {
+        @apply bg-gray-600 rounded-full;
+    }
+
 }
 
 @layer components {
