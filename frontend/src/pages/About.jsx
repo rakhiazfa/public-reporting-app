@@ -29,14 +29,14 @@ const About = () => {
                         </h1>
                         <ul>
                             <li>
-                                <p className="text-base md:text-lg text-gray-500 font-medium leading-7 lg:leading-10">
-                                    &emsp;&emsp;&emsp; 1. Mengirim laporan
-                                    secara anonim.
+                                <p className="text-base md:text-lg text-gray-500 font-medium leading-9 lg:leading-10">
+                                    &emsp;&emsp; 1. Mengirim laporan secara
+                                    anonim.
                                 </p>
                             </li>
                             <li>
-                                <p className="text-base md:text-lg text-gray-500 font-medium leading-7 lg:leading-10">
-                                    &emsp;&emsp;&emsp; 2. Pelacakan ID Laporan.
+                                <p className="text-base md:text-lg text-gray-500 font-medium leading-9 lg:leading-10">
+                                    &emsp;&emsp; 2. Pelacakan ID Laporan.
                                 </p>
                             </li>
                         </ul>
