@@ -61,7 +61,7 @@
 
     .field {
         @apply block w-full focus:outline-blue-400 
-        placeholder:text-smd border rounded-md px-3 py-2;
+        placeholder:text-smd border rounded-sm px-3 py-2;
     }
 
 }
