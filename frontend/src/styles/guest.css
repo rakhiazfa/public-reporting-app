@@ -22,7 +22,7 @@
     @apply fixed bottom-0 left-0 
     lg:static block border-t 
     lg:border-none w-full py-4  
-    bg-white;
+    bg-white lg:bg-transparent;
 }
 
 .topbar .topbar-menu {
