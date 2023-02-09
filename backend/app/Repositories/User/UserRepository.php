@@ -6,4 +6,5 @@ use App\Foundation\Repository\RepositoryInterface;
 
 interface UserRepository extends RepositoryInterface
 {
+    // 
 }
