@@ -45,6 +45,8 @@ class UserServiceImplementation implements UserService
 
         $user = Auth::user();
 
+        $user->load('role');
+
         return [
             'success' => true,
             'message' => 'Successfully logged in.',
