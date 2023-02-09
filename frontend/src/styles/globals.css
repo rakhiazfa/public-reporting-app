@@ -28,7 +28,7 @@
         @apply block text-sm font-medium mb-2;
     }
 
-    input, textarea {
+    input, textarea, select {
         @apply outline-none;
     }
 
