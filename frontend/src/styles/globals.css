@@ -21,7 +21,7 @@
     }
 
     a, button {
-        @apply transition-all duration-300;
+        @apply transition-all duration-300 disabled:opacity-50;
     }
 
     label {
