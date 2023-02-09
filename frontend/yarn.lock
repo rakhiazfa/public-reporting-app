@@ -1061,6 +1061,13 @@ react-router-dom@^6.8.1:
     "@remix-run/router" "1.3.2"
     react-router "6.8.1"
 
+react-router-loading@^1.0.0:
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/react-router-loading/-/react-router-loading-1.0.0.tgz#412bdd36c0feea73dee32324e7da4d1d2cdcf112"
+  integrity sha512-aEpqiyDrBGbDOhFiKSuXzI78FZIMmjV1+Rok6rBFdbrrifNdg3XnzU48zBPm4r/E2YShtcsYLvIZ74DU5EVMxw==
+  dependencies:
+    topbar "^1.0.1"
+
 react-router@6.8.1:
   version "6.8.1"
   resolved "https://registry.yarnpkg.com/react-router/-/react-router-6.8.1.tgz#e362caf93958a747c649be1b47cd505cf28ca63e"
@@ -1208,6 +1215,11 @@ to-regex-range@^5.0.1:
   integrity sha512-65P7iz6X5yEr1cwcgvQxbbIw7Uk3gOy5dIdtZ4rDveLqhrdJP+Li/Hx6tyK0NEb+2GCyneCMJiGqrADCSNk8sQ==
   dependencies:
     is-number "^7.0.0"
+
+topbar@^1.0.1:
+  version "1.0.1"
+  resolved "https://registry.yarnpkg.com/topbar/-/topbar-1.0.1.tgz#7987fb9ea40ce702ed2d9fcded3407a8ae5a33a9"
+  integrity sha512-HZqQSMBiG29vcjOrqKCM9iGY/h69G5gQH7ae83ZCPz5uPmbQKwK0sMEqzVDBiu64tWHJ+kk9NApECrF+FAAvRA==
 
 update-browserslist-db@^1.0.10:
   version "1.0.10"
