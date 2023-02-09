@@ -1,7 +1,6 @@
 import React from "react";
 
 const Select = ({
-    type,
     label,
     name,
     value,
@@ -14,7 +13,12 @@ const Select = ({
     return (
         <div className={`${className}`}>
             <label className="ml-1">{label}</label>
-            <select name={name} className="field">
+            <select
+                name={name}
+                value={value}
+                onChange={onChange}
+                className="field"
+            >
                 <option value="_DEFAULT_">{placeholder}</option>
                 {options?.map((option, index) => (
                     <option key={index} value={option?.key}>
