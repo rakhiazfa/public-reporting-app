@@ -9,11 +9,11 @@ import SignUp from "../pages/SignUp";
 const Router = () => {
     return (
         <Routes>
-            <Route index element={<Home />} loading />
-            <Route path="about" element={<About />} loading />
-            <Route path="report" element={<Report />} loading />
-            <Route path="signin" element={<SignIn />} loading />
-            <Route path="signup" element={<SignUp />} loading />
+            <Route index element={<Home />} />
+            <Route path="about" element={<About />} />
+            <Route path="report" element={<Report />} />
+            <Route path="signin" element={<SignIn />} />
+            <Route path="signup" element={<SignUp />} />
         </Routes>
     );
 };
