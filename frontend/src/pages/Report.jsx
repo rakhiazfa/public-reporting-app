@@ -1,9 +1,19 @@
-import React from "react";
+import React, { useState } from "react";
+import Date from "../components/Fields/Date";
 import Input from "../components/Fields/Input";
 import Select from "../components/Fields/Select";
 import Layout from "../components/Layouts/Layout";
 
 const Report = () => {
+    const [date, setDate] = useState({
+        startDate: null,
+        endDate: null,
+    });
+
+    const handleDateChange = (newValue) => {
+        setDate(newValue);
+    };
+
     return (
         <Layout title="Laporan - Lapmas">
             <section className="pt-10 pb-16">
@@ -42,6 +52,12 @@ const Report = () => {
                                     type="textarea"
                                     label="Isi Laporan"
                                     placeholder="Masukan isi laporan . . ."
+                                    className="mb-5"
+                                />
+                                <Date
+                                    label="Tanggal Laporan"
+                                    value={date}
+                                    onChange={handleDateChange}
                                     className="mb-5"
                                 />
                                 <Input
