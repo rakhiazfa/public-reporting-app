@@ -11,7 +11,7 @@ class LogoutController extends Controller
     /**
      * Log the user out of the application.
      */
-    public function __invoke(Request $request)
+    public function __invoke()
     {
         Auth::logout();
 
