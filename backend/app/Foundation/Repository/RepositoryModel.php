@@ -8,6 +8,19 @@ use Illuminate\Database\Eloquent\Model;
 class RepositoryModel implements RepositoryInterface
 {
     /**
+     * @var Model
+     */
+    protected Model $model;
+
+    /**
+     * @param Model $model
+     */
+    public function __construct(Model $model)
+    {
+        $this->model = $model;
+    }
+
+    /**
      * @return Collection
      */
     public function all(): Collection

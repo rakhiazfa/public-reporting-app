@@ -9,9 +9,9 @@ use Illuminate\Database\Eloquent\Model;
 class UserRepositoryModel extends RepositoryModel implements UserRepository
 {
     /**
-     * @var User
+     * @var Model
      */
-    protected User $model;
+    protected Model $model;
 
     /**
      * @param User $model

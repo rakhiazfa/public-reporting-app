@@ -8,11 +8,6 @@ use Illuminate\Database\Eloquent\Model;
 interface RepositoryInterface
 {
     /**
-     * @var Model
-     */
-    protected Model $model;
-
-    /**
      * @return Collection
      */
     public function all(): Collection;
