@@ -25,3 +25,8 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
  */
 
 require_once __DIR__ . '/api/auth.php';
+
+/**
+ * Load job routes.
+ * 
+ */
