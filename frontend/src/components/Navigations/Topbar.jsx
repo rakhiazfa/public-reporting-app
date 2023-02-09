@@ -31,7 +31,7 @@ const Topbar = () => {
     return (
         <header className="topbar">
             <div className="topbar-container">
-                <div className="topbar-brand">
+                <Link className="topbar-brand" to="/">
                     <img
                         className="logo"
                         src={
@@ -40,10 +40,15 @@ const Topbar = () => {
                         }
                         alt="Logo"
                     />
-                    <span className="hidden sm:block text-lg md:text-xl lg:text-2xl font-bold text-blue-600 whitespace-nowrap">
+                    <span
+                        className="
+                            hidden sm:block text-lg md:text-xl lg:text-2xl 
+                            font-bold text-blue-600 whitespace-nowrap
+                        "
+                    >
                         LAPMAS
                     </span>
-                </div>
+                </Link>
                 <nav className="topbar-center">
                     <ul className="topbar-menu">
                         {links?.map((link, index) => (
