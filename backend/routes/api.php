@@ -30,3 +30,5 @@ require_once __DIR__ . '/api/auth.php';
  * Load job routes.
  * 
  */
+
+require_once __DIR__ . '/api/job.php';
