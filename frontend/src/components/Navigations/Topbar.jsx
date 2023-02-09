@@ -2,6 +2,8 @@ import React from "react";
 import TopbarDropdown from "./Topbar/TopbarDropdown";
 import TopbarLink from "./Topbar/TopbarLink";
 import { FcHome, FcAbout, FcDocument } from "react-icons/fc";
+import { useSelector } from "react-redux";
+import { Link } from "react-router-dom";
 
 const links = [
     {
@@ -22,6 +24,10 @@ const links = [
 ];
 
 const Topbar = () => {
+    const { user } = useSelector(({ auth }) => ({
+        user: auth.user,
+    }));
+
     return (
         <header className="topbar">
             <div className="topbar-container">
@@ -52,22 +58,33 @@ const Topbar = () => {
                     </ul>
                 </nav>
                 <div className="topbar-right">
-                    <ul className="topbar-menu">
-                        <li>
-                            <TopbarDropdown
-                                text="Rakhi Azfa Rifansya"
-                                items={[
-                                    {
-                                        content: "Profil Saya",
-                                        to: "/profile",
-                                    },
-                                    {
-                                        content: "Logout",
-                                        to: "/",
-                                    },
-                                ]}
-                            />
-                        </li>
+                    <ul className="flex items-center gap-7">
+                        {user ? (
+                            <li>
+                                <TopbarDropdown
+                                    text={user?.name}
+                                    items={[
+                                        {
+                                            content: "Profil Saya",
+                                            to: "/profile",
+                                        },
+                                        {
+                                            content: "Logout",
+                                            to: "/",
+                                        },
+                                    ]}
+                                />
+                            </li>
+                        ) : (
+                            <>
+                                <li>
+                                    <Link to="/signup">Masuk</Link>
+                                </li>
+                                <li>
+                                    <Link to="/signup">Daftar</Link>
+                                </li>
+                            </>
+                        )}
                     </ul>
                 </div>
             </div>
