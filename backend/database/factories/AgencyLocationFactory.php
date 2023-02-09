@@ -2,6 +2,7 @@
 
 namespace Database\Factories;
 
+use App\Models\Agency;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -22,6 +23,7 @@ class AgencyLocationFactory extends Factory
             'city' => fake()->city(),
             'postal_code' => fake()->postcode(),
             'address' => fake()->streetAddress(),
+            'agency_id' => Agency::inRandomOrder()->first()->id,
         ];
     }
 }
