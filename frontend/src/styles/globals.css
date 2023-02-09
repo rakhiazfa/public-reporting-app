@@ -32,6 +32,13 @@
         @apply outline-none;
     }
 
+    select {
+        -webkit-appearance: none;
+        -ms-expand: none;
+        
+        @apply h-[2.8rem];
+    }
+
     ::-webkit-scrollbar {
         @apply w-[8px] h-[8px];
     }
