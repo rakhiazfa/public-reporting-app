@@ -78,7 +78,7 @@ const Topbar = () => {
                         ) : (
                             <>
                                 <li>
-                                    <Link to="/signup">Masuk</Link>
+                                    <Link to="/signin">Masuk</Link>
                                 </li>
                                 <li>
                                     <Link to="/signup">Daftar</Link>
