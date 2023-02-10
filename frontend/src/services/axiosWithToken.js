@@ -5,7 +5,7 @@ import axios from "axios";
  *
  */
 
-const authJWT = axios.create({
+const axiosWithToken = axios.create({
     baseURL: import.meta.env.VITE_BACKEND_API,
     headers: {
         Accept: "application/json",
@@ -13,7 +13,7 @@ const authJWT = axios.create({
     },
 });
 
-authJWT.interceptors.request.use((config) => {
+axiosWithToken.interceptors.request.use((config) => {
     const token = localStorage.getItem("at") ?? false;
 
     if (token) {
@@ -23,4 +23,4 @@ authJWT.interceptors.request.use((config) => {
     return config;
 });
 
-export default authJWT;
+export default axiosWithToken;
