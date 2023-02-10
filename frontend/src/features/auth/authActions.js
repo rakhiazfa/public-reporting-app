@@ -32,3 +32,16 @@ export const getUser = createAsyncThunk(
         }
     }
 );
+
+export const logout = createAsyncThunk(
+    "auth/logout",
+    async (payload, { rejectWithValue }) => {
+        try {
+            const { data } = await axiosWithToken.post("/auth/logout");
+
+            return data;
+        } catch (error) {
+            return rejectWithValue(error.response.data);
+        }
+    }
+);
