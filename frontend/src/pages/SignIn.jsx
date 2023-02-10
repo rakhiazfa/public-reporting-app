@@ -35,7 +35,7 @@ const SignIn = () => {
             <section className="pt-10 pb-16">
                 <div className="wrapper">
                     <div className="wrapper">
-                        <div className="grid grid-cols-1 lg:grid-cols-2 gap-16">
+                        <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
                             <div>
                                 <h1 className="text-2xl md:text-3xl font-semibold mb-16">
                                     Masuk
@@ -72,7 +72,16 @@ const SignIn = () => {
                                     </div>
                                 </form>
                             </div>
-                            <div></div>
+                            <div className="hidden lg:block">
+                                <img
+                                    className="h-[450px] mx-auto"
+                                    src={
+                                        import.meta.env.VITE_BACKEND_URL +
+                                        "/assets/images/illustrations/login.svg"
+                                    }
+                                    alt="Login Illustration"
+                                />
+                            </div>
                         </div>
                     </div>
                 </div>
