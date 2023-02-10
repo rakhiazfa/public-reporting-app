@@ -64,6 +64,8 @@ const authSlice = createSlice({
         });
 
         buider.addCase(logout.fulfilled, (state, { payload }) => {
+            localStorage.removeItem("at");
+
             state.user = payload?.user;
             state.loading = false;
         });
