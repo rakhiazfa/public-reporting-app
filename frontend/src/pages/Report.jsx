@@ -18,15 +18,16 @@ const Report = () => {
         <Layout title="Laporan - Lapmas">
             <section className="pt-10 pb-16">
                 <div className="wrapper">
+                    <h1 className="text-2xl md:text-3xl font-semibold mb-16">
+                        Kirim Laporan
+                    </h1>
+
                     <div className="grid grid-cols-1 lg:grid-cols-[1fr,400px] gap-16">
                         <div>
-                            <h1 className="text-2xl md:text-3xl font-semibold mb-16">
-                                Kirim Laporan
-                            </h1>
-                            <form>
+                            <form className="grid md:grid-cols-2 gap-5">
                                 <Select
                                     label="Bentuk Laporan"
-                                    className="mb-5"
+                                    className="md:col-span-2 mb-5"
                                     placeholder="Pilih bentuk laporan"
                                     options={[
                                         {
@@ -46,13 +47,13 @@ const Report = () => {
                                 <Input
                                     label="Judul Laporan"
                                     placeholder="Masukan judul laporan . . ."
-                                    className="mb-5"
+                                    className="md:col-span-2 mb-5"
                                 />
                                 <Input
                                     type="textarea"
                                     label="Isi Laporan"
                                     placeholder="Masukan isi laporan . . ."
-                                    className="mb-5"
+                                    className="md:col-span-2 mb-5"
                                 />
                                 <Date
                                     label="Tanggal Laporan"
@@ -67,7 +68,7 @@ const Report = () => {
                                 />
                                 <Select
                                     label="Kategori Laporan"
-                                    className="mb-7"
+                                    className="mb-7 md:col-span-2"
                                     placeholder="Pilih kategori laporan"
                                     options={[
                                         {
@@ -84,7 +85,7 @@ const Report = () => {
                                         },
                                     ]}
                                 />
-                                <div className="flex justify-end">
+                                <div className="flex justify-end md:col-span-2">
                                     <button
                                         type="submit"
                                         className="button bg-blue-600 hover:bg-blue-700 text-white rounded-full"
@@ -94,7 +95,7 @@ const Report = () => {
                                 </div>
                             </form>
                         </div>
-                        <div className="grid gap-7">
+                        <div className="grid gap-7 pt-5">
                             <div className="w-full h-[300px] bg-gray-300 rounded-md"></div>
                             <div className="w-full h-[300px] bg-gray-300 rounded-md"></div>
                             <div className="w-full h-[300px] bg-gray-300 rounded-md"></div>
