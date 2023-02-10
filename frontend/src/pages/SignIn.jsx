@@ -1,6 +1,8 @@
 import React, { useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import Input from "../components/Fields/Input";
 import Layout from "../components/Layouts/Layout";
+import { login } from "../features/auth/authActions";
 
 const SignIn = () => {
     const [payload, setPayload] = useState({
@@ -8,8 +10,17 @@ const SignIn = () => {
         password: "",
     });
 
+    const { errors, loading } = useSelector(({ auth }) => ({
+        errors: auth.errors,
+        loading: auth.loading,
+    }));
+
+    const dispatch = useDispatch();
+
     const handleLogin = (e) => {
         e.preventDefault();
+
+        dispatch(login(payload));
     };
 
     const handleChange = (e) => {
@@ -38,6 +49,7 @@ const SignIn = () => {
                                         className="mb-5"
                                         value={payload?.email_or_username}
                                         onChange={handleChange}
+                                        error={errors?.email_or_username}
                                     />
                                     <Input
                                         type="password"
@@ -47,11 +59,13 @@ const SignIn = () => {
                                         className="mb-7"
                                         value={payload?.password}
                                         onChange={handleChange}
+                                        error={errors?.password}
                                     />
                                     <div className="flex justify-end">
                                         <button
                                             type="submit"
                                             className="button bg-blue-600 hover:bg-blue-700 text-white rounded-full"
+                                            disabled={loading}
                                         >
                                             Masuk
                                         </button>
