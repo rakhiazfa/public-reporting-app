@@ -19,6 +19,7 @@
     "react-icons": "^4.7.1",
     "react-redux": "^8.0.5",
     "react-router-dom": "^6.8.1",
+    "react-select": "^5.7.0",
     "react-tailwindcss-datepicker": "^1.4.2"
   },
   "devDependencies": {

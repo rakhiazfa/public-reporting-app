@@ -1,4 +1,5 @@
 import React from "react";
+import ReactSelect from "react-select";
 
 const Select = ({
     label,
@@ -13,19 +14,13 @@ const Select = ({
     return (
         <div className={`${className}`}>
             <label className="ml-1">{label}</label>
-            <select
+            <ReactSelect
+                options={options}
                 name={name}
                 value={value}
                 onChange={onChange}
-                className="field"
-            >
-                <option value="_DEFAULT_">{placeholder}</option>
-                {options?.map((option, index) => (
-                    <option key={index} value={option?.key}>
-                        {option?.value}
-                    </option>
-                ))}
-            </select>
+                placeholder={placeholder}
+            />
             {error && (
                 <p className="text-sm font-medium text-red-500 ml-1 mt-2 -mb-2">
                     {error}
