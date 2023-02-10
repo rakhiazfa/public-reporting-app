@@ -22,8 +22,8 @@ const Report = () => {
                         Kirim Laporan
                     </h1>
 
-                    <div className="grid grid-cols-1 lg:grid-cols-[1fr,400px] gap-16">
-                        <div>
+                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-16">
+                        <div className="md:col-span-2 lg:row-span-2">
                             <form className="grid md:grid-cols-2 gap-5">
                                 <Select
                                     label="Bentuk Laporan"
@@ -95,11 +95,11 @@ const Report = () => {
                                 </div>
                             </form>
                         </div>
-                        <div className="grid gap-7 pt-5">
-                            <div className="w-full h-[300px] bg-gray-300 rounded-md"></div>
-                            <div className="w-full h-[300px] bg-gray-300 rounded-md"></div>
-                            <div className="w-full h-[300px] bg-gray-300 rounded-md"></div>
-                        </div>
+                        <div className="w-full h-[300px] bg-gray-200 rounded-sm"></div>
+                        <div className="w-full h-[300px] bg-gray-200 rounded-sm"></div>
+                        <div className="w-full h-[300px] bg-gray-200 rounded-sm"></div>
+                        <div className="w-full h-[300px] bg-gray-200 rounded-sm"></div>
+                        <div className="w-full h-[300px] bg-gray-200 rounded-sm"></div>
                     </div>
                 </div>
             </section>
