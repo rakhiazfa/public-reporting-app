@@ -2,8 +2,9 @@ import React from "react";
 import TopbarDropdown from "./Topbar/TopbarDropdown";
 import TopbarLink from "./Topbar/TopbarLink";
 import { FcHome, FcAbout, FcDocument } from "react-icons/fc";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
+import { logout } from "../../features/auth/authActions";
 
 const links = [
     {
@@ -27,6 +28,12 @@ const Topbar = () => {
     const { user } = useSelector(({ auth }) => ({
         user: auth.user,
     }));
+
+    const dispatch = useDispatch();
+
+    const handleLogout = () => {
+        dispatch(logout());
+    };
 
     return (
         <header className="topbar">
@@ -74,8 +81,9 @@ const Topbar = () => {
                                             to: "/profile",
                                         },
                                         {
+                                            type: "button",
                                             content: "Logout",
-                                            to: "/",
+                                            onClick: handleLogout,
                                         },
                                     ]}
                                 />

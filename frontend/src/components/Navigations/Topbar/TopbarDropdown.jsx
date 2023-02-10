@@ -25,9 +25,19 @@ const TopbarDropdown = ({ text, items }) => {
             <ul className={`dropdown-menu ${isActive ? "active" : ""}`}>
                 {items?.map((item, index) => (
                     <li key={index}>
-                        <Link className="topbar-link" to={item?.to}>
-                            {item?.content}
-                        </Link>
+                        {item?.type === "button" ? (
+                            <button
+                                type="button"
+                                className="topbar-link w-full"
+                                onClick={item?.onClick}
+                            >
+                                {item?.content}
+                            </button>
+                        ) : (
+                            <Link className="topbar-link" to={item?.to}>
+                                {item?.content}
+                            </Link>
+                        )}
                     </li>
                 ))}
             </ul>
