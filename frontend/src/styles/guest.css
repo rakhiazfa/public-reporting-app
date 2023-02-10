@@ -60,8 +60,9 @@
 }
 
 .topbar .dropdown .topbar-link {
-    @apply block hover:bg-gray-50 
-    text-sm md:text-smd rounded-md px-5 py-2;
+    @apply flex hover:bg-gray-50 
+    text-sm md:text-smd rounded-md px-5 py-2 
+    items-start justify-center;
 }
 
 /* - Topbar - */
