@@ -25,8 +25,9 @@ const links = [
 ];
 
 const Topbar = () => {
-    const { user } = useSelector(({ auth }) => ({
+    const { user, loading } = useSelector(({ auth }) => ({
         user: auth.user,
+        loading: auth.loading,
     }));
 
     const dispatch = useDispatch();
@@ -84,6 +85,7 @@ const Topbar = () => {
                                             type: "button",
                                             content: "Logout",
                                             onClick: handleLogout,
+                                            disabled: loading,
                                         },
                                     ]}
                                 />

@@ -30,6 +30,7 @@ const TopbarDropdown = ({ text, items }) => {
                                 type="button"
                                 className="topbar-link w-full"
                                 onClick={item?.onClick}
+                                disabled={item?.disabled ?? false}
                             >
                                 {item?.content}
                             </button>
