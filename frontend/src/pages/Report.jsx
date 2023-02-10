@@ -4,6 +4,24 @@ import Input from "../components/Fields/Input";
 import Select from "../components/Fields/Select";
 import Layout from "../components/Layouts/Layout";
 
+const reportTypes = [
+    { value: 1, label: "Pengaduan" },
+    { value: 2, label: "Aspirasi" },
+    { value: 3, label: "Permintaan Informasi" },
+];
+
+const reportCategories = [
+    { value: 1, label: "Agama" },
+    { value: 2, label: "Kesehatan" },
+    { value: 3, label: "Lingkungan Hidup dan Kehutanan" },
+];
+
+const destinationAgencies = [
+    { value: 1, label: "Pemerintahan Kota Bandung" },
+    { value: 2, label: "Pemerintahan Kota Jakarta" },
+    { value: 3, label: "Pemerintahan Kota Bogor" },
+];
+
 const Report = () => {
     const [date, setDate] = useState({
         startDate: null,
@@ -22,68 +40,48 @@ const Report = () => {
                         Kirim Laporan
                     </h1>
 
-                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-16">
+                    <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-16">
                         <div className="md:col-span-2 lg:row-span-2">
-                            <form className="grid md:grid-cols-2 gap-5">
+                            <form className="grid md:grid-cols-2 gap-7">
                                 <Select
                                     label="Bentuk Laporan"
-                                    className="md:col-span-2 mb-5"
-                                    placeholder="Pilih bentuk laporan"
-                                    options={[
-                                        {
-                                            key: "complaint",
-                                            value: "Pengaduan",
-                                        },
-                                        {
-                                            key: "aspiration",
-                                            value: "Aspirasi",
-                                        },
-                                        {
-                                            key: "information_request",
-                                            value: "Permintaan Informasi",
-                                        },
-                                    ]}
+                                    options={reportTypes}
+                                    className="md:col-span-2 mb-3"
+                                    placeholder="Pilih bentuk laporan . . ."
                                 />
                                 <Input
                                     label="Judul Laporan"
                                     placeholder="Masukan judul laporan . . ."
-                                    className="md:col-span-2 mb-5"
+                                    className="md:col-span-2 mb-3"
                                 />
                                 <Input
                                     type="textarea"
                                     label="Isi Laporan"
                                     placeholder="Masukan isi laporan . . ."
-                                    className="md:col-span-2 mb-5"
+                                    className="md:col-span-2 mb-3"
                                 />
                                 <Date
                                     label="Tanggal Laporan"
                                     value={date}
                                     onChange={handleDateChange}
-                                    className="mb-5"
+                                    className="mb-3"
                                 />
                                 <Input
                                     label="Asal Pelapor"
                                     placeholder="Masukan asal pelapor . . ."
-                                    className="mb-5"
+                                    className="mb-3"
                                 />
                                 <Select
                                     label="Kategori Laporan"
-                                    className="mb-7 md:col-span-2"
-                                    placeholder="Pilih kategori laporan"
-                                    options={[
-                                        {
-                                            key: "religion",
-                                            value: "Agama",
-                                        },
-                                        {
-                                            key: "health",
-                                            value: "Kesehatan",
-                                        },
-                                        {
-                                            key: "environmental_and_forestry",
-                                            value: "Lingkungan Hidup dan Kehutanan",
-                                        },
-                                    ]}
+                                    options={reportCategories}
+                                    className="mb-3"
+                                    placeholder="Pilih kategori laporan . . ."
+                                />
+                                <Select
+                                    label="Instansi Tujuan"
+                                    options={destinationAgencies}
+                                    className="mb-3"
+                                    placeholder="Pilih instansi tujuan . . ."
                                 />
                                 <div className="flex justify-end md:col-span-2">
                                     <button
