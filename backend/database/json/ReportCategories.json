@@ -1,0 +1,37 @@
+{
+    "report_categories": [
+        {
+            "name": "Agama",
+            "report_subcategories": [
+                {
+                    "name": "Haji dan Umroh"
+                },
+                {
+                    "name": "Pendidikan Agama"
+                },
+                {
+                    "name": "Penyediaan Fasilitas Ibadah"
+                }
+            ]
+        },
+        {
+            "name": "Ekonomi dan Keuangan",
+            "report_subcategories": [
+                {
+                    "name": "Anggaran dan Perbendaharaan"
+                },
+                {
+                    "name": "Bea dan Cukai"
+                }
+            ]
+        },
+        {
+            "name": "Kesehatan",
+            "report_subcategories": [
+                {
+                    "name": "Gizi Buruk/Stunting"
+                }
+            ]
+        }
+    ]
+}
