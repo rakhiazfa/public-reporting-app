@@ -25,11 +25,18 @@ class ReportCategoryController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
+        $withSubcategories = filter_var(
+            $request->get('with-subcategories', false),
+            FILTER_VALIDATE_BOOL,
+        );
+
         try {
 
             $reportCategories = $this->reportCategoryService->orderByIdDesc();
+
+            $withSubcategories && $reportCategories->load('reportSubcategories');
 
             // 
         } catch (\Exception $exception) {
