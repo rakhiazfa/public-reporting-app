@@ -13,14 +13,14 @@ class JobController extends Controller
     /**
      * @var JobRepository
      */
-    protected JobRepository $jobRepository;
+    protected JobRepository $jobService;
 
     /**
-     * @param JobRepository $jobRepository
+     * @param JobRepository $jobService
      */
-    public function __construct(JobRepository $jobRepository)
+    public function __construct(JobRepository $jobService)
     {
-        $this->jobRepository = $jobRepository;
+        $this->jobService = $jobService;
     }
 
     /**
@@ -32,7 +32,7 @@ class JobController extends Controller
     {
         try {
 
-            $jobs = $this->jobRepository->orderByIdDesc();
+            $jobs = $this->jobService->orderByIdDesc();
 
             // 
         } catch (\Exception $exception) {
@@ -61,7 +61,7 @@ class JobController extends Controller
     {
         try {
 
-            $job = $this->jobRepository->create($request->only(['name']));
+            $job = $this->jobService->create($request->only(['name']));
 
             // 
         } catch (\Exception $exception) {
