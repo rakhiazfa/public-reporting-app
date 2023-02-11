@@ -11,6 +11,11 @@ class ReportCategory extends Model
     use HasFactory;
 
     /**
+     * @var array
+     */
+    protected $fillable = ['name'];
+
+    /**
      * @return HasMany
      */
     public function reportSubcategories()

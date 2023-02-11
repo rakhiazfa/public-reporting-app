@@ -11,6 +11,11 @@ class ReportSubcategory extends Model
     use HasFactory;
 
     /**
+     * @var array
+     */
+    protected $fillable = ['name'];
+
+    /**
      * @return BelongsTo
      */
     public function reportCategory()
