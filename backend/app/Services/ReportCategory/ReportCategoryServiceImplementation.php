@@ -8,15 +8,10 @@ use App\Repositories\ReportCategory\ReportCategoryRepository;
 class ReportCategoryServiceImplementation extends ServiceImplementation implements ReportCategoryService
 {
     /**
-     * @var ReportCategoryRepository
+     * @param ReportCategoryRepository $repository
      */
-    protected ReportCategoryRepository $reportCategoryRepository;
-
-    /**
-     * @param ReportCategoryRepository $reportCategoryRepository
-     */
-    public function __construct(ReportCategoryRepository $reportCategoryRepository)
+    public function __construct(ReportCategoryRepository $repository)
     {
-        $this->reportCategoryRepository = $reportCategoryRepository;
+        $this->repository = $repository;
     }
 }

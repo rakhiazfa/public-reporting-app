@@ -8,15 +8,10 @@ use App\Repositories\Job\JobRepository;
 class JobServiceImplementation extends ServiceImplementation implements JobService
 {
     /**
-     * @var JobRepository
+     * @param JobRepository $repository
      */
-    protected JobRepository $jobRepository;
-
-    /**
-     * @param JobRepository $jobRepository
-     */
-    public function __construct(JobRepository $jobRepository)
+    public function __construct(JobRepository $repository)
     {
-        $this->jobRepository = $jobRepository;
+        $this->repository = $repository;
     }
 }

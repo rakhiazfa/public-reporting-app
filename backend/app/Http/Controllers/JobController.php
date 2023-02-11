@@ -5,20 +5,19 @@ namespace App\Http\Controllers;
 use App\Http\Requests\Job\StoreJobRequest;
 use App\Http\Requests\Job\UpdateJobRequest;
 use App\Models\Job;
-use App\Repositories\Job\JobRepository;
-use Illuminate\Http\Request;
+use App\Services\Job\JobService;
 
 class JobController extends Controller
 {
     /**
-     * @var JobRepository
+     * @var JobService
      */
-    protected JobRepository $jobService;
+    protected JobService $jobService;
 
     /**
-     * @param JobRepository $jobService
+     * @param JobService $jobService
      */
-    public function __construct(JobRepository $jobService)
+    public function __construct(JobService $jobService)
     {
         $this->jobService = $jobService;
     }

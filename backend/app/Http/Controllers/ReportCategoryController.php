@@ -2,10 +2,24 @@
 
 namespace App\Http\Controllers;
 
+use App\Services\ReportCategory\ReportCategoryService;
 use Illuminate\Http\Request;
 
 class ReportCategoryController extends Controller
 {
+    /**
+     * @var ReportCategoryService
+     */
+    protected ReportCategoryService $reportCategoryService;
+
+    /**
+     * @param ReportCategoryService $reportCategoryService
+     */
+    public function __construct(ReportCategoryService $reportCategoryService)
+    {
+        $this->reportCategoryService = $reportCategoryService;
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -13,7 +27,25 @@ class ReportCategoryController extends Controller
      */
     public function index()
     {
-        //
+        try {
+
+            $reportCategories = $this->reportCategoryService->orderByIdDesc();
+
+            // 
+        } catch (\Exception $exception) {
+
+            return response()->json([
+                'success' => false,
+                'code' => $exception->getCode(),
+                'message' => $exception->getMessage(),
+            ], $exception->getCode());
+        }
+
+        return response()->json([
+            'success' => true,
+            'code' => 202,
+            'report_categories' => $reportCategories,
+        ], 202);
     }
 
     /**
