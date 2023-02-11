@@ -2,12 +2,13 @@
 
 namespace App\Services\User;
 
+use App\Foundation\Service\ServiceImplementation;
 use App\Repositories\User\UserRepository;
 use Exception;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Validation\UnauthorizedException;
 
-class UserServiceImplementation implements UserService
+class UserServiceImplementation extends ServiceImplementation implements UserService
 {
     /**
      * @var UserRepository

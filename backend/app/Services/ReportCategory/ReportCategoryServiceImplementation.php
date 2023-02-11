@@ -2,9 +2,10 @@
 
 namespace App\Services\ReportCategory;
 
+use App\Foundation\Service\ServiceImplementation;
 use App\Repositories\ReportCategory\ReportCategoryRepository;
 
-class ReportCategoryServiceImplementation implements ReportCategoryService
+class ReportCategoryServiceImplementation extends ServiceImplementation implements ReportCategoryService
 {
     /**
      * @var ReportCategoryRepository

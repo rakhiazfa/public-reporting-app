@@ -2,7 +2,9 @@
 
 namespace App\Services\ReportCategory;
 
-interface ReportCategoryService
+use App\Foundation\Service\ServiceInterface;
+
+interface ReportCategoryService extends ServiceInterface
 {
     // 
 }

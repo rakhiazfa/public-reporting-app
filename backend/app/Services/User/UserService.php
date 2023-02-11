@@ -2,7 +2,9 @@
 
 namespace App\Services\User;
 
-interface UserService
+use App\Foundation\Service\ServiceInterface;
+
+interface UserService extends ServiceInterface
 {
     /**
      * @param array $credentials
