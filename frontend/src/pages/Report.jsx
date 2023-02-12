@@ -1,19 +1,15 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import Date from "../components/Fields/Date";
 import Input from "../components/Fields/Input";
 import Select from "../components/Fields/Select";
 import Layout from "../components/Layouts/Layout";
+import { getReportCategories } from "../features/report_category/reportCategoryActions";
 
 const reportTypes = [
     { value: 1, label: "Pengaduan" },
     { value: 2, label: "Aspirasi" },
     { value: 3, label: "Permintaan Informasi" },
-];
-
-const reportCategories = [
-    { value: 1, label: "Agama" },
-    { value: 2, label: "Kesehatan" },
-    { value: 3, label: "Lingkungan Hidup dan Kehutanan" },
 ];
 
 const destinationAgencies = [
@@ -28,9 +24,21 @@ const Report = () => {
         endDate: null,
     });
 
+    const { reportCategories } = useSelector(({ reportCategory }) => ({
+        reportCategories: reportCategory.reportCategories,
+    }));
+
+    const dispatch = useDispatch();
+
     const handleDateChange = (newValue) => {
         setDate(newValue);
     };
+
+    useEffect(() => {
+        return () => {
+            dispatch(getReportCategories());
+        };
+    }, [dispatch]);
 
     return (
         <Layout title="Laporan - Lapmas">
@@ -73,7 +81,29 @@ const Report = () => {
                                 />
                                 <Select
                                     label="Kategori Laporan"
-                                    options={reportCategories}
+                                    options={reportCategories?.reduce(
+                                        (prev, next) => {
+                                            prev.push({
+                                                value: next?.id,
+                                                label: next?.name,
+                                                options:
+                                                    next?.report_subcategories?.reduce(
+                                                        (prev, next) => {
+                                                            prev.push({
+                                                                value: next?.id,
+                                                                label: next?.name,
+                                                            });
+
+                                                            return prev;
+                                                        },
+                                                        []
+                                                    ),
+                                            });
+
+                                            return prev;
+                                        },
+                                        []
+                                    )}
                                     className="mb-3"
                                     placeholder="Pilih kategori laporan . . ."
                                 />
