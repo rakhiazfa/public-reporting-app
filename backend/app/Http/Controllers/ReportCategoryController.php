@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Exceptions\ExceptionResponse;
 use App\Http\Requests\ReportCategory\StoreReportCategoryRequest;
+use App\Http\Requests\ReportCategory\UpdateReportCategoryRequest;
 use App\Models\ReportCategory;
 use App\Services\ReportCategory\ReportCategoryService;
 use Illuminate\Http\Request;
@@ -86,9 +87,20 @@ class ReportCategoryController extends Controller
      * @param  ReportCategory $reportCategory
      * @return \Illuminate\Http\Response
      */
-    public function show(ReportCategory $reportCategory)
+    public function show(Request $request, ReportCategory $reportCategory)
     {
-        //
+        $withSubcategories = filter_var(
+            $request->get('with-subcategories', false),
+            FILTER_VALIDATE_BOOL,
+        );
+
+        $withSubcategories && $reportCategory->load('reportSubcategories');
+
+        return response()->json([
+            'success' => true,
+            'code' => 200,
+            'report_category' => $reportCategory,
+        ], 200);
     }
 
     /**
@@ -98,9 +110,15 @@ class ReportCategoryController extends Controller
      * @param  ReportCategory $reportCategory
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, ReportCategory $reportCategory)
+    public function update(UpdateReportCategoryRequest $request, ReportCategory $reportCategory)
     {
-        //
+        $reportCategory->update($request->all());
+
+        return response()->json([
+            'success' => true,
+            'code' => 200,
+            'message' => 'Successfully updated report category.',
+        ], 200);
     }
 
     /**
