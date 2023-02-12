@@ -21,6 +21,15 @@ const reportCategorySlice = createSlice({
         buider.addCase(getReportCategories.pending, (state, { payload }) => {
             state.loading = true;
         });
+
+        buider.addCase(getReportCategories.rejected, (state, { payload }) => {
+            state.loading = false;
+        });
+
+        buider.addCase(getReportCategories.fulfilled, (state, { payload }) => {
+            state.reportCategories = payload.report_categories;
+            state.loading = false;
+        });
     },
 });
 
