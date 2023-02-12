@@ -25,5 +25,7 @@ Route::name('report-categories')->prefix('report-categories')->middleware(['auth
     Route::name('.subcategories')->prefix('{reportCategory}/subcategories')->group(function () {
 
         Route::post('/', [ReportSubcategoryController::class, 'store'])->name('.store');
+
+        Route::put('/{reportSubcategory}', [ReportSubcategoryController::class, 'update'])->name('.update');
     });
 });
