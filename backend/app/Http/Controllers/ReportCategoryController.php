@@ -129,6 +129,12 @@ class ReportCategoryController extends Controller
      */
     public function destroy(ReportCategory $reportCategory)
     {
-        //
+        $reportCategory->delete();
+
+        return response()->json([
+            'success' => true,
+            'code' => 200,
+            'message' => 'Successfully deleted report category.',
+        ], 200);
     }
 }
