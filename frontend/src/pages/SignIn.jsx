@@ -1,8 +1,9 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import Input from "../components/Fields/Input";
 import Layout from "../components/Layouts/Layout";
 import { login } from "../features/auth/authActions";
+import { clearErrors } from "../features/auth/authSlice";
 
 const SignIn = () => {
     const [payload, setPayload] = useState({
@@ -29,6 +30,12 @@ const SignIn = () => {
             [e.target.name]: e.target.value,
         }));
     };
+
+    useEffect(() => {
+        return () => {
+            dispatch(clearErrors());
+        };
+    }, [dispatch]);
 
     return (
         <Layout title="Masuk - Lapmas">
