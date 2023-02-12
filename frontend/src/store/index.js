@@ -1,11 +1,11 @@
 import { configureStore } from "@reduxjs/toolkit";
 import authReducer from "../features/auth/authSlice";
-import categoryReducer from "../features/category/categorySlice";
+import reportCategoryReducer from "../features/report_category/reportCategorySlice";
 
 const store = configureStore({
     reducer: {
         auth: authReducer,
-        category: categoryReducer,
+        reportCategory: reportCategoryReducer,
     },
     middleware: (getDefaultMiddleware) =>
         getDefaultMiddleware({
