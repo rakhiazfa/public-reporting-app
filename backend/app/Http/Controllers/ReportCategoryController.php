@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Exceptions\ExceptionResponse;
+use App\Http\Requests\ReportCategory\StoreReportCategoryRequest;
 use App\Models\ReportCategory;
 use App\Services\ReportCategory\ReportCategoryService;
 use Illuminate\Http\Request;
@@ -59,7 +60,7 @@ class ReportCategoryController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StoreReportCategoryRequest $request)
     {
         try {
 
@@ -73,9 +74,10 @@ class ReportCategoryController extends Controller
 
         return response()->json([
             'success' => true,
-            'code' => 200,
+            'code' => 201,
+            'message' => 'Successfully created a new report category.',
             'report_categories' => $reportCategories,
-        ], 200);
+        ], 201);
     }
 
     /**
