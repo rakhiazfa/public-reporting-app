@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Exceptions\ExceptionResponse;
 use App\Http\Requests\Job\StoreJobRequest;
 use App\Http\Requests\Job\UpdateJobRequest;
 use App\Models\Job;
@@ -36,11 +37,7 @@ class JobController extends Controller
             // 
         } catch (\Exception $exception) {
 
-            return response()->json([
-                'success' => false,
-                'code' => $exception->getCode(),
-                'message' => $exception->getMessage(),
-            ], $exception->getCode());
+            return new ExceptionResponse($exception);
         }
 
         return response()->json([
@@ -65,11 +62,7 @@ class JobController extends Controller
             // 
         } catch (\Exception $exception) {
 
-            return response()->json([
-                'success' => false,
-                'code' => $exception->getCode(),
-                'message' => $exception->getMessage(),
-            ], $exception->getCode());
+            return new ExceptionResponse($exception);
         }
 
         return response()->json([

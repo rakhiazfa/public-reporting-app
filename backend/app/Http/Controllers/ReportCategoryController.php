@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Exceptions\ExceptionResponse;
+use App\Models\ReportCategory;
 use App\Services\ReportCategory\ReportCategoryService;
 use Illuminate\Http\Request;
 
@@ -41,18 +43,14 @@ class ReportCategoryController extends Controller
             // 
         } catch (\Exception $exception) {
 
-            return response()->json([
-                'success' => false,
-                'code' => $exception->getCode(),
-                'message' => $exception->getMessage(),
-            ], $exception->getCode());
+            return new ExceptionResponse($exception);
         }
 
         return response()->json([
             'success' => true,
-            'code' => 202,
+            'code' => 200,
             'report_categories' => $reportCategories,
-        ], 202);
+        ], 200);
     }
 
     /**
@@ -63,16 +61,30 @@ class ReportCategoryController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        try {
+
+            $reportCategories = $this->reportCategoryService->create($request->only(['name']));
+
+            // 
+        } catch (\Exception $exception) {
+
+            return new ExceptionResponse($exception);
+        }
+
+        return response()->json([
+            'success' => true,
+            'code' => 200,
+            'report_categories' => $reportCategories,
+        ], 200);
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param  ReportCategory $reportCategory
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(ReportCategory $reportCategory)
     {
         //
     }
@@ -81,10 +93,10 @@ class ReportCategoryController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param  ReportCategory $reportCategory
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, ReportCategory $reportCategory)
     {
         //
     }
@@ -92,10 +104,10 @@ class ReportCategoryController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param  ReportCategory $reportCategory
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(ReportCategory $reportCategory)
     {
         //
     }
