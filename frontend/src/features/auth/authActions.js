@@ -1,11 +1,11 @@
+import { createAsyncThunk } from "@reduxjs/toolkit";
+import axios from "axios";
+import axiosWithToken from "../../services/axiosWithToken";
+
 /**
  * Auth actions.
  *
  */
-
-import { createAsyncThunk } from "@reduxjs/toolkit";
-import axios from "axios";
-import axiosWithToken from "../../services/axiosWithToken";
 
 export const login = createAsyncThunk(
     "auth/login",
