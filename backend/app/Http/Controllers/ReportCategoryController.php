@@ -65,7 +65,7 @@ class ReportCategoryController extends Controller
     {
         try {
 
-            $reportCategories = $this->reportCategoryService->create($request->only(['name']));
+            $reportCategory = $this->reportCategoryService->create($request->only(['name']));
 
             // 
         } catch (\Exception $exception) {
@@ -77,7 +77,36 @@ class ReportCategoryController extends Controller
             'success' => true,
             'code' => 201,
             'message' => 'Successfully created a new report category.',
-            'report_categories' => $reportCategories,
+            'report_category' => $reportCategory,
+        ], 201);
+    }
+
+    /**
+     * Store a newly created resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function storeSubcategory(StoreReportCategoryRequest $request, ReportCategory $reportCategory)
+    {
+        try {
+
+            $reportSubcategory = $this->reportCategoryService->createSubcategory(
+                $reportCategory,
+                $request->only(['name']),
+            );
+
+            // 
+        } catch (\Exception $exception) {
+
+            return new ExceptionResponse($exception);
+        }
+
+        return response()->json([
+            'success' => true,
+            'code' => 201,
+            'message' => 'Successfully created a new report category.',
+            'report_subcategory' => $reportSubcategory,
         ], 201);
     }
 
