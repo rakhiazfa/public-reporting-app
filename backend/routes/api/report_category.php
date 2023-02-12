@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\ReportCategoryController;
+use App\Http\Controllers\ReportSubcategoryController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -20,4 +21,9 @@ Route::name('report-categories')->prefix('report-categories')->middleware(['auth
     Route::put('/{reportCategory}', [ReportCategoryController::class, 'update'])->name('.update');
 
     Route::delete('/{reportCategory}', [ReportCategoryController::class, 'destroy'])->name('.destroy');
+
+    Route::name('.subcategories')->prefix('{reportCategory}/subcategories')->group(function () {
+
+        Route::post('/', [ReportSubcategoryController::class, 'store'])->name('.store');
+    });
 });
