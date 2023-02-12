@@ -11,7 +11,7 @@ export const getReportCategories = createAsyncThunk(
     "categories",
     async (payload, { rejectWithValue }) => {
         try {
-            const { data } = axios.get(
+            const { data } = await axios.get(
                 "/report-categories?with-subcategories=true"
             );
 
