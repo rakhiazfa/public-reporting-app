@@ -52,6 +52,7 @@ class AgencyServiceImplementation extends ServiceImplementation implements Agenc
      */
     public function createAgency(array $user = [], array $agency = [], array $location): Model
     {
+        $user['role_id'] = 2;
         $user = $this->userRepository->create($user);
 
         $agency = $this->repository->new($agency);
@@ -61,6 +62,8 @@ class AgencyServiceImplementation extends ServiceImplementation implements Agenc
         $location = $this->agencyLocationRepository->new($location);
         $location->agency()->associate($agency);
         $location->save();
+
+        $agency->load(['user', 'location']);
 
         return $agency;
     }
