@@ -39,9 +39,7 @@ class ReportCategoryServiceImplementation extends ServiceImplementation implemen
     public function createSubcategory(ReportCategory $reportCategory, array $attributes = []): Model
     {
         $subcategory = $this->reportSubcategoryRepository->new($attributes);
-
         $subcategory->reportCategory()->associate($reportCategory);
-
         $subcategory->save();
 
         return $subcategory;
