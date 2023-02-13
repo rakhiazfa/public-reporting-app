@@ -11,9 +11,10 @@ const SignIn = () => {
         password: "",
     });
 
-    const { errors, loading } = useSelector(({ auth }) => ({
+    const { errors, loading, errorMessage } = useSelector(({ auth }) => ({
         errors: auth.errors,
         loading: auth.loading,
+        errorMessage: auth.errorMessage,
     }));
 
     const dispatch = useDispatch();
@@ -55,7 +56,10 @@ const SignIn = () => {
                                     className="mb-5"
                                     value={payload?.email_or_username}
                                     onChange={handleChange}
-                                    error={errors?.email_or_username}
+                                    error={
+                                        errors?.email_or_username ??
+                                        errorMessage
+                                    }
                                 />
                                 <Input
                                     type="password"

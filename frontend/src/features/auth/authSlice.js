@@ -5,6 +5,7 @@ const initialState = {
     errors: null,
     loading: false,
     user: null,
+    errorMessage: null,
 };
 
 const authSlice = createSlice({
@@ -12,6 +13,7 @@ const authSlice = createSlice({
     initialState,
     reducers: {
         clearErrors: (state, action) => {
+            state.errorMessage = null;
             state.errors = null;
         },
     },
@@ -23,13 +25,12 @@ const authSlice = createSlice({
         });
 
         buider.addCase(login.rejected, (state, { payload }) => {
+            state.errorMessage = payload?.message;
             state.errors = payload?.errors;
             state.loading = false;
         });
 
         buider.addCase(login.fulfilled, (state, { payload }) => {
-            console.log(payload);
-
             localStorage.setItem("at", payload?.token);
 
             state.user = payload?.user;
