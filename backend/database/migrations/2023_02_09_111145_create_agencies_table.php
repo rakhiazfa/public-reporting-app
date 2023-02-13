@@ -16,8 +16,6 @@ return new class extends Migration
         Schema::create('agencies', function (Blueprint $table) {
             $table->id();
 
-            $table->string('name')->unique();
-
             $table->foreignId('user_id')->unique()
                 ->constrained('users')->cascadeOnDelete();
 
