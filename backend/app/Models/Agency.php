@@ -15,7 +15,7 @@ class Agency extends Model
     /**
      * @var array
      */
-    protected $fillable = [];
+    protected $fillable = ['name'];
 
     /**
      * @return BelongsTo
