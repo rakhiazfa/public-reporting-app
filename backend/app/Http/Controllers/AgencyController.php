@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Exceptions\ExceptionResponse;
+use App\Http\Requests\Agency\StoreAgencyRequest;
 use App\Services\Agency\AgencyService;
 use Illuminate\Http\Request;
 
@@ -32,6 +33,8 @@ class AgencyController extends Controller
 
             $agencies = $this->agencyService->orderByIdDesc();
 
+            $agencies->load('location');
+
             // 
         } catch (\Exception $exception) {
 
@@ -46,22 +49,12 @@ class AgencyController extends Controller
     }
 
     /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StoreAgencyRequest $request)
     {
         //
     }
@@ -73,17 +66,6 @@ class AgencyController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function show($id)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
     {
         //
     }
