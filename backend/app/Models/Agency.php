@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\HasOne;
 
 class Agency extends Model
@@ -14,7 +15,7 @@ class Agency extends Model
     /**
      * @var array
      */
-    protected $fillable = ['name'];
+    protected $fillable = [];
 
     /**
      * @return BelongsTo
@@ -30,5 +31,13 @@ class Agency extends Model
     public function location()
     {
         return $this->hasOne(AgencyLocation::class, 'agency_id', 'id');
+    }
+
+    /**
+     * @return HasMany
+     */
+    public function employees()
+    {
+        return $this->hasMany(Employee::class, 'agency_id', 'id');
     }
 }
