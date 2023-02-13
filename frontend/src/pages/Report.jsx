@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import Date from "../components/Fields/Date";
+import File from "../components/Fields/File";
 import Input from "../components/Fields/Input";
 import Select from "../components/Fields/Select";
 import Layout from "../components/Layouts/Layout";
@@ -113,6 +114,11 @@ const Report = () => {
                                     className="mb-3"
                                     placeholder="Pilih instansi tujuan . . ."
                                 />
+                                <File
+                                    label="Lapiran"
+                                    className="col-span-2 mb-3"
+                                />
+
                                 <div className="flex justify-end md:col-span-2">
                                     <button
                                         type="submit"
