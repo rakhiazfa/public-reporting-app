@@ -39,7 +39,7 @@ class AgencyController extends Controller
             // 
         } catch (\Exception $exception) {
 
-            return new ExceptionResponse($exception);
+            return (new ExceptionResponse($exception))->json();
         }
 
         return response()->json([
@@ -72,7 +72,7 @@ class AgencyController extends Controller
             // 
         } catch (\Exception $exception) {
 
-            return new ExceptionResponse($exception);
+            return (new ExceptionResponse($exception))->json();
         }
 
         return response()->json([
