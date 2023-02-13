@@ -20,6 +20,7 @@ class AgencySeeder extends Seeder
         //
 
         $agency = Agency::create([
+            'name' => 'Pemerintahan Kota Bandung',
             'user_id' => User::factory()->state([
                 'name' => 'Pemerintahan Kota Bandung',
                 'role_id' => 2
@@ -29,6 +30,7 @@ class AgencySeeder extends Seeder
         AgencyLocation::factory()->state(['agency_id' => $agency->id])->create();
 
         $agency = Agency::create([
+            'name' => 'Pemerintahan Kota Semarang',
             'user_id' => User::factory()->state([
                 'name' => 'Pemerintahan Kota Semarang',
                 'role_id' => 2
@@ -38,6 +40,7 @@ class AgencySeeder extends Seeder
         AgencyLocation::factory()->state(['agency_id' => $agency->id])->create();
 
         $agency = Agency::create([
+            'name' => 'Pemerintahan Kota Tegal',
             'user_id' => User::factory()->state([
                 'name' => 'Pemerintahan Kota Tegal',
                 'role_id' => 2
