@@ -37,7 +37,7 @@ class JobController extends Controller
             // 
         } catch (\Exception $exception) {
 
-            return new ExceptionResponse($exception);
+            return (new ExceptionResponse($exception))->json();
         }
 
         return response()->json([
@@ -62,7 +62,7 @@ class JobController extends Controller
             // 
         } catch (\Exception $exception) {
 
-            return new ExceptionResponse($exception);
+            return (new ExceptionResponse($exception))->json();
         }
 
         return response()->json([
