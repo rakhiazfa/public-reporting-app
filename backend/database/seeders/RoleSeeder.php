@@ -21,6 +21,8 @@ class RoleSeeder extends Seeder
 
         Role::create(['name' => 'agency']);
 
+        Role::create(['name' => 'employee']);
+
         Role::create(['name' => 'society']);
     }
 }
