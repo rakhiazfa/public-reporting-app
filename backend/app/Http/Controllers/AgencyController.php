@@ -2,10 +2,25 @@
 
 namespace App\Http\Controllers;
 
+use App\Exceptions\ExceptionResponse;
+use App\Services\Agency\AgencyService;
 use Illuminate\Http\Request;
 
 class AgencyController extends Controller
 {
+    /**
+     * @var AgencyService
+     */
+    protected AgencyService $agencyService;
+
+    /**
+     * @param AgencyService $agencyService
+     */
+    public function __construct(AgencyService $agencyService)
+    {
+        $this->agencyService = $agencyService;
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -13,7 +28,21 @@ class AgencyController extends Controller
      */
     public function index()
     {
-        //
+        try {
+
+            $agencies = $this->agencyService->orderByIdDesc();
+
+            // 
+        } catch (\Exception $exception) {
+
+            return new ExceptionResponse($exception);
+        }
+
+        return response()->json([
+            'success' => true,
+            'code' => 200,
+            'agencies' => $agencies,
+        ], 200);
     }
 
     /**
