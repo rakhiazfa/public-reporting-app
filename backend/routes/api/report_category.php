@@ -27,5 +27,7 @@ Route::name('report-categories')->prefix('report-categories')->middleware(['auth
         Route::post('/', [ReportSubcategoryController::class, 'store'])->name('.store');
 
         Route::put('/{reportSubcategory}', [ReportSubcategoryController::class, 'update'])->name('.update');
+
+        Route::delete('/{reportSubcategory}', [ReportSubcategoryController::class, 'destroy'])->name('.destroy');
     });
 });
