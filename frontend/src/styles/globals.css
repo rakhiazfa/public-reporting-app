@@ -69,7 +69,7 @@
     .field {
         @apply block w-full focus:border-blue-400 
         placeholder:text-smd border rounded-md px-3 py-[.6rem] 
-        transition-all duration-300;
+        transition-all duration-300 border-gray-300;
     }
 
 }
