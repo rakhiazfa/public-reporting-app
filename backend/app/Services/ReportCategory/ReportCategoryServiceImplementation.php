@@ -4,9 +4,11 @@ namespace App\Services\ReportCategory;
 
 use App\Foundation\Service\ServiceImplementation;
 use App\Models\ReportCategory;
+use App\Models\ReportSubcategory;
 use App\Repositories\ReportCategory\ReportCategoryRepository;
 use App\Repositories\ReportSubcategory\ReportSubcategoryRepository;
 use Illuminate\Database\Eloquent\Model;
+use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
 class ReportCategoryServiceImplementation extends ServiceImplementation implements ReportCategoryService
 {
@@ -43,5 +45,17 @@ class ReportCategoryServiceImplementation extends ServiceImplementation implemen
         $subcategory->save();
 
         return $subcategory;
+    }
+
+    public function deleteSubcategory(ReportCategory $reportCategory, int $id): bool
+    {
+        if (!$reportCategory->reportSubcategories->contains($id)) {
+
+            throw new NotFoundHttpException('Not found', null, 404);
+        }
+
+        $reportSubcategory = ReportSubcategory::find($id);
+
+        return $reportSubcategory->delete();
     }
 }

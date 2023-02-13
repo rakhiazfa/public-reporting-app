@@ -43,7 +43,7 @@ class ReportSubcategoryController extends Controller
             // 
         } catch (\Exception $exception) {
 
-            return new ExceptionResponse($exception);
+            return (new ExceptionResponse($exception))->json();
         }
 
         return response()->json([
@@ -72,6 +72,31 @@ class ReportSubcategoryController extends Controller
             'success' => true,
             'code' => 200,
             'message' => 'Successfully updated report subcategory.',
+        ], 200);
+    }
+
+    /**
+     * Remove the specified resource from storage.
+     *
+     * @param  ReportCategory $reportCategory
+     * @return \Illuminate\Http\Response
+     */
+    public function destroy(ReportCategory $reportCategory, ReportSubcategory $reportSubcategory)
+    {
+        try {
+
+            $this->reportCategoryService->deleteSubcategory($reportCategory, $reportSubcategory->id);
+
+            // 
+        } catch (\Exception $exception) {
+
+            return (new ExceptionResponse($exception))->json();
+        }
+
+        return response()->json([
+            'success' => true,
+            'code' => 200,
+            'message' => 'Successfully deleted report subcategory.',
         ], 200);
     }
 }
