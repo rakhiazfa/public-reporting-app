@@ -5,6 +5,7 @@ import { FcHome, FcAbout, FcDocument } from "react-icons/fc";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import { logout } from "../../features/auth/authActions";
+import logo from "../../assets/images/logo.png";
 
 const links = [
     {
@@ -42,14 +43,7 @@ const Topbar = () => {
         <header className="topbar">
             <div className="topbar-container">
                 <Link className="topbar-brand" to="/">
-                    <img
-                        className="logo"
-                        src={
-                            import.meta.env.VITE_BACKEND_URL +
-                            "/assets/images/logo.png"
-                        }
-                        alt="Logo"
-                    />
+                    <img className="logo" src={logo} alt="Logo" />
                     <span
                         className="
                             hidden sm:block text-lg md:text-xl lg:text-2xl 

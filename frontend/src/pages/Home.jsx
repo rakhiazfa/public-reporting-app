@@ -1,6 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import Layout from "../components/Layouts/Layout";
+import heroImage from "../assets/images/hero-image.svg";
 
 const Home = () => {
     return (
@@ -27,10 +28,7 @@ const Home = () => {
                         </div>
                         <img
                             className="w-[450px] mx-auto order-1 lg:order-2"
-                            src={
-                                import.meta.env.VITE_BACKEND_URL +
-                                "/assets/images/hero-image.svg"
-                            }
+                            src={heroImage}
                             alt="Hero Image"
                         />
                     </div>

@@ -4,6 +4,7 @@ import Input from "../components/Fields/Input";
 import Layout from "../components/Layouts/Layout";
 import { login } from "../features/auth/authActions";
 import { clearErrors } from "../features/auth/authSlice";
+import loginIllustration from "../assets/images/illustrations/login.svg";
 
 const SignIn = () => {
     const [payload, setPayload] = useState({
@@ -85,10 +86,7 @@ const SignIn = () => {
                         <div className="hidden lg:block">
                             <img
                                 className="h-[450px] mx-auto"
-                                src={
-                                    import.meta.env.VITE_BACKEND_URL +
-                                    "/assets/images/illustrations/login.svg"
-                                }
+                                src={loginIllustration}
                                 alt="Login Illustration"
                             />
                         </div>
