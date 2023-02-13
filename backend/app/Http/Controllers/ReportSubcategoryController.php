@@ -66,7 +66,19 @@ class ReportSubcategoryController extends Controller
         ReportCategory $reportCategory,
         ReportSubcategory $reportSubcategory
     ) {
-        $reportSubcategory->update($request->all());
+        try {
+
+            $this->reportCategoryService->updateSubcategory(
+                $reportCategory,
+                $reportSubcategory->id,
+                $request->all()
+            );
+
+            // 
+        } catch (\Exception $exception) {
+
+            return (new ExceptionResponse($exception))->json();
+        }
 
         return response()->json([
             'success' => true,

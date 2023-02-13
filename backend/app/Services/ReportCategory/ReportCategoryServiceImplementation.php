@@ -47,6 +47,35 @@ class ReportCategoryServiceImplementation extends ServiceImplementation implemen
         return $subcategory;
     }
 
+    /**
+     * Update report subcategory with id.
+     * 
+     * @param ReportCategory $reportCategory
+     * @param int $id
+     * @param array $attributes
+     * 
+     * @return bool
+     */
+    public function updateSubcategory(ReportCategory $reportCategory, int $id, array $attributes = []): bool
+    {
+        if (!$reportCategory->reportSubcategories->contains($id)) {
+
+            throw new NotFoundHttpException('Not found', null, 404);
+        }
+
+        $reportSubcategory = ReportSubcategory::find($id);
+
+        return $reportSubcategory->update($attributes);
+    }
+
+    /**
+     * Delete report subcategory with id.
+     * 
+     * @param ReportCategory $reportCategory
+     * @param int $id
+     * 
+     * @return bool
+     */
     public function deleteSubcategory(ReportCategory $reportCategory, int $id): bool
     {
         if (!$reportCategory->reportSubcategories->contains($id)) {

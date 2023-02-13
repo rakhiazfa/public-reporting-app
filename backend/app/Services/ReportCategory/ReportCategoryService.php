@@ -19,6 +19,16 @@ interface ReportCategoryService extends ServiceInterface
     public function createSubcategory(ReportCategory $reportCategory, array $attributes = []): Model;
 
     /**
+     * Update report subcategory with id.
+     * 
+     * @param ReportCategory $reportCategory
+     * @param int $id
+     * 
+     * @return bool
+     */
+    public function updateSubcategory(ReportCategory $reportCategory, int $id, array $attributes = []): bool;
+
+    /**
      * Delete report subcategory with id.
      * 
      * @param ReportCategory $reportCategory
