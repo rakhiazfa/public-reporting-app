@@ -2,6 +2,7 @@
 
 namespace App\Services\Agency;
 
+use Illuminate\Database\Eloquent\Model;
 use Rakhiazfa\LaravelSarp\Service\ServiceInterface;
 
 /**
@@ -11,5 +12,14 @@ use Rakhiazfa\LaravelSarp\Service\ServiceInterface;
 
 interface AgencyService extends ServiceInterface
 {
-    //
+    /**
+     * Create a new agency.
+     * 
+     * @param array $user
+     * @param array $agency
+     * @param array $location
+     * 
+     * @return Model
+     */
+    public function createAgency(array $user = [], array $agency = [], array $location): Model;
 }
