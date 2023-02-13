@@ -8,6 +8,7 @@ const File = ({
     placeholder,
     className,
     error,
+    help,
 }) => {
     return (
         <div className={`${className}`}>
@@ -23,7 +24,7 @@ const File = ({
                 placeholder={placeholder}
             />
             <p className="mt-1 text-sm text-gray-500" id="file_input_help">
-                SVG, PNG, JPG or GIF (MAX. 800x400px).
+                {help ?? ""}
             </p>
             {error && (
                 <p className="text-sm font-medium text-red-500 ml-1 mt-2 -mb-2">

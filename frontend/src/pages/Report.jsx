@@ -117,6 +117,7 @@ const Report = () => {
                                 <File
                                     label="Lapiran"
                                     className="col-span-2 mb-3"
+                                    help={"PDF (MAX 2MB)"}
                                 />
 
                                 <div className="flex justify-end md:col-span-2">
