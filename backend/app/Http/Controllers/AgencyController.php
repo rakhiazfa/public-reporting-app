@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Exceptions\ExceptionResponse;
 use App\Http\Requests\Agency\StoreAgencyRequest;
+use App\Models\Agency;
 use App\Services\Agency\AgencyService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
@@ -86,22 +87,28 @@ class AgencyController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param  Agency $agency
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Agency $agency)
     {
-        //
+        $agency->load(['user', 'location']);
+
+        return response()->json([
+            'success' => true,
+            'code' => 200,
+            'agency' => $agency,
+        ], 200);
     }
 
     /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param  Agency $agency
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Agency $agency)
     {
         //
     }
@@ -109,10 +116,10 @@ class AgencyController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param  Agency $agency
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Agency $agency)
     {
         //
     }
