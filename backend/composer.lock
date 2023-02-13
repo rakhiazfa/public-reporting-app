@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "91b5e7046ea1b16d9128d15eb6a7b057",
+    "content-hash": "ab732c53059d957f9e0614ad1b5e44e2",
     "packages": [
         {
             "name": "brick/math",
@@ -3065,6 +3065,51 @@
                 "source": "https://github.com/bobthecow/psysh/tree/v0.11.12"
             },
             "time": "2023-01-29T21:24:40+00:00"
+        },
+        {
+            "name": "rakhiazfa/laravel-sarp",
+            "version": "0.0.3",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/rakhiazfa/laravel-sarp.git",
+                "reference": "378cb1d49284d263dd77370871920412c0ff8ba0"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/rakhiazfa/laravel-sarp/zipball/378cb1d49284d263dd77370871920412c0ff8ba0",
+                "reference": "378cb1d49284d263dd77370871920412c0ff8ba0",
+                "shasum": ""
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "Rakhiazfa\\LaravelSarp\\Providers\\SarpServiceProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Rakhiazfa\\LaravelSarp\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Rakhi Azfa Rifansya",
+                    "email": "rakhiazfa0421@gmail.com"
+                }
+            ],
+            "description": "Helps you in creating services and repository in laravel.",
+            "homepage": "https://github.com/rakhiazfa/laravel-sarp",
+            "support": {
+                "issues": "https://github.com/rakhiazfa/laravel-sarp/issues",
+                "source": "https://github.com/rakhiazfa/laravel-sarp/tree/0.0.3"
+            },
+            "time": "2023-02-11T08:51:21+00:00"
         },
         {
             "name": "ralouphie/getallheaders",
