@@ -6,6 +6,7 @@ use App\Exceptions\ExceptionResponse;
 use App\Http\Requests\Agency\StoreAgencyRequest;
 use App\Services\Agency\AgencyService;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
 
 class AgencyController extends Controller
 {
@@ -56,7 +57,30 @@ class AgencyController extends Controller
      */
     public function store(StoreAgencyRequest $request)
     {
-        //
+        $request->merge([
+            'password' => Hash::make($request->input('password')),
+        ]);
+
+        try {
+
+            $agency = $this->agencyService->createAgency(
+                $request->only(['name', 'email', 'username', 'password']),
+                $request->only(['name']),
+                $request->only(['country', 'province', 'city', 'postal_code', 'address']),
+            );
+
+            // 
+        } catch (\Exception $exception) {
+
+            return new ExceptionResponse($exception);
+        }
+
+        return response()->json([
+            'success' => true,
+            'code' => 201,
+            'message' => 'Successfully created a new agency.',
+            'agency' => $agency,
+        ], 201);
     }
 
     /**
