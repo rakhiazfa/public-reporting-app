@@ -15,10 +15,17 @@ const reportTypes = [
 ];
 
 const Report = () => {
-    const [date, setDate] = useState({
+    const [reportDate, setReportDate] = useState({
         startDate: null,
         endDate: null,
     });
+    const [reportTitle, setReportTitle] = useState("");
+    const [reportContent, setReportContent] = useState("");
+    const [reportingOrigin, setReportingOrigin] = useState("");
+    const [reportType, setReportType] = useState();
+    const [destinationAgency, setDestinationAgency] = useState();
+    const [reportCategory, setReportCategory] = useState();
+    const [attachment, setAttachment] = useState("");
 
     const { reportCategories, agencies } = useSelector(
         ({ reportCategory, agency }) => ({
@@ -30,7 +37,28 @@ const Report = () => {
     const dispatch = useDispatch();
 
     const handleDateChange = (newValue) => {
-        setDate(newValue);
+        setReportDate(newValue);
+    };
+
+    const handleFileChange = (e) => {
+        if (e.target.files) {
+            setAttachment(e.target.files[0]);
+        }
+    };
+
+    const handleSendReport = (e) => {
+        e.preventDefault();
+
+        console.log({
+            reportType,
+            reportTitle,
+            reportContent,
+            reportDate,
+            reportingOrigin,
+            destinationAgency,
+            reportCategory,
+            attachment,
+        });
     };
 
     useEffect(() => {
@@ -50,32 +78,50 @@ const Report = () => {
 
                     <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-16">
                         <div className="md:col-span-2 lg:row-span-2">
-                            <form className="grid md:grid-cols-2 gap-7">
+                            <form
+                                className="grid md:grid-cols-2 gap-7"
+                                onSubmit={handleSendReport}
+                            >
                                 <Select
                                     label="Bentuk Laporan"
                                     options={reportTypes}
+                                    onChange={(type) =>
+                                        setReportType(type.value)
+                                    }
                                     className="md:col-span-2 mb-3"
                                     placeholder="Pilih bentuk laporan . . ."
                                 />
                                 <Input
                                     label="Judul Laporan"
+                                    value={reportTitle}
+                                    onChange={(e) =>
+                                        setReportTitle(e.target.value)
+                                    }
                                     placeholder="Masukan judul laporan . . ."
                                     className="md:col-span-2 mb-3"
                                 />
                                 <Input
                                     type="textarea"
                                     label="Isi Laporan"
+                                    value={reportContent}
+                                    onChange={(e) =>
+                                        setReportContent(e.target.value)
+                                    }
                                     placeholder="Masukan isi laporan . . ."
                                     className="md:col-span-2 mb-3"
                                 />
                                 <Date
                                     label="Tanggal Laporan"
-                                    value={date}
+                                    value={reportDate}
                                     onChange={handleDateChange}
                                     className="mb-3"
                                 />
                                 <Input
                                     label="Asal Pelapor"
+                                    value={reportingOrigin}
+                                    onChange={(e) =>
+                                        setReportingOrigin(e.target.value)
+                                    }
                                     placeholder="Masukan asal pelapor . . ."
                                     className="mb-3"
                                 />
@@ -104,6 +150,9 @@ const Report = () => {
                                         },
                                         []
                                     )}
+                                    onChange={(type) =>
+                                        setReportCategory(type.value)
+                                    }
                                     className="mb-3"
                                     placeholder="Pilih kategori laporan . . ."
                                 />
@@ -117,12 +166,16 @@ const Report = () => {
 
                                         return prev;
                                     }, [])}
+                                    onChange={(type) =>
+                                        setDestinationAgency(type.value)
+                                    }
                                     className="mb-3"
                                     placeholder="Pilih instansi tujuan . . ."
                                 />
                                 <File
                                     label="Lapiran"
                                     className="col-span-2 mb-3"
+                                    onChange={handleFileChange}
                                     help={"PDF (MAX 2MB)"}
                                 />
 
