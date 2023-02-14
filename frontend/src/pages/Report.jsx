@@ -13,21 +13,18 @@ const reportTypes = [
     { value: 3, label: "Permintaan Informasi" },
 ];
 
-const destinationAgencies = [
-    { value: 1, label: "Pemerintahan Kota Bandung" },
-    { value: 2, label: "Pemerintahan Kota Jakarta" },
-    { value: 3, label: "Pemerintahan Kota Bogor" },
-];
-
 const Report = () => {
     const [date, setDate] = useState({
         startDate: null,
         endDate: null,
     });
 
-    const { reportCategories } = useSelector(({ reportCategory }) => ({
-        reportCategories: reportCategory.reportCategories,
-    }));
+    const { reportCategories, agencies } = useSelector(
+        ({ reportCategory, agency }) => ({
+            reportCategories: reportCategory.reportCategories,
+            agencies: agency.agencies,
+        })
+    );
 
     const dispatch = useDispatch();
 
@@ -110,7 +107,14 @@ const Report = () => {
                                 />
                                 <Select
                                     label="Instansi Tujuan"
-                                    options={destinationAgencies}
+                                    options={agencies?.reduce((prev, next) => {
+                                        prev.push({
+                                            value: next?.id,
+                                            label: next?.name,
+                                        });
+
+                                        return prev;
+                                    }, [])}
                                     className="mb-3"
                                     placeholder="Pilih instansi tujuan . . ."
                                 />
