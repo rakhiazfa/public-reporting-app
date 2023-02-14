@@ -132,6 +132,20 @@ class AgencyController extends Controller
      */
     public function destroy(Agency $agency)
     {
-        //
+        try {
+
+            $this->agencyService->deleteAgency($agency);
+
+            // 
+        } catch (\Exception $exception) {
+
+            return (new ExceptionResponse($exception))->json();
+        }
+
+        return response()->json([
+            'success' => true,
+            'code' => 200,
+            'message' => 'Successfully deleted agency.',
+        ], 200);
     }
 }
