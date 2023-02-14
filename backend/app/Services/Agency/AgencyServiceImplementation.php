@@ -2,6 +2,7 @@
 
 namespace App\Services\Agency;
 
+use App\Models\Agency;
 use Rakhiazfa\LaravelSarp\Repository\RepositoryModel;
 use Rakhiazfa\LaravelSarp\Service\ServiceImplementation;
 use App\Services\Agency\AgencyService;
@@ -65,5 +66,20 @@ class AgencyServiceImplementation extends ServiceImplementation implements Agenc
         $location->save();
 
         return $agency;
+    }
+
+    /**
+     * Update agency by id.
+     * 
+     * @param Agency $agency
+     * @param array $attributes
+     * 
+     * @return bool
+     */
+    public function updateAgency(Agency $agency, array $attributes = []): bool
+    {
+        return $agency->update($attributes) &&
+            $agency->user->update($attributes) &&
+            $agency->location->update($attributes);
     }
 }

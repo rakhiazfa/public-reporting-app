@@ -109,6 +109,8 @@ class AgencyController extends Controller
     {
         try {
 
+            $this->agencyService->updateAgency($agency, $request->all());
+
             // 
         } catch (\Exception $exception) {
 
