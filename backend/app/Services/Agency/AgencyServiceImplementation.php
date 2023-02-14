@@ -82,4 +82,16 @@ class AgencyServiceImplementation extends ServiceImplementation implements Agenc
             $agency->user->update($attributes) &&
             $agency->location->update($attributes);
     }
+
+    /**
+     * Delete agency by id.
+     * 
+     * @param Agency $agency
+     * 
+     * @return bool
+     */
+    public function deleteAgency(Agency $agency): bool
+    {
+        return $agency->user->delete();
+    }
 }

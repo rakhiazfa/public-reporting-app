@@ -31,4 +31,13 @@ interface AgencyService extends ServiceInterface
      * @return bool
      */
     public function updateAgency(Agency $agency, array $attributes = []): bool;
+
+    /**
+     * Delete agency by id.
+     * 
+     * @param Agency $agency
+     * 
+     * @return bool
+     */
+    public function deleteAgency(Agency $agency): bool;
 }
