@@ -3,6 +3,7 @@
 namespace App\Http\Requests\Agency;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Support\Facades\Auth;
 
 class UpdateAgencyRequest extends FormRequest
 {
@@ -13,7 +14,7 @@ class UpdateAgencyRequest extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        return Auth::check();
     }
 
     /**
@@ -34,7 +35,6 @@ class UpdateAgencyRequest extends FormRequest
             'address' => ['required'],
             'email' => ['required', 'email', 'unique:users,email,' . $agency->user->id],
             'username' => ['required', 'without_spaces', 'unique:users,username,' . $agency->user->id],
-            'password' => ['required', 'min:8', 'confirmed'],
         ];
     }
 }
