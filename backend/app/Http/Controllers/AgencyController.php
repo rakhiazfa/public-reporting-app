@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Exceptions\ExceptionResponse;
 use App\Http\Requests\Agency\StoreAgencyRequest;
+use App\Http\Requests\Agency\UpdateAgencyRequest;
 use App\Models\Agency;
 use App\Services\Agency\AgencyService;
 use Illuminate\Http\Request;
@@ -64,11 +65,7 @@ class AgencyController extends Controller
 
         try {
 
-            $agency = $this->agencyService->createAgency(
-                $request->only(['name', 'email', 'username', 'password']),
-                $request->only(['name']),
-                $request->only(['country', 'province', 'city', 'postal_code', 'address']),
-            );
+            $agency = $this->agencyService->createAgency($request->all());
 
             // 
         } catch (\Exception $exception) {
@@ -108,9 +105,21 @@ class AgencyController extends Controller
      * @param  Agency $agency
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Agency $agency)
+    public function update(UpdateAgencyRequest $request, Agency $agency)
     {
-        //
+        try {
+
+            // 
+        } catch (\Exception $exception) {
+
+            return (new ExceptionResponse($exception))->json();
+        }
+
+        return response()->json([
+            'success' => true,
+            'code' => 200,
+            'message' => 'Successfully updated agency.',
+        ], 200);
     }
 
     /**

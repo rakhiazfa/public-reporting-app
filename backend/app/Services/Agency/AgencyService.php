@@ -21,5 +21,5 @@ interface AgencyService extends ServiceInterface
      * 
      * @return Model
      */
-    public function createAgency(array $user = [], array $agency = [], array $location): Model;
+    public function createAgency(array $attributes = []): Model;
 }
