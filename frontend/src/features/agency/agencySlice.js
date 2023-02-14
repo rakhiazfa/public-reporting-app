@@ -1,4 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
+import { getAgencies } from "./agencyActions";
 
 const initialState = {
     errors: null,
@@ -15,7 +16,22 @@ const agencySlice = createSlice({
             state.errors = null;
         },
     },
-    extraReducers: (buider) => {},
+    extraReducers: (buider) => {
+        // Get agencies
+
+        buider.addCase(getAgencies.pending, (state, { payload }) => {
+            state.loading = true;
+        });
+
+        buider.addCase(getAgencies.rejected, (state, { payload }) => {
+            state.loading = false;
+        });
+
+        buider.addCase(getAgencies.fulfilled, (state, { payload }) => {
+            state.agencies = payload?.agencies;
+            state.loading = false;
+        });
+    },
 });
 
 export const { clearErrors } = agencySlice.actions;
