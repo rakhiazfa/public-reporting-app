@@ -5,6 +5,7 @@ import File from "../components/Fields/File";
 import Input from "../components/Fields/Input";
 import Select from "../components/Fields/Select";
 import Layout from "../components/Layouts/Layout";
+import { getAgencies } from "../features/agency/agencyActions";
 import { getReportCategories } from "../features/report_category/reportCategoryActions";
 
 const reportTypes = [
@@ -35,6 +36,7 @@ const Report = () => {
     useEffect(() => {
         return () => {
             dispatch(getReportCategories());
+            dispatch(getAgencies());
         };
     }, [dispatch]);
 
