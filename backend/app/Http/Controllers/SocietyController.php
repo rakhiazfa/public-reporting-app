@@ -31,6 +31,23 @@ class SocietyController extends Controller
      */
     public function index()
     {
+        try {
+
+            $societies = $this->societyService->orderByIdDesc();
+
+            $societies->load('user');
+
+            //
+        } catch (\Exception $exception) {
+
+            return (new ExceptionResponse($exception))->json();
+        }
+
+        return response()->json([
+            'success' => true,
+            'code' => 200,
+            'societies' => $societies,
+        ], 200);
     }
 
     /**
