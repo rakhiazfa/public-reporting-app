@@ -53,3 +53,10 @@ require_once __DIR__ . '/api/report_category.php';
  */
 
 require_once __DIR__ . '/api/agency.php';
+
+/**
+ * Load society routes.
+ * 
+ */
+
+require_once __DIR__ . '/api/society.php';
