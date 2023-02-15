@@ -3,6 +3,7 @@
 namespace App\Http\Requests\Society;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rule;
 
 class StoreSocietyRequest extends FormRequest
 {
@@ -13,7 +14,7 @@ class StoreSocietyRequest extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        return true;
     }
 
     /**
@@ -24,7 +25,15 @@ class StoreSocietyRequest extends FormRequest
     public function rules()
     {
         return [
-            //
+            'nik' => ['required', 'unique:societies'],
+            'name' => ['required'],
+            'date_of_birth' => ['required', 'date'],
+            'gender' => ['required', Rule::in(['Pria', 'Wanita'])],
+            'phone' => ['required'],
+            'job_id' => ['required'],
+            'email' => ['required', 'unique:users'],
+            'username' => ['required', 'unique:users'],
+            'password' => ['required', 'min:8', 'confirmed']
         ];
     }
 }

@@ -3,6 +3,7 @@
 namespace App\Http\Requests\Society;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Support\Facades\Auth;
 
 class UpdateSocietyRequest extends FormRequest
 {
@@ -13,7 +14,7 @@ class UpdateSocietyRequest extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        return Auth::check();
     }
 
     /**
