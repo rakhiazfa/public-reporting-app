@@ -84,6 +84,13 @@ class SocietyController extends Controller
      */
     public function show(Society $society)
     {
+        $society->load('user', 'location');
+
+        return response()->json([
+            'success' => true,
+            'code' => 200,
+            'society' => $society,
+        ], 200);
     }
 
     /**
