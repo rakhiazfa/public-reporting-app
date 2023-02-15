@@ -32,8 +32,13 @@ class StoreSocietyRequest extends FormRequest
             'phone' => ['required'],
             'job_id' => ['required'],
             'email' => ['required', 'unique:users'],
-            'username' => ['required', 'unique:users'],
+            'username' => ['required', 'unique:users', 'without_spaces'],
             'password' => ['required', 'min:8', 'confirmed'],
+            'country' => ['required'],
+            'province' => ['required'],
+            'city' => ['required'],
+            'postal_code' => ['required'],
+            'address' => ['required'],
         ];
     }
 }
