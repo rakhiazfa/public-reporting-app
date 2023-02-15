@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Exceptions\ExceptionResponse;
 use App\Http\Requests\Society\StoreSocietyRequest;
 use App\Http\Requests\Society\UpdateSocietyRequest;
 use App\Models\Society;
@@ -40,6 +41,22 @@ class SocietyController extends Controller
      */
     public function store(StoreSocietyRequest $request)
     {
+        try {
+
+            $society = $this->societyService->createSociety($request->all());
+
+            //
+        } catch (\Exception $exception) {
+
+            return (new ExceptionResponse($exception))->json();
+        }
+
+        return response()->json([
+            'success' => true,
+            'code' => 201,
+            'message' => 'Registrasi berhasil.',
+            'society' => $society,
+        ], 201);
     }
 
     /**
