@@ -15,6 +15,15 @@ return new class extends Migration
     {
         Schema::create('society_locations', function (Blueprint $table) {
             $table->id();
+
+            $table->string('country')->default('Indonesia');
+            $table->string('province');
+            $table->string('city');
+            $table->string('postal_code');
+            $table->text('address');
+
+            $table->foreignId('society_id')->constrained('societies')->cascadeOnDelete();
+
             $table->timestamps();
         });
     }

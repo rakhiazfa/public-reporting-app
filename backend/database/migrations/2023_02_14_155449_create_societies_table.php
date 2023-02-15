@@ -15,6 +15,20 @@ return new class extends Migration
     {
         Schema::create('societies', function (Blueprint $table) {
             $table->id();
+
+            $table->string('nik')->unique();
+            $table->string('name');
+            $table->date('date_of_birth');
+            $table->enum('gender', ['Pria', 'Wanita']);
+            $table->string('phone');
+
+            $table->foreignId('job_id')
+                ->nullable()
+                ->constrained('jobs')->nullOnDelete();
+
+            $table->foreignId('user_id')->unique()
+                ->constrained('users')->cascadeOnDelete();
+
             $table->timestamps();
         });
     }
