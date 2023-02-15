@@ -33,7 +33,7 @@ class StoreSocietyRequest extends FormRequest
             'job_id' => ['required'],
             'email' => ['required', 'unique:users'],
             'username' => ['required', 'unique:users'],
-            'password' => ['required', 'min:8', 'confirmed']
+            'password' => ['required', 'min:8', 'confirmed'],
         ];
     }
 }
