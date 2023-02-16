@@ -72,4 +72,16 @@ class SocietyServiceImplementation extends ServiceImplementation implements Soci
             $society->user->update($attributes) &&
             $society->location->update($attributes);
     }
+
+    /**
+     * Delete user by id.
+     * 
+     * @param Society $society
+     * 
+     * @return bool
+     */
+    public function deleteSociety(Society $society): bool
+    {
+        return $society->user->delete();
+    }
 }

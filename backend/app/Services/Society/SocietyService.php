@@ -27,4 +27,11 @@ interface SocietyService extends ServiceInterface
      * @return bool
      */
     public function updateSociety(Society $society, array $attributes = []): bool;
+
+    /**
+     * @param Society $society
+     * 
+     * @return bool
+     */
+    public function deleteSociety(Society $society): bool;
 }
