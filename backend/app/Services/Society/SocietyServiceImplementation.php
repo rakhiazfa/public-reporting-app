@@ -2,6 +2,7 @@
 
 namespace App\Services\Society;
 
+use App\Models\Society;
 use Rakhiazfa\LaravelSarp\Repository\RepositoryModel;
 use Rakhiazfa\LaravelSarp\Service\ServiceImplementation;
 use App\Services\Society\SocietyService;
@@ -55,5 +56,20 @@ class SocietyServiceImplementation extends ServiceImplementation implements Soci
         $location->save();
 
         return $society;
+    }
+
+    /**
+     * Update society by id.
+     * 
+     * @param Society $society
+     * @param array $attributes
+     * 
+     * @return bool
+     */
+    public function updateSociety(Society $society, array $attributes = []): bool
+    {
+        return $society->update($attributes) &&
+            $society->user->update($attributes) &&
+            $society->location->update($attributes);
     }
 }

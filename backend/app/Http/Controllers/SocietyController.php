@@ -102,6 +102,22 @@ class SocietyController extends Controller
      */
     public function update(UpdateSocietyRequest $request, Society $society)
     {
+        try {
+
+            $society = $this->societyService->updateSociety($society, $request->all());
+
+            //
+        } catch (\Exception $exception) {
+
+            return (new ExceptionResponse($exception))->json();
+        }
+
+        return response()->json([
+            'success' => true,
+            'code' => 200,
+            'message' => 'Berhasil memperbarui masyarakat.',
+            'society' => $society,
+        ], 200);
     }
 
     /**
@@ -112,5 +128,20 @@ class SocietyController extends Controller
      */
     public function destroy(Society $society)
     {
+        try {
+
+            $this->societyService->deleteSociety($society);
+
+            // 
+        } catch (\Exception $exception) {
+
+            return new ExceptionResponse($exception);
+        }
+
+        return response()->json([
+            'success' => true,
+            'code' => 200,
+            'message' => 'Successfully deleted society.',
+        ], 200);
     }
 }

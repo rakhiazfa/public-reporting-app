@@ -14,7 +14,7 @@ class Society extends Model
     /**
      * @var array
      */
-    protected $fillable = ['nik', 'name', 'date_of_birth', 'gender', 'phone'];
+    protected $fillable = ['nik', 'name', 'date_of_birth', 'gender', 'phone' . 'job_id'];
 
     /**
      * @return BelongsTo
