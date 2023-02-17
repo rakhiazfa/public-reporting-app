@@ -174,7 +174,7 @@ const Report = () => {
                                 />
                                 <File
                                     label="Lapiran"
-                                    className="col-span-2 mb-3"
+                                    className="md:col-span-2 mb-3"
                                     onChange={handleFileChange}
                                     help={"PDF (MAX 2MB)"}
                                 />
