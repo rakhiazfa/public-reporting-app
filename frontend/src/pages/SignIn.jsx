@@ -53,7 +53,7 @@ const SignIn = () => {
                                     type="text"
                                     label="Email atau Username"
                                     name="email_or_username"
-                                    placeholder="Masukan emaul atau username anda . . ."
+                                    placeholder="Masukan email atau username anda . . ."
                                     className="mb-5"
                                     value={payload?.email_or_username}
                                     onChange={handleChange}
