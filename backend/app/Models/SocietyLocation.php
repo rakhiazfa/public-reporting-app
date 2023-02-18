@@ -12,7 +12,7 @@ class SocietyLocation extends Model
     /**
      * @var array
      */
-    protected $fillable = ['country', 'province', 'city', 'postal_code', 'address'];
+    protected $fillable = ['country', 'province', 'city', 'sub_district', 'urban_village', 'postal_code', 'address'];
 
     /**
      * @return BelongsTo

@@ -19,6 +19,8 @@ return new class extends Migration
             $table->string('country')->default('Indonesia');
             $table->string('province');
             $table->string('city');
+            $table->string('sub_district');
+            $table->string('urban_village');
             $table->string('postal_code');
             $table->text('address');
 

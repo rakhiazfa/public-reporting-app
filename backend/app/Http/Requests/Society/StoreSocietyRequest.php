@@ -37,6 +37,8 @@ class StoreSocietyRequest extends FormRequest
             'country' => ['nullable'],
             'province' => ['required'],
             'city' => ['required'],
+            'sub_district' => ['required'],
+            'urban_village' => ['required'],
             'postal_code' => ['required'],
             'address' => ['required'],
         ];
