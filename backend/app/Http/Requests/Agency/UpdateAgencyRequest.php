@@ -28,7 +28,7 @@ class UpdateAgencyRequest extends FormRequest
 
         return [
             'name' => ['required', 'unique:agencies,name,' . $agency->id],
-            'country' => ['required'],
+            'country' => ['nullable'],
             'province' => ['required'],
             'city' => ['required'],
             'postal_code' => ['required'],

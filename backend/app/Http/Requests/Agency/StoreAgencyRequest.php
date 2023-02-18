@@ -26,7 +26,7 @@ class StoreAgencyRequest extends FormRequest
     {
         return [
             'name' => ['required', 'unique:agencies'],
-            'country' => ['required'],
+            'country' => ['nullable'],
             'province' => ['required'],
             'city' => ['required'],
             'postal_code' => ['required'],
