@@ -8,6 +8,7 @@ use App\Http\Requests\Society\UpdateSocietyRequest;
 use App\Models\Society;
 use App\Services\Society\SocietyService;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
 
 class SocietyController extends Controller
 {
@@ -58,6 +59,10 @@ class SocietyController extends Controller
      */
     public function store(StoreSocietyRequest $request)
     {
+        $request->merge([
+            'password' => Hash::make($request->input('password')),
+        ]);
+
         try {
 
             $society = $this->societyService->createSociety($request->all());
