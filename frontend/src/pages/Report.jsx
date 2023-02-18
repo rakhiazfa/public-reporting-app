@@ -1,3 +1,4 @@
+import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import Date from "../components/Fields/Date";
@@ -5,8 +6,6 @@ import File from "../components/Fields/File";
 import Input from "../components/Fields/Input";
 import Select from "../components/Fields/Select";
 import Layout from "../components/Layouts/Layout";
-import { getAgencies } from "../features/agency/agencyActions";
-import { getReportCategories } from "../features/report_category/reportCategoryActions";
 
 const reportTypes = [
     { value: 1, label: "Pengaduan" },
@@ -15,6 +14,11 @@ const reportTypes = [
 ];
 
 const Report = () => {
+    const [reportCategories, setReportCategories] = useState([]);
+    const [agencies, setAgencies] = useState([]);
+
+    //
+
     const [reportDate, setReportDate] = useState({
         startDate: null,
         endDate: null,
@@ -26,15 +30,6 @@ const Report = () => {
     const [destinationAgency, setDestinationAgency] = useState();
     const [reportCategory, setReportCategory] = useState();
     const [attachment, setAttachment] = useState("");
-
-    const { reportCategories, agencies } = useSelector(
-        ({ reportCategory, agency }) => ({
-            reportCategories: reportCategory.reportCategories,
-            agencies: agency.agencies,
-        })
-    );
-
-    const dispatch = useDispatch();
 
     const handleDateChange = (newValue) => {
         setReportDate(newValue);
@@ -49,24 +44,48 @@ const Report = () => {
     const handleSendReport = (e) => {
         e.preventDefault();
 
-        console.log({
-            reportType,
-            reportTitle,
-            reportContent,
-            reportDate,
-            reportingOrigin,
-            destinationAgency,
-            reportCategory,
+        const payload = {
+            type: reportType,
+            title: reportTitle,
+            body: reportContent,
+            date: reportDate,
+            reporting_origin: reportingOrigin,
+            destination_agency: destinationAgency,
+            report_category: reportCategory,
             attachment,
-        });
+        };
+
+        console.log(payload);
     };
 
     useEffect(() => {
-        return () => {
-            dispatch(getReportCategories());
-            dispatch(getAgencies());
+        const fetchAllReportCategories = async () => {
+            try {
+                const { data } = await axios.get(
+                    "/report-categories?with-subcategories=true"
+                );
+
+                setReportCategories(data?.report_categories);
+            } catch (error) {
+                console.log(error);
+            }
         };
-    }, [dispatch]);
+
+        const fetchAllAgencies = async () => {
+            try {
+                const { data } = await axios.get("/agencies");
+
+                setAgencies(data?.agencies);
+            } catch (error) {
+                console.log(error);
+            }
+        };
+
+        return () => {
+            fetchAllReportCategories();
+            fetchAllAgencies();
+        };
+    }, []);
 
     return (
         <Layout title="Laporan - Lapmas">
