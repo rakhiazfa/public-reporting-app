@@ -30,6 +30,7 @@ const Select = ({
                     }),
                 }}
                 isDisabled={disabled}
+                isLoading={options?.length === 0}
             />
             {error && (
                 <p className="text-sm font-medium text-red-500 ml-1 mt-2 -mb-2">
