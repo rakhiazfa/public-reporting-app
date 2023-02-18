@@ -20,6 +20,14 @@ const Select = ({
                 value={value}
                 onChange={onChange}
                 placeholder={placeholder}
+                styles={{
+                    control: (base) => ({
+                        ...base,
+                        height: "44.85px",
+                        borderRadius: "0.5rem",
+                        borderColor: "#cbd5e1",
+                    }),
+                }}
             />
             {error && (
                 <p className="text-sm font-medium text-red-500 ml-1 mt-2 -mb-2">
