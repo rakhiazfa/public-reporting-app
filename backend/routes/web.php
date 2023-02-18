@@ -14,7 +14,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', DashboardController::class)->middleware('auth')->name('dashboard');
+Route::get('/', DashboardController::class)->middleware('auth:web')->name('dashboard');
 
 /**
  * Load auth routes.

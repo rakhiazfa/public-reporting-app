@@ -37,14 +37,14 @@ class UserServiceImplementation extends ServiceImplementation implements UserSer
             'password' => $credentials['password'],
         ];
 
-        $token = Auth::attempt($credentials);
+        $token = $expectsJson ? Auth::attempt($credentials) : Auth::guard('web')->attempt($credentials);
 
         if (!$token) {
 
             throw new UnauthorizedException('The provided credentials do not match our records.', 401);
         }
 
-        $user = Auth::user();
+        $user = $expectsJson ? Auth::user() : Auth::guard('web')->user();
 
         $user->load('role');
 
