@@ -11,14 +11,16 @@ class LogoutController extends Controller
     /**
      * Log the user out of the application.
      */
-    public function __invoke()
+    public function __invoke(Request $request)
     {
         Auth::logout();
 
-        return response()->json([
+        !$request->expectsJson() && $request->session()->invalidate() && $request->session()->regenerateToken();
+
+        return $request->expectsJson() ? response()->json([
             'success' => true,
             'code' => 200,
             'message' => 'Successfully logged out.',
-        ], 200);
+        ], 200) : redirect()->route('auth.login');
     }
 }

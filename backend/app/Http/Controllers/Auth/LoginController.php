@@ -49,6 +49,8 @@ class LoginController extends Controller
                 ])->onlyInput('email_or_username');
         }
 
+        !$request->expectsJson() && $request->session()->regenerate();
+
         return $request->expectsJson() ? response()->json($response, 200) : redirect()->intended();
     }
 }
