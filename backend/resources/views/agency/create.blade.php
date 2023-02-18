@@ -18,6 +18,8 @@
                 <form action="{{ route('agencies.store') }}" method="POST">
                     @csrf
 
+                    <h1 class="text-2xl font-semibold mb-7 mt-5">Data Instansi</h1>
+
                     <div class="grid grid-cols-1 xl:grid-cols-3 gap-7 mb-7">
 
                         <div>
@@ -68,7 +70,7 @@
 
                     </div>
 
-                    <h1 class="text-2xl font-semibold mb-7">Lokasi</h1>
+                    <h1 class="text-2xl font-semibold mb-7">Lokasi Instansi</h1>
 
                     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-1 xl:grid-cols-2 gap-7 mb-7">
 
