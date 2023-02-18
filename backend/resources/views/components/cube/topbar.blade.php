@@ -8,7 +8,8 @@
                 <h1 class="topbar-title">{{ $title }}</h1>
                 <nav>
                     <ul class="flex items-center gap-1">
-                        <li><a class="text-sm font-medium text-gray-500" href="#">Dashboard</a></li>
+                        <li><a class="text-sm font-medium text-gray-500" href="#">Hello, {{ $user->name ?? '' }}</a>
+                        </li>
                     </ul>
                 </nav>
             </div>
