@@ -34,7 +34,7 @@ class StoreSocietyRequest extends FormRequest
             'email' => ['required', 'unique:users'],
             'username' => ['required', 'unique:users', 'without_spaces'],
             'password' => ['required', 'min:8', 'confirmed'],
-            'country' => ['required'],
+            'country' => ['nullable'],
             'province' => ['required'],
             'city' => ['required'],
             'postal_code' => ['required'],

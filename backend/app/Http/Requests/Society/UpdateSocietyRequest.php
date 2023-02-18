@@ -37,7 +37,7 @@ class UpdateSocietyRequest extends FormRequest
             'email' => ['required', 'unique:users,email,' . $society->user->id],
             'username' => ['required', 'unique:users,username,' . $society->user->id, 'without_spaces'],
             'password' => ['required', 'min:8', 'confirmed'],
-            'country' => ['required'],
+            'country' => ['nullable'],
             'province' => ['required'],
             'city' => ['required'],
             'postal_code' => ['required'],
