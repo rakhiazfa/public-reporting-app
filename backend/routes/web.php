@@ -22,3 +22,10 @@ Route::get('/', DashboardController::class)->middleware('auth:web')->name('dashb
  */
 
 require_once __DIR__ . '/web/auth.php';
+
+/**
+ * Load agency routes.
+ * 
+ */
+
+require_once __DIR__ . '/web/agency.php';
