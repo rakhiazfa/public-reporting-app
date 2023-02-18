@@ -10,6 +10,7 @@ const Select = ({
     className,
     error,
     options,
+    disabled,
 }) => {
     return (
         <div className={`${className}`}>
@@ -28,6 +29,7 @@ const Select = ({
                         borderColor: "#cbd5e1",
                     }),
                 }}
+                isDisabled={disabled}
             />
             {error && (
                 <p className="text-sm font-medium text-red-500 ml-1 mt-2 -mb-2">
