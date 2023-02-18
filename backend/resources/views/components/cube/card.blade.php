@@ -13,8 +13,8 @@
             @endif
         </div>
     @endif
-    <div class="px-5 pt-2 pb-5">
-        <div class="w-full overflow-x-auto pb-3">
+    <div class="px-5 pt-2 pb-5 {{ $attributes['bodyClass'] }} p-0">
+        <div class="w-full overflow-x-auto {{ $attributes['scrollPadding'] ?? true ? 'pb-3' : '' }}">
             {{ $slot }}
         </div>
     </div>
