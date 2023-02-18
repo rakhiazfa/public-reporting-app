@@ -4,6 +4,8 @@ import Input from "../components/Fields/Input";
 import Select from "../components/Fields/Select";
 import Date from "../components/Fields/Date";
 import axios from "axios";
+import { useDispatch } from "react-redux";
+import { login } from "../features/auth/authActions";
 
 const genders = [
     { value: "Pria", label: "Pria" },
@@ -14,6 +16,8 @@ const SignUp = () => {
     const [jobs, setJobs] = useState([]);
     const [provinces, setProvinces] = useState([]);
     const [cities, setCities] = useState([]);
+    const [subDistricts, setSubDistricts] = useState([]);
+    const [urbanVillages, seturbanVillages] = useState([]);
 
     //
 
@@ -45,12 +49,22 @@ const SignUp = () => {
         id: null,
         name: "",
     });
+    const [subDistrict, setSubDistrict] = useState({
+        id: null,
+        name: "",
+    });
+    const [urbanVillage, setUrbanVillage] = useState({
+        id: null,
+        name: "",
+    });
     const [postalCode, setPostalCode] = useState("");
     const [address, setAddress] = useState("");
 
     const handleDateOfBirthChange = (newValue) => {
         setDateOfBirth(newValue);
     };
+
+    const dispatch = useDispatch();
 
     const handleRegister = async (e) => {
         e.preventDefault();
@@ -73,6 +87,8 @@ const SignUp = () => {
             // Location
             province: province?.name,
             city: city?.name,
+            sub_district: subDistrict?.name,
+            urban_village: urbanVillage?.name,
             postal_code: postalCode,
             address,
         };
@@ -80,7 +96,12 @@ const SignUp = () => {
         try {
             const { data } = await axios.post("/societies", payload);
 
-            console.log(data);
+            dispatch(
+                login({
+                    email_or_username: username,
+                    password: password,
+                })
+            );
         } catch (error) {
             console.log(error.response.data);
             setErrors(error.response.data.errors);
@@ -114,13 +135,48 @@ const SignUp = () => {
         }
     };
 
-    const handleProvinceChange = (type) => {
-        fetchAllCities(type?.value);
+    // Fetch all sub districts.
+    const fetchAllSubDistrict = async (cityId) => {
+        try {
+            const { data } = await axios.get(
+                `https://dev.farizdotid.com/api/daerahindonesia/kecamatan?id_kota=${cityId}`
+            );
 
-        setProvince({
-            id: type?.value,
-            name: type?.label,
-        });
+            const kecamatan = data?.kecamatan?.reduce((prev, next) => {
+                prev.push({
+                    value: next?.id,
+                    label: next?.nama,
+                });
+
+                return prev;
+            }, []);
+
+            setSubDistricts(kecamatan);
+        } catch (error) {
+            console.log(error);
+        }
+    };
+
+    // Fetch all urban villages.
+    const fetchAllUrbanVillages = async (subDistrictId) => {
+        try {
+            const { data } = await axios.get(
+                `https://dev.farizdotid.com/api/daerahindonesia/kelurahan?id_kecamatan=${subDistrictId}`
+            );
+
+            const kelurahan = data?.kelurahan?.reduce((prev, next) => {
+                prev.push({
+                    value: next?.id,
+                    label: next?.nama,
+                });
+
+                return prev;
+            }, []);
+
+            seturbanVillages(kelurahan);
+        } catch (error) {
+            console.log(error);
+        }
     };
 
     useEffect(() => {
@@ -308,24 +364,64 @@ const SignUp = () => {
                                         <Select
                                             label="Provinsi"
                                             options={provinces}
-                                            onChange={handleProvinceChange}
+                                            onChange={(type) => {
+                                                fetchAllCities(type?.value);
+
+                                                setProvince({
+                                                    id: type?.value,
+                                                    name: type?.label,
+                                                });
+                                            }}
                                             placeholder="Pilih provinsi anda . . ."
                                             error={errors?.province}
                                         />
                                         <Select
                                             label="Kota"
                                             options={cities}
-                                            onChange={(type) =>
+                                            onChange={(type) => {
+                                                fetchAllSubDistrict(
+                                                    type?.value
+                                                );
+
                                                 setCity({
                                                     id: type?.value,
                                                     name: type?.label,
-                                                })
-                                            }
+                                                });
+                                            }}
                                             placeholder="Pilih kota anda . . . "
                                             disabled={!province?.id}
                                             error={errors?.city}
                                         />
+                                        <Select
+                                            label="Kecamatan"
+                                            options={subDistricts}
+                                            onChange={(type) => {
+                                                fetchAllUrbanVillages(
+                                                    type?.value
+                                                );
 
+                                                setSubDistrict({
+                                                    id: type?.value,
+                                                    name: type?.label,
+                                                });
+                                            }}
+                                            placeholder="Pilih kecamatan anda . . . "
+                                            disabled={!city?.id}
+                                            error={errors?.sub_district}
+                                        />
+                                        <Select
+                                            label="Kelurahan"
+                                            options={urbanVillages}
+                                            onChange={(type) =>
+                                                setUrbanVillage({
+                                                    id: type?.value,
+                                                    name: type?.label,
+                                                })
+                                            }
+                                            placeholder="Pilih kelurahan anda . . . "
+                                            disabled={!subDistrict?.id}
+                                            error={errors?.urban_village}
+                                        />
                                         <Input
                                             type="text"
                                             label="Kode Pos"
