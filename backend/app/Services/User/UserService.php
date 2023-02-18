@@ -11,5 +11,5 @@ interface UserService extends ServiceInterface
      * 
      * @return mixed
      */
-    public function login(array $credentials): mixed;
+    public function login(array $credentials, bool $expectsJson = true): mixed;
 }

@@ -28,7 +28,7 @@ class UserServiceImplementation extends ServiceImplementation implements UserSer
      * 
      * @return mixed
      */
-    public function login(array $credentials): mixed
+    public function login(array $credentials, bool $expectsJson = true): mixed
     {
         $fieldType = filter_var($credentials['email_or_username'], FILTER_VALIDATE_EMAIL) ? 'email' : 'username';
 
