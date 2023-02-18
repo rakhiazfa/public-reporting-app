@@ -110,6 +110,28 @@ const SignUp = () => {
         }
     };
 
+    // Fetch all provinces.
+    const fetchAllProvinces = async () => {
+        try {
+            const { data } = await axios.get(
+                "http://dev.farizdotid.com/api/daerahindonesia/provinsi"
+            );
+
+            const provinsi = data?.provinsi?.reduce((prev, next) => {
+                prev.push({
+                    value: next?.id,
+                    label: next?.nama,
+                });
+
+                return prev;
+            }, []);
+
+            setProvinces(provinsi);
+        } catch (error) {
+            console.log(error);
+        }
+    };
+
     // Fetch all cities.
     const fetchAllCities = async (provinceId) => {
         try {
@@ -179,40 +201,18 @@ const SignUp = () => {
         }
     };
 
+    // Fetch all jobs.
+    const fetchAllJobs = async () => {
+        try {
+            const { data } = await axios.get("/jobs");
+
+            setJobs(data.jobs);
+        } catch (error) {
+            console.log(error);
+        }
+    };
+
     useEffect(() => {
-        // Fetch all jobs.
-        const fetchAllJobs = async () => {
-            try {
-                const { data } = await axios.get("/jobs");
-
-                setJobs(data.jobs);
-            } catch (error) {
-                console.log(error);
-            }
-        };
-
-        // Fetch all provinces.
-        const fetchAllProvinces = async () => {
-            try {
-                const { data } = await axios.get(
-                    "http://dev.farizdotid.com/api/daerahindonesia/provinsi"
-                );
-
-                const provinsi = data?.provinsi?.reduce((prev, next) => {
-                    prev.push({
-                        value: next?.id,
-                        label: next?.nama,
-                    });
-
-                    return prev;
-                }, []);
-
-                setProvinces(provinsi);
-            } catch (error) {
-                console.log(error);
-            }
-        };
-
         return () => {
             fetchAllJobs();
             fetchAllProvinces();
