@@ -16,9 +16,9 @@ interface SocietyService extends ServiceInterface
     /**
      * @param array $attributes
      * 
-     * @return Model
+     * @return mixed
      */
-    public function createSociety(array $attributes = []): Model;
+    public function createSociety(array $attributes = []): mixed;
 
     /**
      * @param Society $society

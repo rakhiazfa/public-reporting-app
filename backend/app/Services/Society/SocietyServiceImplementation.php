@@ -42,7 +42,14 @@ class SocietyServiceImplementation extends ServiceImplementation implements Soci
         $this->societyLocationRepository = $societyLocationRepository;
     }
 
-    public function createSociety(array $attributes = []): Model
+    /**
+     * Create a new society.
+     * 
+     * @param array $attributes
+     * 
+     * @return mixed
+     */
+    public function createSociety(array $attributes = []): mixed
     {
         $attributes['role_id'] = 4;
         $user = $this->userRepository->create($attributes);
