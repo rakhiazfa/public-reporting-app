@@ -55,7 +55,7 @@ class Sidebar extends Component
                 'text' => 'Pengguna',
                 'items' => [
                     [
-                        'url' => '#',
+                        'url' => route('agencies'),
                         'text' => 'Instansi',
                     ],
                     [
@@ -73,21 +73,21 @@ class Sidebar extends Component
 
             [
                 'type' => 'link',
-                'icon' => 'uil uil-file-alt',
+                'icon' => 'uil uil-file-upload-alt',
                 'url' => '#',
                 'text' => 'Pengaduan',
             ],
 
             [
                 'type' => 'link',
-                'icon' => 'uil uil-file-alt',
+                'icon' => 'uil uil-file-info-alt',
                 'url' => '#',
                 'text' => 'Aspirasi',
             ],
 
             [
                 'type' => 'link',
-                'icon' => 'uil uil-file-alt',
+                'icon' => 'uil uil-file-download-alt',
                 'url' => '#',
                 'text' => 'Permintaan Informasi',
             ],
