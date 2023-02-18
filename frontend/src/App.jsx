@@ -12,7 +12,7 @@ function App() {
     useEffect(() => {
         return () => {
             dispatch(getUser()).then(() =>
-                setTimeout(() => setPending(false), 2000)
+                setTimeout(() => setPending(false), 750)
             );
         };
     }, [dispatch]);
