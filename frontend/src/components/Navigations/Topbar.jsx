@@ -34,9 +34,7 @@ const Topbar = () => {
     const dispatch = useDispatch();
 
     const handleLogout = () => {
-        dispatch(logout()).then(() => {
-            window.location.reload();
-        });
+        dispatch(logout());
     };
 
     return (
