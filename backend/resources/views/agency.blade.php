@@ -1,5 +1,11 @@
 <x-cube.layout title="Daftar Instansi">
 
+    @if (session('success'))
+        <div class="bg-emerald-400 rounded-lg px-5 py-3 mb-7">
+            <p class="text-gray-50 font-normal">{{ session('success') }}</p>
+        </div>
+    @endif
+
     <section class="mb-7">
 
         <div class="grid grid-cols-1">
