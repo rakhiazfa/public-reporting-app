@@ -19,6 +19,18 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
     $user = $request->user();
     $user->load('role');
 
+    switch ($user->role->name) {
+        case 'agency':
+            $user->load('agency');
+            break;
+        case 'employee':
+            $user->load('employee');
+            break;
+        case 'society':
+            $user->load('society');
+            break;
+    }
+
     return response()->json([
         'success' => true,
         'code' => 200,
