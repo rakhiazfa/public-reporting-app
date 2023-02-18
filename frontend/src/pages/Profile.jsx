@@ -53,23 +53,25 @@ const Profile = () => {
     //
 
     const [province, setProvince] = useState({
-        id: null,
-        name: user?.society?.location?.name,
+        value: user?.society?.location?.province,
+        label: user?.society?.location?.province,
     });
     const [city, setCity] = useState({
-        id: null,
-        name: "",
+        value: user?.society?.location?.city,
+        label: user?.society?.location?.city,
     });
     const [subDistrict, setSubDistrict] = useState({
-        id: null,
-        name: "",
+        value: user?.society?.location?.sub_district,
+        label: user?.society?.location?.sub_district,
     });
     const [urbanVillage, setUrbanVillage] = useState({
-        id: null,
-        name: "",
+        value: user?.society?.location?.urban_village,
+        label: user?.society?.location?.urban_village,
     });
-    const [postalCode, setPostalCode] = useState("");
-    const [address, setAddress] = useState("");
+    const [postalCode, setPostalCode] = useState(
+        user?.society?.location?.postal_code
+    );
+    const [address, setAddress] = useState(user?.society?.location?.address);
 
     const handleDateOfBirthChange = (newValue) => {
         setDateOfBirth(newValue);
@@ -93,18 +95,38 @@ const Profile = () => {
             name,
             email,
             username,
-            password,
-            password_confirmation: passwordConfirmation,
             // Location
-            province: province?.name,
-            city: city?.name,
-            sub_district: subDistrict?.name,
-            urban_village: urbanVillage?.name,
+            province: province?.value,
+            city: city?.value,
+            sub_district: subDistrict?.value,
+            urban_village: urbanVillage?.value,
             postal_code: postalCode,
             address,
         };
 
         console.log(payload);
+    };
+
+    // Fetch all provinces.
+    const fetchAllProvinces = async () => {
+        try {
+            const { data } = await axios.get(
+                "http://dev.farizdotid.com/api/daerahindonesia/provinsi"
+            );
+
+            const provinsi = data?.provinsi?.reduce((prev, next) => {
+                prev.push({
+                    value: next?.nama,
+                    label: next?.nama,
+                });
+
+                return prev;
+            }, []);
+
+            setProvinces(provinsi);
+        } catch (error) {
+            console.log(error);
+        }
     };
 
     // Fetch all cities.
@@ -182,28 +204,6 @@ const Profile = () => {
             const { data } = await axios.get("/jobs");
 
             setJobs(data.jobs);
-        } catch (error) {
-            console.log(error);
-        }
-    };
-
-    // Fetch all provinces.
-    const fetchAllProvinces = async () => {
-        try {
-            const { data } = await axios.get(
-                "http://dev.farizdotid.com/api/daerahindonesia/provinsi"
-            );
-
-            const provinsi = data?.provinsi?.reduce((prev, next) => {
-                prev.push({
-                    value: next?.id,
-                    label: next?.nama,
-                });
-
-                return prev;
-            }, []);
-
-            setProvinces(provinsi);
         } catch (error) {
             console.log(error);
         }
@@ -347,6 +347,7 @@ const Profile = () => {
                                                     name: type?.label,
                                                 });
                                             }}
+                                            value={province}
                                             placeholder="Pilih provinsi anda . . ."
                                             error={errors?.province}
                                         />
@@ -363,8 +364,9 @@ const Profile = () => {
                                                     name: type?.label,
                                                 });
                                             }}
+                                            value={city}
                                             placeholder="Pilih kota anda . . . "
-                                            disabled={!province?.id}
+                                            disabled={!province?.value}
                                             error={errors?.city}
                                         />
                                         <Select
@@ -380,8 +382,9 @@ const Profile = () => {
                                                     name: type?.label,
                                                 });
                                             }}
+                                            value={subDistrict}
                                             placeholder="Pilih kecamatan anda . . . "
-                                            disabled={!city?.id}
+                                            disabled={!city?.value}
                                             error={errors?.sub_district}
                                         />
                                         <Select
@@ -393,8 +396,9 @@ const Profile = () => {
                                                     name: type?.label,
                                                 })
                                             }
+                                            value={urbanVillage}
                                             placeholder="Pilih kelurahan anda . . . "
-                                            disabled={!subDistrict?.id}
+                                            disabled={!subDistrict?.value}
                                             error={errors?.urban_village}
                                         />
                                         <Input
@@ -402,10 +406,10 @@ const Profile = () => {
                                             label="Kode Pos"
                                             placeholder="Masukan kode pos anda . . ."
                                             className="md:col-span-2"
-                                            value={postalCode}
                                             onChange={(e) =>
                                                 setPostalCode(e.target.value)
                                             }
+                                            value={postalCode}
                                             error={errors?.postal_code}
                                         />
                                     </div>
@@ -413,10 +417,10 @@ const Profile = () => {
                                         type="textarea"
                                         label="Alamat"
                                         placeholder="Masukan alamat anda . . ."
-                                        value={address}
                                         onChange={(e) =>
                                             setAddress(e.target.value)
                                         }
+                                        value={address}
                                         error={errors?.address}
                                     />
                                 </div>
