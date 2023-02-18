@@ -10,11 +10,13 @@ use Illuminate\Support\Facades\Route;
 |--------------------------------------------------------------------------
 */
 
-Route::name('auth')->prefix('auth')->group(function () {
+Route::name('auth')->prefix('auth')->middleware('guest:web')->group(function () {
 
     Route::view('/login', 'auth.login')->name('.login');
 
-    Route::withoutMiddleware('auth')->post('/login', LoginController::class);
+    Route::post('/login', LoginController::class);
 
-    Route::post('/logout', LogoutController::class)->middleware('auth:web')->name('.logout');
+    Route::post('/logout', LogoutController::class)
+        ->withoutMiddleware('guest:web')
+        ->middleware('auth:web')->name('.logout');
 });
