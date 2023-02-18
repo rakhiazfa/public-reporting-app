@@ -16,7 +16,7 @@ Route::name('auth')->prefix('auth')->middleware('guest:web')->group(function () 
 
     Route::post('/login', LoginController::class);
 
-    Route::post('/logout', LogoutController::class)
+    Route::get('/logout', LogoutController::class)
         ->withoutMiddleware('guest:web')
         ->middleware('auth:web')->name('.logout');
 });
