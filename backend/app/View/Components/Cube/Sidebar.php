@@ -37,6 +37,8 @@ class Sidebar extends Component
     public function items()
     {
         return [
+            ['type' => 'title', 'title' => 'Navigasi'],
+
             [
                 'type' => 'link',
                 'icon' => 'uil uil-apps',
@@ -45,21 +47,7 @@ class Sidebar extends Component
                 'is_active' => request()->routeIs('dashboard*'),
             ],
 
-            ['type' => 'title', 'title' => 'Navigasi'],
-
-            [
-                'type' => 'link',
-                'icon' => 'uil uil-registered',
-                'url' => '#',
-                'text' => 'Pendaftaran',
-            ],
-
-            [
-                'type' => 'link',
-                'icon' => 'uil uil-exchange',
-                'url' => '#',
-                'text' => 'Pembayaran',
-            ],
+            ['type' => 'title', 'title' => 'Menu / Item'],
 
             [
                 'type' => 'dropdown',
@@ -68,7 +56,15 @@ class Sidebar extends Component
                 'items' => [
                     [
                         'url' => '#',
+                        'text' => 'Instansi',
+                    ],
+                    [
+                        'url' => '#',
                         'text' => 'Petugas',
+                    ],
+                    [
+                        'url' => '#',
+                        'text' => 'Masyarakat',
                     ],
                 ],
             ],
@@ -79,16 +75,21 @@ class Sidebar extends Component
                 'type' => 'link',
                 'icon' => 'uil uil-file-alt',
                 'url' => '#',
-                'text' => 'Laporan',
+                'text' => 'Pengaduan',
             ],
-
-            ['type' => 'title', 'title' => 'Preferensi'],
 
             [
                 'type' => 'link',
-                'icon' => 'uil uil-setting',
+                'icon' => 'uil uil-file-alt',
                 'url' => '#',
-                'text' => 'Pengaturan',
+                'text' => 'Aspirasi',
+            ],
+
+            [
+                'type' => 'link',
+                'icon' => 'uil uil-file-alt',
+                'url' => '#',
+                'text' => 'Permintaan Informasi',
             ],
         ];
     }
