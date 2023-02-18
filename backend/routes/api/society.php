@@ -18,7 +18,7 @@ Route::name('societies')->prefix('societies')->middleware(['auth:api', 'role:adm
 
     Route::get('/{society}', [SocietyController::class, 'show'])->name('.show');
 
-    Route::put('/{society}', [SocietyController::class, 'update'])->name('.update');
+    Route::put('/{society}', [SocietyController::class, 'update'])->withoutMiddleware(['role:admin'])->name('.update');
 
     Route::delete('/{society}', [SocietyController::class, 'destroy'])->name('.destroy');
 });
