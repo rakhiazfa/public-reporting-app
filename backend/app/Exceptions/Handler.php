@@ -58,7 +58,7 @@ class Handler extends ExceptionHandler
      */
     public function render($request, Throwable $e)
     {
-        if ($e instanceof NotFoundHttpException) {
+        if ($e instanceof NotFoundHttpException && $request->expectsJson()) {
 
             return response()->json([
                 'success' => false,
@@ -67,7 +67,7 @@ class Handler extends ExceptionHandler
             ], 404);
         }
 
-        if ($e instanceof ModelNotFoundException) {
+        if ($e instanceof ModelNotFoundException && $request->expectsJson()) {
 
             return response()->json([
                 'success' => false,
