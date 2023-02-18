@@ -26,6 +26,11 @@ const SignUp = () => {
     const [phone, setPhone] = useState("");
     const [gender, setGender] = useState();
     const [job, setJob] = useState();
+    const [country, setCountry] = useState("");
+    const [province, setProvince] = useState("");
+    const [city, setCity] = useState("");
+    const [postalCode, setPostalCode] = useState("");
+    const [address, setAddress] = useState("");
 
     const handleDateOfBirthChange = (newValue) => {
         setDateOfBirth(newValue);
@@ -34,18 +39,26 @@ const SignUp = () => {
     const handleRegister = (e) => {
         e.preventDefault();
 
-        console.log(
+        const payload = {
+            // Society
             nik,
-            name,
-            dateOfBirth,
+            date_of_birth: dateOfBirth,
             gender,
             phone,
-            job,
+            job_id: job,
+            // User
+            name,
             email,
             username,
             password,
-            passwordConfirmation
-        );
+            password_confirmation: passwordConfirmation,
+            // Location
+            country,
+            province,
+            city,
+            postal_code: postalCode,
+            address,
+        };
     };
 
     useEffect(() => {
