@@ -27,7 +27,7 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
             $user->load('employee');
             break;
         case 'society':
-            $user->load('society');
+            $user->load('society', 'society.job');
             break;
     }
 
