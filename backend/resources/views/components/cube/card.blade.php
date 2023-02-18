@@ -1,5 +1,5 @@
 <div class="{{ $attributes['background'] ?? 'bg-white' }} rounded-lg {{ $attributes['class'] }}">
-    @if (count($actions) > 0 && $attributes['title'])
+    @if (count($actions) > 0 || $attributes['title'])
         <div class="flex flex-col lg:flex-row justify-between items-start gap-5 px-5 pt-5 pb-3">
             <h2 class="text-sm text-gray-500 font-medium uppercase">{{ $attributes['title'] }}</h2>
             @if (count($actions) > 0)

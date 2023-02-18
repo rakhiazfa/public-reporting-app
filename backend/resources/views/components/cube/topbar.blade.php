@@ -30,13 +30,7 @@
                                 </a>
                             </li>
                             <li>
-                                <a class="dropdown-link" href="#">
-                                    <i class="uil uil-setting"></i>
-                                    <span> Pengaturan </span>
-                                </a>
-                            </li>
-                            <li>
-                                <a class="dropdown-link" href="#">
+                                <a class="dropdown-link" href="{{ route('auth.logout') }}">
                                     <i class="uil uil-sign-out-alt"></i>
                                     <span> Logout </span>
                                 </a>
