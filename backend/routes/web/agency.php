@@ -13,7 +13,7 @@ Route::name('agencies')->prefix('agencies')->middleware(['auth:web', 'role:admin
 
     Route::get('/', [AgencyController::class, 'index']);
 
-    Route::post('/create', [AgencyController::class, 'create'])->name('.create');
+    Route::get('/create', [AgencyController::class, 'create'])->name('.create');
 
     Route::post('/', [AgencyController::class, 'store'])->name('.store');
 
