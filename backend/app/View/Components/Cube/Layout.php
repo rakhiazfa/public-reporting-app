@@ -14,6 +14,11 @@ class Layout extends Component
     public string $title;
 
     /**
+     * @var string
+     */
+    public string $originTitle;
+
+    /**
      * @var User|null
      */
     public User|null $user = null;
@@ -25,6 +30,7 @@ class Layout extends Component
      */
     public function __construct(string $title = "")
     {
+        $this->originTitle = $title;
         $this->title = $title . ' - ' . env('APP_NAME');
 
         $this->user = Auth::user() ?? null;

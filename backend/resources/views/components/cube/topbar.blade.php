@@ -4,7 +4,14 @@
             <button class="sidebar-toggler">
                 <i class="uis uis-bars"></i>
             </button>
-            <h1 class="topbar-title">Hello {{ $user->name ?? '' }} !</h1>
+            <div class="hidden md:flex flex-col gap-2">
+                <h1 class="topbar-title">{{ $title }}</h1>
+                <nav>
+                    <ul class="flex items-center gap-1">
+                        <li><a class="text-sm font-medium text-gray-500" href="#">Dashboard</a></li>
+                    </ul>
+                </nav>
+            </div>
         </div>
         <nav>
             <ul class="topbar-menu">

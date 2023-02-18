@@ -31,7 +31,7 @@
 
         <div class="content">
 
-            <x-cube.topbar :user="$user"></x-cube.topbar>
+            <x-cube.topbar :user="$user" :title="$originTitle"></x-cube.topbar>
 
             <main class="main">
 

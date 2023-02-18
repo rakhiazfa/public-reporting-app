@@ -13,13 +13,19 @@ class Topbar extends Component
     public User|null $user = null;
 
     /**
+     * @var string
+     */
+    public string $title;
+
+    /**
      * Create a new component instance.
      *
      * @return void
      */
-    public function __construct(User|null $user = null)
+    public function __construct(User|null $user = null, string $title = "")
     {
         $this->user = $user;
+        $this->title = $title;
     }
 
     /**
