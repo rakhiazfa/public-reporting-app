@@ -210,10 +210,9 @@ const Profile = () => {
     };
 
     useEffect(() => {
-        return () => {
-            fetchAllProvinces();
-            fetchAllJobs();
-        };
+        fetchAllProvinces();
+        fetchAllJobs();
+        return () => {};
     }, []);
 
     return (
