@@ -40,9 +40,15 @@
                                         <a href="{{ route('agencies.edit', ['agency' => $agency]) }}" title="Edit">
                                             <i class="uil uil-pen"></i>
                                         </a>
-                                        <a href="{{ route('agencies.destroy', ['agency' => $agency]) }}" title="Delete">
-                                            <i class="uil uil-trash-alt"></i>
-                                        </a>
+                                        <form action="{{ route('agencies.destroy', ['agency' => $agency]) }}"
+                                            method="POST">
+                                            @csrf
+                                            @method('DELETE')
+
+                                            <button type="submit" title="Delete">
+                                                <i class="uil uil-trash-alt"></i>
+                                            </button>
+                                        </form>
                                     </div>
                                 </td>
                             </tr>

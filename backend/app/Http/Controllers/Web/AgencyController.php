@@ -155,10 +155,6 @@ class AgencyController extends Controller
             return (new ExceptionResponse($exception))->json();
         }
 
-        return response()->json([
-            'success' => true,
-            'code' => 200,
-            'message' => 'Successfully deleted agency.',
-        ], 200);
+        return redirect()->route('agencies')->with('success', 'Berhasil menghapus instansi.');
     }
 }
