@@ -4,6 +4,7 @@ namespace App\Http\Requests\Agency;
 
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 
 class UpdateAgencyRequest extends FormRequest
 {
@@ -42,7 +43,7 @@ class UpdateAgencyRequest extends FormRequest
         $password && $rules['password'] = ['required', 'min:8', 'confirmed'];
 
         $this->merge([
-            'password' => $password ? $password : $agency->user->password,
+            'password' => $password ? Hash::make($password) : $agency->user->password,
         ]);
 
         return $rules;
