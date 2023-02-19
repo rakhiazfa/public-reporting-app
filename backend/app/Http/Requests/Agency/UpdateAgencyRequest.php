@@ -42,10 +42,20 @@ class UpdateAgencyRequest extends FormRequest
 
         $password && $rules['password'] = ['required', 'min:8', 'confirmed'];
 
+        return $rules;
+    }
+
+    /**
+     * @return void
+     */
+    protected function passedValidation()
+    {
+        $agency = $this->route('agency');
+
+        $password = $this->input('password', false);
+
         $this->merge([
             'password' => $password ? Hash::make($password) : $agency->user->password,
         ]);
-
-        return $rules;
     }
 }
