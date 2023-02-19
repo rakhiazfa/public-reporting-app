@@ -63,7 +63,7 @@
                         </div>
 
                         <div>
-                            <label class="label">Password</label>
+                            <label class="label">Kofirmasi Password</label>
                             <input type="password" class="field" name="password_confirmation"
                                 placeholder="Konfirmasi kata sandi instansi">
                         </div>
