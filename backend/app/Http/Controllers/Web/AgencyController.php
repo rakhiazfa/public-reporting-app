@@ -93,11 +93,7 @@ class AgencyController extends Controller
     {
         $agency->load(['user', 'location']);
 
-        return response()->json([
-            'success' => true,
-            'code' => 200,
-            'agency' => $agency,
-        ], 200);
+        return view('agency.show', compact('agency'));
     }
 
     /**
