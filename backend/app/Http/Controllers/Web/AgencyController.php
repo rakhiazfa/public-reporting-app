@@ -103,12 +103,14 @@ class AgencyController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param  Agency $agency
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Agency $agency)
     {
-        //
+        $agency->load('location', 'user');
+
+        return view('agency.edit', compact('agency'));
     }
 
     /**
@@ -130,11 +132,8 @@ class AgencyController extends Controller
             return (new ExceptionResponse($exception))->json();
         }
 
-        return response()->json([
-            'success' => true,
-            'code' => 200,
-            'message' => 'Successfully updated agency.',
-        ], 200);
+        return redirect()->route('agencies.edit', ['agency' => $agency])
+            ->with('success', 'Berhasil memperbarui instansi.');
     }
 
     /**

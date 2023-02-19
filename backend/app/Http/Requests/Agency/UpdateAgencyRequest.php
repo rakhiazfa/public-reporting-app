@@ -26,7 +26,7 @@ class UpdateAgencyRequest extends FormRequest
     {
         $agency = $this->route('agency');
 
-        return [
+        $rules = [
             'name' => ['required', 'unique:agencies,name,' . $agency->id],
             'country' => ['nullable'],
             'province' => ['required'],
@@ -35,6 +35,16 @@ class UpdateAgencyRequest extends FormRequest
             'address' => ['required'],
             'email' => ['required', 'email', 'unique:users,email,' . $agency->user->id],
             'username' => ['required', 'without_spaces', 'unique:users,username,' . $agency->user->id],
-        ];
+        ];;
+
+        $password = $this->input('password', false);
+
+        $password && $rules['password'] = ['required', 'min:8', 'confirmed'];
+
+        $this->merge([
+            'password' => $password ? $password : $agency->user->password,
+        ]);
+
+        return $rules;
     }
 }
