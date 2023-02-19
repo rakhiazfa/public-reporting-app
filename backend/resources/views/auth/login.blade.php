@@ -17,6 +17,7 @@
                         <div>
                             <label class="label">Email atau Username</label>
                             <input type="text" class="field" name="email_or_username"
+                                value="{{ old('email_or_username') }}"
                                 placeholder="Masukan email atau username anda . . .">
                             @error('email_or_username')
                                 <p class="invalid-field">{{ $message }}</p>
