@@ -265,7 +265,7 @@
 
 .table th,
 .table td {
-    @apply text-left text-xs md:text-sm px-7 py-3;
+    @apply text-left text-xs md:text-sm p-4;
 }
 
 .table .table-actions {
@@ -275,6 +275,16 @@
 .table .table-actions .uil,
 .table .table-actions .uis {
     @apply text-[1.2rem] text-gray-500;
+}
+
+.table.table-bordered th,
+.table.table-bordered td {
+    @apply border;
+}
+
+.table.table-sm th,
+.table.table-sm td {
+    @apply text-xs;
 }
 
 /*
