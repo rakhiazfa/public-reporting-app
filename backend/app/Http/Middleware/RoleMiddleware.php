@@ -14,9 +14,9 @@ class RoleMiddleware
      * @param  \Closure(\Illuminate\Http\Request): (\Illuminate\Http\Response|\Illuminate\Http\RedirectResponse)  $next
      * @return \Illuminate\Http\Response|\Illuminate\Http\RedirectResponse
      */
-    public function handle(Request $request, Closure $next, $role)
+    public function handle(Request $request, Closure $next, ...$roles)
     {
-        $checkRole = $request->user()->role->name === $role;
+        $checkRole = in_array($request->user()->role->name, $roles);
 
         if (!$checkRole) {
 
