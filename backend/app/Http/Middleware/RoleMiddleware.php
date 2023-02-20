@@ -20,11 +20,11 @@ class RoleMiddleware
 
         if (!$checkRole) {
 
-            return response()->json([
+            return $request->expectsJson() ? response()->json([
                 'success' => false,
                 'code' => 403,
                 'message' => 'You don\'t have the right role',
-            ], 403);
+            ], 403) : abort(403, 'You don\'t have the right role');
         }
 
         return $next($request);
