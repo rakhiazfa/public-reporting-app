@@ -2,6 +2,7 @@
 
 namespace App\View\Components\Cube;
 
+use App\Models\User;
 use Illuminate\View\Component;
 
 class Sidebar extends Component
@@ -12,12 +13,21 @@ class Sidebar extends Component
     public array $items = [];
 
     /**
+     * @var User|null
+     */
+    public User|null $user = null;
+
+    /**
      * Create a new component instance.
      *
      * @return void
      */
-    public function __construct()
+    public function __construct(User|null $user = null)
     {
+        $user->load('role');
+
+        $this->user = $user;
+
         $this->items = $this->items();
     }
 
@@ -36,6 +46,28 @@ class Sidebar extends Component
      */
     public function items()
     {
+        $users = [
+            'type' => 'dropdown',
+            'icon' => 'uil uil-user',
+            'text' => 'Pengguna',
+            'items' => [
+                [
+                    'url' => '#',
+                    'text' => 'Petugas',
+                ],
+                [
+                    'url' => '#',
+                    'text' => 'Masyarakat',
+                ],
+            ],
+        ];
+
+        $this->user->role->name === 'admin' && array_unshift($users['items'], [
+            'url' => route('agencies'),
+            'text' => 'Instansi',
+            'is_active' => request()->routeIs('agencies*'),
+        ]);
+
         return [
             ['type' => 'title', 'title' => 'Navigasi'],
 
@@ -49,25 +81,7 @@ class Sidebar extends Component
 
             ['type' => 'title', 'title' => 'Menu / Item'],
 
-            [
-                'type' => 'dropdown',
-                'icon' => 'uil uil-user',
-                'text' => 'Pengguna',
-                'items' => [
-                    [
-                        'url' => route('agencies'),
-                        'text' => 'Instansi',
-                    ],
-                    [
-                        'url' => '#',
-                        'text' => 'Petugas',
-                    ],
-                    [
-                        'url' => '#',
-                        'text' => 'Masyarakat',
-                    ],
-                ],
-            ],
+            $users,
 
             ['type' => 'title', 'title' => 'Laporan'],
 

@@ -27,7 +27,7 @@
 
         <div class="overlay"></div>
 
-        <x-cube.sidebar></x-cube.sidebar>
+        <x-cube.sidebar :user="$user"></x-cube.sidebar>
 
         <div class="content">
 
