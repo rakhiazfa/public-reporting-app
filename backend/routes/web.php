@@ -29,3 +29,10 @@ require_once __DIR__ . '/web/auth.php';
  */
 
 require_once __DIR__ . '/web/agency.php';
+
+/**
+ * Load employee routes.
+ * 
+ */
+
+require_once __DIR__ . '/web/employee.php';
