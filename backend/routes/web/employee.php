@@ -17,11 +17,11 @@ Route::name('employees')->prefix('employees')->middleware(['auth:web', 'role:adm
 
     Route::post('/', [EmployeeController::class, 'store'])->name('.store');
 
-    Route::get('/{agency}', [EmployeeController::class, 'show'])->name('.show');
+    Route::get('/{employee}', [EmployeeController::class, 'show'])->name('.show');
 
-    Route::get('/{agency}/edit', [EmployeeController::class, 'edit'])->name('.edit');
+    Route::get('/{employee}/edit', [EmployeeController::class, 'edit'])->name('.edit');
 
-    Route::put('/{agency}', [EmployeeController::class, 'update'])->name('.update');
+    Route::put('/{employee}', [EmployeeController::class, 'update'])->name('.update');
 
-    Route::delete('/{agency}', [EmployeeController::class, 'destroy'])->name('.destroy');
+    Route::delete('/{employee}', [EmployeeController::class, 'destroy'])->name('.destroy');
 });
