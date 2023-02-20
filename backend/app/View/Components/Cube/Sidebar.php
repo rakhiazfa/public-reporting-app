@@ -52,8 +52,9 @@ class Sidebar extends Component
             'text' => 'Pengguna',
             'items' => [
                 [
-                    'url' => '#',
+                    'url' => route('employees'),
                     'text' => 'Petugas',
+                    'is_active' => request()->routeIs('employees*'),
                 ],
                 [
                     'url' => '#',
