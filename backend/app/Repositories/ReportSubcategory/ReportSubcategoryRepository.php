@@ -2,7 +2,7 @@
 
 namespace App\Repositories\ReportSubcategory;
 
-use App\Foundation\Repository\RepositoryInterface;
+use Rakhiazfa\LaravelSarp\Repository\RepositoryInterface;
 
 interface ReportSubcategoryRepository extends RepositoryInterface
 {

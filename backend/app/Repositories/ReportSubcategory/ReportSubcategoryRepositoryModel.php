@@ -2,7 +2,7 @@
 
 namespace App\Repositories\ReportSubcategory;
 
-use App\Foundation\Repository\RepositoryModel;
+use Rakhiazfa\LaravelSarp\Repository\RepositoryModel;
 use App\Models\ReportSubcategory;
 use Illuminate\Database\Eloquent\Model;
 

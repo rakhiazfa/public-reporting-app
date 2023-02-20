@@ -2,7 +2,7 @@
 
 namespace App\Services\ReportCategory;
 
-use App\Foundation\Service\ServiceImplementation;
+use Rakhiazfa\LaravelSarp\Service\ServiceImplementation;
 use App\Models\ReportCategory;
 use App\Models\ReportSubcategory;
 use App\Repositories\ReportCategory\ReportCategoryRepository;

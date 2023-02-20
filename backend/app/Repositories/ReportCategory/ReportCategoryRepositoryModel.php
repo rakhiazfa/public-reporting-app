@@ -2,7 +2,7 @@
 
 namespace App\Repositories\ReportCategory;
 
-use App\Foundation\Repository\RepositoryModel;
+use Rakhiazfa\LaravelSarp\Repository\RepositoryModel;
 use App\Models\ReportCategory;
 use Illuminate\Database\Eloquent\Model;
 

@@ -2,7 +2,7 @@
 
 namespace App\Services\Job;
 
-use App\Foundation\Service\ServiceImplementation;
+use Rakhiazfa\LaravelSarp\Service\ServiceImplementation;
 use App\Repositories\Job\JobRepository;
 
 class JobServiceImplementation extends ServiceImplementation implements JobService

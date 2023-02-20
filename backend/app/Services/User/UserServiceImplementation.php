@@ -2,7 +2,7 @@
 
 namespace App\Services\User;
 
-use App\Foundation\Service\ServiceImplementation;
+use Rakhiazfa\LaravelSarp\Service\ServiceImplementation;
 use App\Repositories\User\UserRepository;
 use Exception;
 use Illuminate\Support\Facades\Auth;

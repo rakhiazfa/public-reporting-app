@@ -2,7 +2,7 @@
 
 namespace App\Repositories\User;
 
-use App\Foundation\Repository\RepositoryInterface;
+use Rakhiazfa\LaravelSarp\Repository\RepositoryInterface;
 
 interface UserRepository extends RepositoryInterface
 {

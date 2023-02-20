@@ -2,7 +2,7 @@
 
 namespace App\Services\User;
 
-use App\Foundation\Service\ServiceInterface;
+use Rakhiazfa\LaravelSarp\Service\ServiceInterface;
 
 interface UserService extends ServiceInterface
 {

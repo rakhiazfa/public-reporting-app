@@ -2,7 +2,7 @@
 
 namespace App\Repositories\Job;
 
-use App\Foundation\Repository\RepositoryModel;
+use Rakhiazfa\LaravelSarp\Repository\RepositoryModel;
 use App\Models\Job;
 use Illuminate\Database\Eloquent\Model;
 

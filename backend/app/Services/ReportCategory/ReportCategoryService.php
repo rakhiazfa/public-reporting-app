@@ -2,7 +2,7 @@
 
 namespace App\Services\ReportCategory;
 
-use App\Foundation\Service\ServiceInterface;
+use Rakhiazfa\LaravelSarp\Service\ServiceInterface;
 use App\Models\ReportCategory;
 use Illuminate\Database\Eloquent\Model;
 

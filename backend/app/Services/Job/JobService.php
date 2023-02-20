@@ -2,7 +2,7 @@
 
 namespace App\Services\Job;
 
-use App\Foundation\Service\ServiceInterface;
+use Rakhiazfa\LaravelSarp\Service\ServiceInterface;
 
 interface JobService extends ServiceInterface
 {

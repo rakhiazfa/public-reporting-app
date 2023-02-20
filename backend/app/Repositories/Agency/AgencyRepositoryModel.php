@@ -8,11 +8,11 @@ use App\Models\Agency;
 use App\Repositories\Agency\AgencyRepository;
 
 /**
-* AgencyRepositoryModel class.
-*
-*/
+ * AgencyRepositoryModel class.
+ *
+ */
 
-class AgencyRepositoryModel extends RepositoryModel implements AgencyRepository 
+class AgencyRepositoryModel extends RepositoryModel implements AgencyRepository
 {
     /**
      * @param Model $model

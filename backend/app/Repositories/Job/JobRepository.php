@@ -2,7 +2,7 @@
 
 namespace App\Repositories\Job;
 
-use App\Foundation\Repository\RepositoryInterface;
+use Rakhiazfa\LaravelSarp\Repository\RepositoryInterface;
 
 interface JobRepository extends RepositoryInterface
 {

@@ -2,7 +2,7 @@
 
 namespace App\Repositories\User;
 
-use App\Foundation\Repository\RepositoryModel;
+use Rakhiazfa\LaravelSarp\Repository\RepositoryModel;
 use App\Models\User;
 use Illuminate\Database\Eloquent\Model;
 
