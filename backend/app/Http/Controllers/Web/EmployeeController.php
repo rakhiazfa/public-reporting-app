@@ -74,7 +74,17 @@ class EmployeeController extends Controller
      */
     public function store(StoreEmployeeRequest $request)
     {
-        //
+        try {
+
+            $this->employeeService->createEmployee($request->all());
+
+            // 
+        } catch (\Exception $exception) {
+
+            return (new ExceptionResponse($exception))->json();
+        }
+
+        return redirect()->route('employees')->with('success', 'Berhasil mendaftarkan petugas.');
     }
 
     /**
