@@ -13,7 +13,7 @@ class Employee extends Model
     /**
      * @var array
      */
-    protected $fillable = ['nip'];
+    protected $fillable = ['nip', 'agency_id'];
 
     /**
      * @return BelongsTo
