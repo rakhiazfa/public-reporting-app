@@ -142,7 +142,7 @@
 }
 
 .sidebar .sidebar-link.active {
-    @apply bg-gray-800;
+    @apply bg-blue-500;
 }
 
 .sidebar .sidebar-link.active span, 
