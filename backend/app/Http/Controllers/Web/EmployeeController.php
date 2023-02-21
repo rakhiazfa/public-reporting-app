@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Web;
 use App\Exceptions\ExceptionResponse;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Employee\StoreEmployeeRequest;
+use App\Http\Requests\Employee\UpdateEmployeeRequest;
 use App\Models\Employee;
 use App\Services\Agency\AgencyService;
 use App\Services\Employee\EmployeeService;
@@ -131,7 +132,7 @@ class EmployeeController extends Controller
      * @param  Employee $employee
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Employee $employee)
+    public function update(UpdateEmployeeRequest $request, Employee $employee)
     {
         //
     }

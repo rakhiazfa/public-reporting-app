@@ -15,8 +15,9 @@
 
             <x-cube.card title="Edit Petugas">
 
-                <form action="{{ route('employees.store') }}" method="POST">
+                <form action="{{ route('employees.update', ['employee' => $employee]) }}" method="POST">
                     @csrf
+                    @method('PUT')
 
                     <h1 class="text-2xl font-semibold mb-7 mt-5">Data Petugas</h1>
 
