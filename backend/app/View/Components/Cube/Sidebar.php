@@ -84,27 +84,20 @@ class Sidebar extends Component
 
             $users,
 
-            ['type' => 'title', 'title' => 'Laporan'],
-
             [
                 'type' => 'link',
                 'icon' => 'uil uil-file-upload-alt',
                 'url' => '#',
-                'text' => 'Pengaduan',
+                'text' => 'Laporan Masyarakat',
             ],
+
+            ['type' => 'title', 'title' => 'Laporan'],
 
             [
                 'type' => 'link',
-                'icon' => 'uil uil-file-info-alt',
+                'icon' => 'uil uil-file-alt',
                 'url' => '#',
-                'text' => 'Aspirasi',
-            ],
-
-            [
-                'type' => 'link',
-                'icon' => 'uil uil-file-download-alt',
-                'url' => '#',
-                'text' => 'Permintaan Informasi',
+                'text' => 'Laporan',
             ],
         ];
     }
