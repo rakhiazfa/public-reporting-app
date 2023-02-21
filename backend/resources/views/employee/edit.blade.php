@@ -25,7 +25,7 @@
                         <div>
                             <label class="label">NIP</label>
                             <input type="text" class="field" name="nip" placeholder="Masukan nama petugas"
-                                value="{{ old('nip') }}">
+                                value="{{ $employee->nip }}">
                             @error('nip')
                                 <p class="invalid-field">{{ $message }}</p>
                             @enderror
@@ -38,7 +38,7 @@
                         <div>
                             <label class="label">Nama</label>
                             <input type="text" class="field" name="name" placeholder="Masukan nama petugas"
-                                value="{{ old('name') }}">
+                                value="{{ $employee->user->name }}">
                             @error('name')
                                 <p class="invalid-field">{{ $message }}</p>
                             @enderror
@@ -47,7 +47,7 @@
                         <div>
                             <label class="label">Email</label>
                             <input type="text" class="field" name="email" placeholder="Masukan email petugas"
-                                value="{{ old('email') }}">
+                                value="{{ $employee->user->email }}">
                             @error('email')
                                 <p class="invalid-field">{{ $message }}</p>
                             @enderror
@@ -56,7 +56,7 @@
                         <div>
                             <label class="label">Username</label>
                             <input type="text" class="field" name="username" placeholder="Masukan username petugas"
-                                value="{{ old('username') }}">
+                                value="{{ $employee->user->username }}">
                             @error('username')
                                 <p class="invalid-field">{{ $message }}</p>
                             @enderror
@@ -67,18 +67,18 @@
                     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-1 xl:grid-cols-2 gap-7 mb-10">
 
                         <div>
-                            <label class="label">Password</label>
+                            <label class="label">Password Baru</label>
                             <input type="password" class="field" name="password"
-                                placeholder="Masukan kata sandi petugas">
+                                placeholder="Masukan kata sandi baru petugas">
                             @error('password')
                                 <p class="invalid-field">{{ $message }}</p>
                             @enderror
                         </div>
 
                         <div>
-                            <label class="label">Kofirmasi Password</label>
+                            <label class="label">Kofirmasi Password Baru</label>
                             <input type="password" class="field" name="password_confirmation"
-                                placeholder="Konfirmasi kata sandi petugas">
+                                placeholder="Konfirmasi kata sandi baru petugas">
                         </div>
 
                     </div>
@@ -91,7 +91,10 @@
                                 <select name="agency_id" class="field">
                                     <option selected disabled>- Pilih instansi petugas -</option>
                                     @foreach ($agencies as $agency)
-                                        <option value="{{ $agency->id }}">{{ $agency->name }}</option>
+                                        <option value="{{ $agency->id }}"
+                                            {{ $agency->id === $employee->agency->id ? 'selected' : '' }}>
+                                            {{ $agency->name }}
+                                        </option>
                                     @endforeach
                                 </select>
                                 @error('agency_id')
@@ -103,7 +106,7 @@
                     @endif
 
                     <div class="flex justify-end">
-                        <button type="submit" class="btn bg-primary">Perbarui</button>
+                        <button type="submit" class="btn bg-primary">Simpan</button>
                     </div>
 
                 </form>
