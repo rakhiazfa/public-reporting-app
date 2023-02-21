@@ -2,6 +2,7 @@
 
 namespace App\Services\Employee;
 
+use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Model;
 use Rakhiazfa\LaravelSarp\Service\ServiceInterface;
 
@@ -12,6 +13,15 @@ use Rakhiazfa\LaravelSarp\Service\ServiceInterface;
 
 interface EmployeeService extends ServiceInterface
 {
+    /**
+     * Get employees by agency.
+     * 
+     * @param int|string $agencyId
+     * 
+     * @return Collection
+     */
+    public function getByAgency(int|string $agencyId): Collection;
+
     /**
      * Create a new employee.
      * 

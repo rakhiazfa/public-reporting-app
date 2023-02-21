@@ -29,11 +29,11 @@ class EmployeeController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
         try {
 
-            $employees = $this->employeeService->orderByIdDesc();
+            $employees = $this->employeeService->getByAgency($request->user()->agency->id ?? 'admin');
 
             $employees->load('agency', 'user');
 

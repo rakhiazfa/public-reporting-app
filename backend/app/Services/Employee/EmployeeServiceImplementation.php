@@ -7,7 +7,9 @@ use Rakhiazfa\LaravelSarp\Service\ServiceImplementation;
 use App\Services\Employee\EmployeeService;
 use App\Repositories\Employee\EmployeeRepository;
 use App\Repositories\User\UserRepository;
+use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Model;
+use Rakhiazfa\LaravelSarp\Repository\RepositoryInterface;
 
 /**
  * EmployeeServiceImplementation class.
@@ -22,6 +24,11 @@ class EmployeeServiceImplementation extends ServiceImplementation implements Emp
     protected UserRepository $userRepository;
 
     /**
+     * @var EmployeeRepository
+     */
+    protected RepositoryInterface $repository;
+
+    /**
      * @param RepositoryModel $repository
      *
      */
@@ -29,6 +36,18 @@ class EmployeeServiceImplementation extends ServiceImplementation implements Emp
     {
         $this->repository = $repository;
         $this->userRepository = $userRepository;
+    }
+
+    /**
+     * Get employees by agency.
+     * 
+     * @param int|string $agencyId
+     * 
+     * @return Collection
+     */
+    public function getByAgency(int|string $agencyId): Collection
+    {
+        return $agencyId === 'admin' ? $this->orderByIdDesc() : $this->repository->getByAgency($agencyId);
     }
 
     /**
