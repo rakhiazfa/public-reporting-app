@@ -61,7 +61,7 @@
                     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-1 xl:grid-cols-2 gap-7 mb-10">
 
                         <div>
-                            <label class="label">Password</label>
+                            <label class="label">Password Baru</label>
                             <input type="password" class="field" name="password"
                                 placeholder="Masukan kata sandi baru instansi">
                             @error('password')
