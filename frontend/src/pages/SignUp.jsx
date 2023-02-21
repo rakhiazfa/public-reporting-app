@@ -114,7 +114,7 @@ const SignUp = () => {
     const fetchAllProvinces = async () => {
         try {
             const { data } = await axios.get(
-                "http://dev.farizdotid.com/api/daerahindonesia/provinsi"
+                "https://dev.farizdotid.com/api/daerahindonesia/provinsi"
             );
 
             const provinsi = data?.provinsi?.reduce((prev, next) => {
@@ -136,7 +136,7 @@ const SignUp = () => {
     const fetchAllCities = async (provinceId) => {
         try {
             const { data } = await axios.get(
-                `http://dev.farizdotid.com/api/daerahindonesia/kota?id_provinsi=${provinceId}`
+                `https://dev.farizdotid.com/api/daerahindonesia/kota?id_provinsi=${provinceId}`
             );
 
             const kota_kabupaten = data?.kota_kabupaten?.reduce(
