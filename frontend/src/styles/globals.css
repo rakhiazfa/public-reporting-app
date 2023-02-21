@@ -67,8 +67,8 @@
     }
 
     .field {
-        @apply block w-full focus:border-blue-400 
-        placeholder:text-smd border rounded-md px-3 py-[.6rem] 
+        @apply block w-full focus:outline-blue-400 
+        placeholder:text-sm border rounded-lg px-3 py-[.525rem] 
         transition-all duration-300 border-gray-300;
     }
 
