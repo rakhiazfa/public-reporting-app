@@ -26,3 +26,4 @@ dist-ssr
 # Configuration files
 
 .env
+.env.production

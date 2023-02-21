@@ -17,7 +17,7 @@ function App() {
         };
     }, [dispatch]);
 
-    return !pending ? <Router /> : <PageLoader />;
+    return <Router />;
 }
 
 export default App;
