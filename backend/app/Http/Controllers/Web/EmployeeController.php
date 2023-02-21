@@ -107,9 +107,21 @@ class EmployeeController extends Controller
      * @param  Employee $employee
      * @return \Illuminate\Http\Response
      */
-    public function edit(Employee $employee)
+    public function edit(Employee $employee, AgencyService $agencyService)
     {
-        //
+        $employee->load(['user', 'agency']);
+
+        try {
+
+            $agencies = $agencyService->orderByIdDesc();
+
+            // 
+        } catch (\Exception $exception) {
+
+            return (new ExceptionResponse($exception))->json();
+        }
+
+        return view('employee.edit', compact('employee', 'agencies'));
     }
 
     /**
