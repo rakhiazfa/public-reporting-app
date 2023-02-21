@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Web;
 
 use App\Exceptions\ExceptionResponse;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Employee\StoreEmployeeRequest;
 use App\Services\Agency\AgencyService;
 use App\Services\Employee\EmployeeService;
 use Illuminate\Http\Request;
@@ -71,7 +72,7 @@ class EmployeeController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StoreEmployeeRequest $request)
     {
         //
     }
