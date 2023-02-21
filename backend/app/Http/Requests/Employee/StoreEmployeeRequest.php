@@ -24,7 +24,16 @@ class StoreEmployeeRequest extends FormRequest
      */
     public function rules()
     {
-        $isAdmin = $this->user()->role->name === 'admin';
+        $user = $this->user();
+
+        $isAdmin = $user->role->name === 'admin';
+
+        if (!$isAdmin) {
+
+            $this->merge([
+                'agency_id' => $user->agency->id,
+            ]);
+        }
 
         return [
             'name' => ['required', 'unique:agencies'],
