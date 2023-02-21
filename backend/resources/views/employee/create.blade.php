@@ -20,6 +20,19 @@
 
                     <h1 class="text-2xl font-semibold mb-7 mt-5">Data Petugas</h1>
 
+                    <div class="grid grid-cols-1 gap-7 mb-7">
+
+                        <div>
+                            <label class="label">NIP</label>
+                            <input type="text" class="field" name="nip" placeholder="Masukan nama petugas"
+                                value="{{ old('nip') }}">
+                            @error('nip')
+                                <p class="invalid-field">{{ $message }}</p>
+                            @enderror
+                        </div>
+
+                    </div>
+
                     <div class="grid grid-cols-1 xl:grid-cols-3 gap-7 mb-7">
 
                         <div>

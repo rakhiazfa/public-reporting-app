@@ -36,7 +36,8 @@ class StoreEmployeeRequest extends FormRequest
         }
 
         return [
-            'name' => ['required', 'unique:agencies'],
+            'nip' => ['required', 'unique:employees'],
+            'name' => ['required'],
             'email' => ['required', 'email', 'unique:users'],
             'username' => ['required', 'without_spaces', 'unique:users'],
             'password' => ['required', 'min:8', 'confirmed'],
