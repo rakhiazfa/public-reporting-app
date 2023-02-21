@@ -2,6 +2,7 @@
 
 namespace App\Services\Employee;
 
+use App\Models\Employee;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Model;
 use Rakhiazfa\LaravelSarp\Service\ServiceInterface;
@@ -30,4 +31,12 @@ interface EmployeeService extends ServiceInterface
      * @return Model
      */
     public function createEmployee(array $attributes): Model;
+
+    /**
+     * @param Employee $employee
+     * @param array $attributes
+     * 
+     * @return bool
+     */
+    public function updateEmployee(Employee $employee, array $attributes = []): bool;
 }

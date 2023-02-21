@@ -134,7 +134,17 @@ class EmployeeController extends Controller
      */
     public function update(UpdateEmployeeRequest $request, Employee $employee)
     {
-        //
+        try {
+
+            $this->employeeService->updateEmployee($employee, $request->all());
+
+            // 
+        } catch (\Exception $exception) {
+
+            return (new ExceptionResponse($exception))->json();
+        }
+
+        return redirect()->route('employees')->with('success', 'Berhasil memperbarui petugas.');
     }
 
     /**

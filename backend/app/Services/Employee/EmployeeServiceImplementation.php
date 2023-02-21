@@ -2,6 +2,7 @@
 
 namespace App\Services\Employee;
 
+use App\Models\Employee;
 use Rakhiazfa\LaravelSarp\Repository\RepositoryModel;
 use Rakhiazfa\LaravelSarp\Service\ServiceImplementation;
 use App\Services\Employee\EmployeeService;
@@ -69,5 +70,17 @@ class EmployeeServiceImplementation extends ServiceImplementation implements Emp
         $employee->save();
 
         return $employee;
+    }
+
+    /**
+     * @param Employee $employee
+     * @param array $attributes
+     * 
+     * @return bool
+     */
+    public function updateEmployee(Employee $employee, array $attributes = []): bool
+    {
+        return $employee->update($attributes) &&
+            $employee->user->update($attributes);
     }
 }
