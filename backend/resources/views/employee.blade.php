@@ -30,7 +30,7 @@
                         @foreach ($employees as $employee)
                             <tr>
                                 <td>{{ $loop->iteration }}</td>
-                                <th>{{ $employee->name ?? '' }}</th>
+                                <th>{{ $employee->user->name ?? '' }}</th>
                                 <td>{{ $employee->user->email ?? '' }}</td>
                                 <td>
                                     <div class="table-actions">
