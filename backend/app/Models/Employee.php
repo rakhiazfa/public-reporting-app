@@ -11,6 +11,11 @@ class Employee extends Model
     use HasFactory;
 
     /**
+     * @var array
+     */
+    protected $fillable = ['nip'];
+
+    /**
      * @return BelongsTo
      */
     public function user()
