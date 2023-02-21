@@ -1,7 +1,7 @@
 import React from "react";
 import Datepicker from "react-tailwindcss-datepicker";
 
-const Date = ({
+const Datepicker = ({
     label,
     value,
     onChange,
@@ -31,4 +31,4 @@ const Date = ({
     );
 };
 
-export default Date;
+export default Datepicker;

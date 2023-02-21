@@ -1260,6 +1260,11 @@ react-select@^5.7.0:
     react-transition-group "^4.3.0"
     use-isomorphic-layout-effect "^1.1.2"
 
+react-tailwindcss-datepicker@^1.4.2:
+  version "1.4.2"
+  resolved "https://registry.yarnpkg.com/react-tailwindcss-datepicker/-/react-tailwindcss-datepicker-1.4.2.tgz#c721beb7c912af231b4ac69d4cc5bce741f3241f"
+  integrity sha512-w5KZkmTebV1IpU89xy7yBKcFnAGpcyJ4BGPuLPvthXTJk85NgRZ+3Q1PHxYFlWHR2qmLMuq6Pv9F8MYPL3QxvA==
+
 react-transition-group@^4.3.0:
   version "4.4.5"
   resolved "https://registry.yarnpkg.com/react-transition-group/-/react-transition-group-4.4.5.tgz#e53d4e3f3344da8521489fbef8f2581d42becdd1"
