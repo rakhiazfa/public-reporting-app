@@ -39,4 +39,11 @@ interface EmployeeService extends ServiceInterface
      * @return bool
      */
     public function updateEmployee(Employee $employee, array $attributes = []): bool;
+
+    /**
+     * @param Employee $employee
+     * 
+     * @return bool
+     */
+    public function deleteEmployee(Employee $employee): bool;
 }

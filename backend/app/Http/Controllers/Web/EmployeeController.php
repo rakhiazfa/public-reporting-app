@@ -155,6 +155,16 @@ class EmployeeController extends Controller
      */
     public function destroy(Employee $employee)
     {
-        //
+        try {
+
+            $this->employeeService->deleteEmployee($employee);
+
+            // 
+        } catch (\Exception $exception) {
+
+            return (new ExceptionResponse($exception))->json();
+        }
+
+        return redirect()->route('employees')->with('success', 'Berhasil menghapus petugas.');
     }
 }

@@ -83,4 +83,14 @@ class EmployeeServiceImplementation extends ServiceImplementation implements Emp
         return $employee->update($attributes) &&
             $employee->user->update($attributes);
     }
+
+    /**
+     * @param Employee $employee
+     * 
+     * @return bool
+     */
+    public function deleteEmployee(Employee $employee): bool
+    {
+        return $employee->user->delete();
+    }
 }
