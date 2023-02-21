@@ -213,10 +213,8 @@ const SignUp = () => {
     };
 
     useEffect(() => {
-        return () => {
-            fetchAllJobs();
-            fetchAllProvinces();
-        };
+        fetchAllJobs();
+        fetchAllProvinces();
     }, []);
 
     return (

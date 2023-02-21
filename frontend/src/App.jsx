@@ -10,11 +10,9 @@ function App() {
     const dispatch = useDispatch();
 
     useEffect(() => {
-        return () => {
-            dispatch(getUser()).then(() =>
-                setTimeout(() => setPending(false), 750)
-            );
-        };
+        dispatch(getUser()).then(() =>
+            setTimeout(() => setPending(false), 750)
+        );
     }, [dispatch]);
 
     return !pending ? <Router /> : <PageLoader />;

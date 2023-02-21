@@ -91,9 +91,7 @@ const Profile = () => {
     };
 
     useEffect(() => {
-        return () => {
-            fetchAllJobs();
-        };
+        fetchAllJobs();
     }, []);
 
     return (

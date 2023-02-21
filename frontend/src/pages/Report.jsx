@@ -58,33 +58,33 @@ const Report = () => {
         console.log(payload);
     };
 
+    // Fetch all report categories
+    const fetchAllReportCategories = async () => {
+        try {
+            const { data } = await axios.get(
+                "/report-categories?with-subcategories=true"
+            );
+
+            setReportCategories(data?.report_categories);
+        } catch (error) {
+            console.log(error);
+        }
+    };
+
+    // Fetch all agencies
+    const fetchAllAgencies = async () => {
+        try {
+            const { data } = await axios.get("/agencies");
+
+            setAgencies(data?.agencies);
+        } catch (error) {
+            console.log(error);
+        }
+    };
+
     useEffect(() => {
-        const fetchAllReportCategories = async () => {
-            try {
-                const { data } = await axios.get(
-                    "/report-categories?with-subcategories=true"
-                );
-
-                setReportCategories(data?.report_categories);
-            } catch (error) {
-                console.log(error);
-            }
-        };
-
-        const fetchAllAgencies = async () => {
-            try {
-                const { data } = await axios.get("/agencies");
-
-                setAgencies(data?.agencies);
-            } catch (error) {
-                console.log(error);
-            }
-        };
-
-        return () => {
-            fetchAllReportCategories();
-            fetchAllAgencies();
-        };
+        fetchAllReportCategories();
+        fetchAllAgencies();
     }, []);
 
     return (
