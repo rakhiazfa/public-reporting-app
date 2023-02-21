@@ -126,7 +126,7 @@
 
 .sidebar .sidebar-link {
     @apply w-full h-[50px] flex items-center gap-3 
-    hover:bg-gray-50 text-gray-400 rounded-lg px-4 
+    hover:bg-blue-50 text-gray-400 rounded-lg px-4 
     relative;
 }
 
@@ -142,7 +142,7 @@
 }
 
 .sidebar .sidebar-link.active {
-    @apply bg-blue-500;
+    @apply bg-blue-600;
 }
 
 .sidebar .sidebar-link.active span, 
