@@ -68,8 +68,9 @@ class Sidebar extends Component
         ]);
 
         $this->user->hasRole('admin') && array_push($users['items'],  [
-            'url' => '#',
+            'url' => route('societies'),
             'text' => 'Masyarakat',
+            'is_active' => request()->routeIs('societies*'),
         ],);
 
         $items = [

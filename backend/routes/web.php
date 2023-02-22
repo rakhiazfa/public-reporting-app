@@ -36,3 +36,10 @@ require_once __DIR__ . '/web/agency.php';
  */
 
 require_once __DIR__ . '/web/employee.php';
+
+/**
+ * Load society routes.
+ * 
+ */
+
+require_once __DIR__ . '/web/society.php';
