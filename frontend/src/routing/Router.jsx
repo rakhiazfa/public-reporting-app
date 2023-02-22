@@ -1,6 +1,7 @@
 import React, { useEffect } from "react";
 import { Route, Routes, useLocation } from "react-router-dom";
 import Home from "../pages/Home";
+import Report from "../pages/Report";
 
 const Router = () => {
     const { pathname, hash, key } = useLocation();
@@ -23,6 +24,7 @@ const Router = () => {
     return (
         <Routes>
             <Route index element={<Home />} />
+            <Route path="report" element={<Report />} />
         </Routes>
     );
 };
