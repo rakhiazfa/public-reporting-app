@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import Input from "../Fields/Input";
 
-const SignInForm = ({ onSubmit }) => {
+const SignInForm = ({ onSubmit, loading, errors }) => {
     const [data, setData] = useState({
         email_or_username: "",
         password: "",
@@ -32,6 +32,7 @@ const SignInForm = ({ onSubmit }) => {
                     name="email_or_username"
                     value={data?.email_or_username}
                     onChange={handleChange}
+                    error={errors?.email_or_username}
                     placeholder="Masukan email atau username anda . . ."
                 />
                 <Input
@@ -40,12 +41,14 @@ const SignInForm = ({ onSubmit }) => {
                     name="password"
                     value={data?.password}
                     onChange={handleChange}
+                    error={errors?.password}
                     placeholder="Masukan kata sandi anda . . ."
                 />
                 <div className="flex justify-end">
                     <button
                         type="submit"
                         className="button bg-blue-500 text-white"
+                        disabled={loading}
                     >
                         Login
                     </button>
