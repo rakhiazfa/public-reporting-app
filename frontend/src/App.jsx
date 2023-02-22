@@ -5,7 +5,16 @@ import Router from "./routing/Router";
 function App() {
     const { pending } = useContext(AuthContext);
 
-    return !pending && <Router />;
+    return !pending ? (
+        <Router />
+    ) : (
+        <div class="preloader">
+            <div class="lds-ripple">
+                <div></div>
+                <div></div>
+            </div>
+        </div>
+    );
 }
 
 export default App;
