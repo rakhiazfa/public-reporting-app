@@ -5,6 +5,7 @@ import { FcHome, FcAbout, FcDocument } from "react-icons/fc";
 import { Link } from "react-router-dom";
 import logo from "../../assets/images/logo.png";
 import { AuthContext } from "../../providers/AuthProvider";
+import axios from "axios";
 
 const links = [
     {
@@ -28,13 +29,9 @@ const links = [
 ];
 
 const Topbar = () => {
-    const { user } = useContext(AuthContext);
+    const { user, logout } = useContext(AuthContext);
 
     //
-
-    const [loading, setLoading] = useState(false);
-
-    const handleLogout = async () => {};
 
     return (
         <header className="topbar">
@@ -77,8 +74,7 @@ const Topbar = () => {
                                         {
                                             type: "button",
                                             content: "Logout",
-                                            onClick: handleLogout,
-                                            disabled: loading,
+                                            onClick: logout,
                                         },
                                     ]}
                                 />

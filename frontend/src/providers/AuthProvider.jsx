@@ -40,6 +40,19 @@ export default function AuthProvider({ children }) {
     const [pending, setPending] = useState(true);
     const [user, setUser] = useState(null);
 
+    const logout = async () => {
+        try {
+            await axiosJWT.post("/auth/logout");
+
+            localStorage.removeItem("at");
+
+            setUser(null);
+        } catch (_) {
+        } finally {
+            window.location.reload();
+        }
+    };
+
     const getUser = async () => {
         try {
             const { data } = await axiosJWT.get("/user");
@@ -59,6 +72,7 @@ export default function AuthProvider({ children }) {
         pending,
         user,
         setUser,
+        logout,
     };
 
     return (
