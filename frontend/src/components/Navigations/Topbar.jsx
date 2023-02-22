@@ -29,7 +29,7 @@ const links = [
 ];
 
 const Topbar = () => {
-    const { user, logout } = useContext(AuthContext);
+    const { user, logout, loading } = useContext(AuthContext);
 
     //
 
@@ -75,6 +75,7 @@ const Topbar = () => {
                                             type: "button",
                                             content: "Logout",
                                             onClick: logout,
+                                            disabled: loading,
                                         },
                                     ]}
                                 />

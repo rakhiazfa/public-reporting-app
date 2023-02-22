@@ -38,9 +38,31 @@ export const AuthContext = createContext();
 
 export default function AuthProvider({ children }) {
     const [pending, setPending] = useState(true);
+
+    const [loading, setLoading] = useState(false);
+    const [errors, setErrors] = useState(null);
+
     const [user, setUser] = useState(null);
 
+    const login = async (payload) => {
+        setLoading(true);
+
+        try {
+            const { data } = await axios.post("/auth/login", payload);
+
+            localStorage.setItem("at", data?.token);
+
+            setUser(data?.user);
+        } catch (error) {
+            setErrors(error.response.data.errors);
+        } finally {
+            setLoading(false);
+        }
+    };
+
     const logout = async () => {
+        setLoading(true);
+
         try {
             await axiosJWT.post("/auth/logout");
 
@@ -49,6 +71,8 @@ export default function AuthProvider({ children }) {
             setUser(null);
         } catch (_) {
         } finally {
+            setLoading(false);
+
             window.location.reload();
         }
     };
@@ -72,7 +96,11 @@ export default function AuthProvider({ children }) {
         pending,
         user,
         setUser,
+        login,
         logout,
+        loading,
+        errors,
+        setErrors,
     };
 
     return (
