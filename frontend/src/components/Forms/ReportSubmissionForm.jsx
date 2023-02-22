@@ -121,8 +121,6 @@ const ReportSubmissionForm = ({ onSubmit }) => {
     const handleSubmit = (event) => {
         event.preventDefault();
 
-        console.log(data);
-
         onSubmit && onSubmit(event, data);
     };
 
