@@ -8,8 +8,8 @@ function App() {
     return !pending ? (
         <Router />
     ) : (
-        <div class="preloader">
-            <div class="lds-ripple">
+        <div className="preloader">
+            <div className="lds-ripple">
                 <div></div>
                 <div></div>
             </div>
