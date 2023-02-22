@@ -15,6 +15,8 @@ Route::name('societies')->prefix('societies')->middleware(['auth:web', 'role:adm
 
     Route::get('/{society}', [SocietyController::class, 'show'])->name('.show');
 
+    Route::get('/{society}/edit', [SocietyController::class, 'edit'])->name('.edit');
+
     Route::put('/{society}', [SocietyController::class, 'update'])->name('.update');
 
     Route::delete('/{society}', [SocietyController::class, 'destroy'])->name('.destroy');

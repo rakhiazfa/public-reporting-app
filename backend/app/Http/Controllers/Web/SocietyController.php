@@ -43,11 +43,7 @@ class SocietyController extends Controller
             return (new ExceptionResponse($exception))->json();
         }
 
-        return response()->json([
-            'success' => true,
-            'code' => 200,
-            'societies' => $societies,
-        ], 200);
+        return view('society', compact('societies'));
     }
 
     /**
@@ -65,6 +61,19 @@ class SocietyController extends Controller
             'code' => 200,
             'society' => $society,
         ], 200);
+    }
+
+    /**
+     * Show the form for editing the specified resource.
+     *
+     * @param  Society $society
+     * @return \Illuminate\Http\Response
+     */
+    public function edit(Society $society)
+    {
+        $society->load(['user', 'location']);
+
+        return view('society.edit', compact('society'));
     }
 
     /**
@@ -86,12 +95,7 @@ class SocietyController extends Controller
             return (new ExceptionResponse($exception))->json();
         }
 
-        return response()->json([
-            'success' => true,
-            'code' => 200,
-            'message' => 'Berhasil memperbarui masyarakat.',
-            'society' => $society,
-        ], 200);
+        return redirect()->route('societies')->with('success', 'Berhasil memperbarui masyarakat.');
     }
 
     /**
@@ -112,10 +116,6 @@ class SocietyController extends Controller
             return new ExceptionResponse($exception);
         }
 
-        return response()->json([
-            'success' => true,
-            'code' => 200,
-            'message' => 'Successfully deleted society.',
-        ], 200);
+        return redirect()->route('societies')->with('success', 'Berhasil menghapus masyarakat.');
     }
 }
