@@ -79,10 +79,10 @@ const Topbar = () => {
                         ) : (
                             <>
                                 <li>
-                                    <Link to="/signin">Masuk</Link>
+                                    <Link to="/auth/signin">Masuk</Link>
                                 </li>
                                 <li>
-                                    <Link to="/signup">Daftar</Link>
+                                    <Link to="/auth/signup">Daftar</Link>
                                 </li>
                             </>
                         )}

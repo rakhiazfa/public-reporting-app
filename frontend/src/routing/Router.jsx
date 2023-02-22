@@ -1,5 +1,7 @@
 import React, { useEffect } from "react";
 import { Route, Routes, useLocation } from "react-router-dom";
+import SignIn from "../pages/Auth/SignIn";
+import SignUp from "../pages/Auth/SignUp";
 import Home from "../pages/Home";
 import Report from "../pages/Report";
 
@@ -25,6 +27,8 @@ const Router = () => {
         <Routes>
             <Route index element={<Home />} />
             <Route path="report" element={<Report />} />
+            <Route path="auth/signup" element={<SignUp />} />
+            <Route path="auth/signin" element={<SignIn />} />
         </Routes>
     );
 };
