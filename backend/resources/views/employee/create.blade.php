@@ -24,7 +24,7 @@
 
                         <div>
                             <label class="label">NIP</label>
-                            <input type="text" class="field" name="nip" placeholder="Masukan nama petugas"
+                            <input type="text" class="field" name="nip" placeholder="Masukan NIP petugas"
                                 value="{{ old('nip') }}">
                             @error('nip')
                                 <p class="invalid-field">{{ $message }}</p>
