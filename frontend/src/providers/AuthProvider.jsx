@@ -1,14 +1,47 @@
 import axios from "axios";
 import { createContext, useEffect, useState } from "react";
 
+/**
+ * Setup axios jwt.
+ *
+ */
+
+const axiosJWT = axios.create({
+    baseURL: import.meta.env.VITE_BACKEND_API,
+    headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json",
+    },
+});
+
+axiosJWT.interceptors.request.use((config) => {
+    const token = localStorage.getItem("at") ?? null;
+
+    if (token) {
+        config.headers.Authorization = `Bearer ${token}`;
+    }
+
+    return config;
+});
+
+/**
+ * Auth context.
+ *
+ */
+
 export const AuthContext = createContext();
+
+/**
+ * Auth provider.
+ *
+ */
 
 export default function AuthProvider({ children }) {
     const [user, setUser] = useState(null);
 
     const getUser = async () => {
         try {
-            const { data } = await axios.get("/user");
+            const { data } = await axiosJWT.get("/user");
 
             setUser(data?.user);
         } catch (_) {}
