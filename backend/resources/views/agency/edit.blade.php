@@ -27,7 +27,7 @@
 
                     <h1 class="text-2xl font-semibold mb-7 mt-5">Data Instansi</h1>
 
-                    <div class="grid grid-cols-1 xl:grid-cols-3 gap-7 mb-7">
+                    <div class="grid grid-cols-1 xl:grid-cols-3 gap-10 mb-7">
 
                         <div>
                             <label class="label">Nama</label>
@@ -58,7 +58,7 @@
 
                     </div>
 
-                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-1 xl:grid-cols-2 gap-7 mb-10">
+                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-1 xl:grid-cols-2 gap-10 mb-10">
 
                         <div>
                             <label class="label">Password Baru</label>
@@ -79,7 +79,7 @@
 
                     <h1 class="text-2xl font-semibold mb-7">Lokasi Instansi</h1>
 
-                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-1 xl:grid-cols-2 gap-7 mb-7">
+                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-1 xl:grid-cols-2 gap-10 mb-7">
 
                         <div>
                             <label class="label">Negara</label>
