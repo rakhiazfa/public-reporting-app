@@ -13,7 +13,10 @@ const links = [
     },
     {
         content: "Tentang Lapmas",
-        to: "/about",
+        to: {
+            pathname: "/",
+            hash: "#about",
+        },
         icon: FcAbout,
     },
     {

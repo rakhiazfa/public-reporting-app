@@ -20,6 +20,14 @@
         @apply font-poppins font-normal antialiased;
     }
 
+    html {
+        scroll-behavior: smooth;
+    }
+
+    section {
+        @apply py-12;
+    }
+
     a, button {
         @apply transition-all duration-300 disabled:opacity-50;
     }
