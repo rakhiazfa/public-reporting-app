@@ -5,7 +5,7 @@ const AboutSection = () => {
     return (
         <section id="about">
             <div className="wrapper">
-                <h1 className="text-[clamp(1.5rem,8vw,3rem)] font-bold max-w-[450px] mb-24">
+                <h1 className="text-[clamp(1.5rem,8vw,3rem)] font-bold max-w-[450px] mb-20 lg:mb-24">
                     Tentang LAPMAS
                 </h1>
                 <div className="mb-10 lg:mb-36">
@@ -27,7 +27,7 @@ const AboutSection = () => {
                     </div>
                 </div>
                 <div>
-                    <h1 className="text-2xl md:text-3xl font-semibold mb-16 lg:mb-24">
+                    <h1 className="text-2xl md:text-3xl font-semibold mb-14 lg:mb-24">
                         - Cara Kerja
                     </h1>
                     <ul className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-16">
