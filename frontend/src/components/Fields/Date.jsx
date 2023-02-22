@@ -23,7 +23,7 @@ const Date = ({
                 {...rest}
             />
             {error && (
-                <p className="text-sm font-medium text-red-500 ml-1 mt-2 -mb-2">
+                <p className="text-sm font-normal text-red-500 ml-1 mt-2 -mb-2">
                     {error}
                 </p>
             )}
