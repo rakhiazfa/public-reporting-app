@@ -146,7 +146,8 @@ class EmployeeController extends Controller
             return (new ExceptionResponse($exception))->json();
         }
 
-        return redirect()->route('employees')->with('success', 'Berhasil memperbarui petugas.');
+        return redirect()->route('employees.edit', ['employee' => $employee])
+            ->with('success', 'Berhasil memperbarui petugas.');
     }
 
     /**
