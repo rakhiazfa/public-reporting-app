@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import TopbarDropdown from "./Topbar/TopbarDropdown";
 import TopbarLink from "./Topbar/TopbarLink";
 import { FcHome, FcAbout, FcDocument } from "react-icons/fc";
@@ -29,6 +29,12 @@ const links = [
 
 const Topbar = () => {
     const { user } = useContext(AuthContext);
+
+    //
+
+    const [loading, setLoading] = useState(false);
+
+    const handleLogout = async () => {};
 
     return (
         <header className="topbar">

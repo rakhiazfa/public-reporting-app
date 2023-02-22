@@ -17,7 +17,7 @@ const TopbarDropdown = ({ text, items }) => {
                 className="dropdown-toggler"
                 onClick={() => setIsActive(!isActive)}
             >
-                <span className="text-smd md:text-base font-medium whitespace-nowrap">
+                <span className="text-smd md:text-base font-normal whitespace-nowrap">
                     {text}
                 </span>
                 <IoMdArrowDropdown className="text-xl" />

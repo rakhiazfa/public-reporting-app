@@ -127,12 +127,12 @@
 
 .topbar .topbar-link {
     @apply text-sm lg:text-base 
-    font-medium lg:font-normal flex flex-col 
+    font-normal flex flex-col 
     items-center gap-2;
 }
 
 .topbar .topbar-link.active {
-    @apply font-bold lg:font-medium;
+    @apply font-medium;
 }
 
 .topbar .dropdown {
