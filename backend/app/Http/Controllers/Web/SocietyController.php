@@ -55,13 +55,9 @@ class SocietyController extends Controller
      */
     public function show(Society $society)
     {
-        $society->load('user', 'location');
+        $society->load('user', 'location', 'job');
 
-        return response()->json([
-            'success' => true,
-            'code' => 200,
-            'society' => $society,
-        ], 200);
+        return view('society.show', compact('society'));
     }
 
     /**
