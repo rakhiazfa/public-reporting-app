@@ -46,6 +46,8 @@ class Sidebar extends Component
      */
     public function items()
     {
+        $adminOrAgency = $this->user->hasRole('admin', 'agency');
+
         $users = [
             'type' => 'dropdown',
             'icon' => 'uil uil-user',
@@ -56,20 +58,21 @@ class Sidebar extends Component
                     'text' => 'Petugas',
                     'is_active' => request()->routeIs('employees*'),
                 ],
-                [
-                    'url' => '#',
-                    'text' => 'Masyarakat',
-                ],
             ],
         ];
 
-        $this->user->role->name === 'admin' && array_unshift($users['items'], [
+        $this->user->hasRole('admin') && array_unshift($users['items'], [
             'url' => route('agencies'),
             'text' => 'Instansi',
             'is_active' => request()->routeIs('agencies*'),
         ]);
 
-        return [
+        $this->user->hasRole('admin') && array_push($users['items'],  [
+            'url' => '#',
+            'text' => 'Masyarakat',
+        ],);
+
+        $items = [
             ['type' => 'title', 'title' => 'Navigasi'],
 
             [
@@ -81,8 +84,6 @@ class Sidebar extends Component
             ],
 
             ['type' => 'title', 'title' => 'Menu / Item'],
-
-            $users,
 
             [
                 'type' => 'link',
@@ -100,5 +101,9 @@ class Sidebar extends Component
                 'text' => 'Laporan',
             ],
         ];
+
+        $adminOrAgency && array_splice($items, 3, 0, [$users]);
+
+        return $items;
     }
 }
