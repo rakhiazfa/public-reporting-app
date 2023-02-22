@@ -17,7 +17,7 @@
 @layer base {
 
     * {
-        @apply font-poppins font-normal antialiased;
+        @apply font-poppins font-light antialiased;
     }
 
     html {
