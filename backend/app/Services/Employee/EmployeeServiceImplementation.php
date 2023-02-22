@@ -42,13 +42,13 @@ class EmployeeServiceImplementation extends ServiceImplementation implements Emp
     /**
      * Get employees by agency.
      * 
-     * @param int|string $agencyId
+     * @param int $agencyId
      * 
      * @return Collection
      */
-    public function getByAgency(int|string $agencyId): Collection
+    public function getByAgency(int $agencyId): Collection
     {
-        return $agencyId === 'admin' ? $this->orderByIdDesc() : $this->repository->getByAgency($agencyId);
+        return $this->repository->getByAgency($agencyId);
     }
 
     /**

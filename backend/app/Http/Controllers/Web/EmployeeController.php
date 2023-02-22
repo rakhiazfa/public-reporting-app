@@ -35,7 +35,9 @@ class EmployeeController extends Controller
     {
         try {
 
-            $employees = $this->employeeService->getByAgency($request->user()->agency->id ?? 'admin');
+            $employees = $request->user()->hasRole('admin') ?
+                $this->employeeService->orderByIdDesc() :
+                $this->employeeService->getByAgency($request->user()->agency->id);
 
             $employees->load('agency', 'user');
 

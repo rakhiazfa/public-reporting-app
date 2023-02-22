@@ -17,11 +17,11 @@ interface EmployeeService extends ServiceInterface
     /**
      * Get employees by agency.
      * 
-     * @param int|string $agencyId
+     * @param int $agencyId
      * 
      * @return Collection
      */
-    public function getByAgency(int|string $agencyId): Collection;
+    public function getByAgency(int $agencyId): Collection;
 
     /**
      * Create a new employee.
