@@ -84,9 +84,7 @@ const SignUpForm = ({ onSubmit }) => {
             }, []);
 
             setProvinces(provinsi);
-        } catch (error) {
-            console.log(error);
-        }
+        } catch (_) {}
     };
 
     /**
@@ -113,9 +111,7 @@ const SignUpForm = ({ onSubmit }) => {
             );
 
             setCities(kota_kabupaten);
-        } catch (error) {
-            console.log(error);
-        }
+        } catch (_) {}
     };
 
     /**
@@ -139,9 +135,7 @@ const SignUpForm = ({ onSubmit }) => {
             }, []);
 
             setSubDistricts(kecamatan);
-        } catch (error) {
-            console.log(error);
-        }
+        } catch (_) {}
     };
 
     /**
@@ -165,9 +159,7 @@ const SignUpForm = ({ onSubmit }) => {
             }, []);
 
             setUrbanVillages(kelurahan);
-        } catch (error) {
-            console.log(error);
-        }
+        } catch (_) {}
     };
 
     /**
@@ -199,8 +191,6 @@ const SignUpForm = ({ onSubmit }) => {
 
     const handleSubmit = (event) => {
         event.preventDefault();
-
-        console.log(data);
 
         onSubmit && onSubmit(event, data);
     };
