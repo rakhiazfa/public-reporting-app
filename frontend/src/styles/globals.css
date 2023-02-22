@@ -33,7 +33,7 @@
     }
 
     label {
-        @apply block text-sm font-medium mb-2;
+        @apply block text-sm font-normal mb-2;
     }
 
     input, textarea, select {
