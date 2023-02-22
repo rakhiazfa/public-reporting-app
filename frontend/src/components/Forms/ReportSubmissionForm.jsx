@@ -18,12 +18,12 @@ const ReportSubmissionForm = ({ onSubmit }) => {
     //
 
     const [data, setData] = useState({
-        reportType: null,
+        report_type: null,
         title: "",
         body: "",
-        reportDate: null,
-        reportCategory: null,
-        destinationAgency: null,
+        report_date: null,
+        report_category: null,
+        destination_agency: null,
         attachment: null,
     });
 
@@ -36,7 +36,7 @@ const ReportSubmissionForm = ({ onSubmit }) => {
         setReportDate(newValue);
         setData((old) => ({
             ...old,
-            reportDate: newValue?.startDate,
+            report_date: newValue?.startDate,
         }));
     };
 
@@ -136,7 +136,10 @@ const ReportSubmissionForm = ({ onSubmit }) => {
                     label="Bentuk Laporan"
                     options={reportTypes}
                     onChange={(value) =>
-                        setData((old) => ({ ...old, reportType: value?.value }))
+                        setData((old) => ({
+                            ...old,
+                            report_type: value?.value,
+                        }))
                     }
                     className="lg:col-span-2"
                 />
@@ -172,7 +175,7 @@ const ReportSubmissionForm = ({ onSubmit }) => {
                     onChange={(value) =>
                         setData((old) => ({
                             ...old,
-                            reportCategory: value?.value,
+                            report_category: value?.value,
                         }))
                     }
                 />
@@ -182,7 +185,7 @@ const ReportSubmissionForm = ({ onSubmit }) => {
                     onChange={(value) =>
                         setData((old) => ({
                             ...old,
-                            destinationAgency: value?.value,
+                            destination_agency: value?.value,
                         }))
                     }
                 />
