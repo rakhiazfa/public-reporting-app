@@ -37,6 +37,7 @@ export const AuthContext = createContext();
  */
 
 export default function AuthProvider({ children }) {
+    const [pending, setPending] = useState(true);
     const [user, setUser] = useState(null);
 
     const getUser = async () => {
@@ -44,7 +45,10 @@ export default function AuthProvider({ children }) {
             const { data } = await axiosJWT.get("/user");
 
             setUser(data?.user);
-        } catch (_) {}
+        } catch (_) {
+        } finally {
+            setPending(false);
+        }
     };
 
     useEffect(() => {
@@ -52,6 +56,7 @@ export default function AuthProvider({ children }) {
     }, []);
 
     const values = {
+        pending,
         user,
         setUser,
     };
