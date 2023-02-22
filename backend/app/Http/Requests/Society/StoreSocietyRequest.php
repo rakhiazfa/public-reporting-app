@@ -29,7 +29,7 @@ class StoreSocietyRequest extends FormRequest
             'name' => ['required'],
             'date_of_birth' => ['required', 'date'],
             'gender' => ['required', Rule::in(['Pria', 'Wanita'])],
-            'phone' => ['required'],
+            'phone' => ['required', 'numeric'],
             'job_id' => ['required'],
             'email' => ['required', 'unique:users'],
             'username' => ['required', 'unique:users', 'without_spaces'],
