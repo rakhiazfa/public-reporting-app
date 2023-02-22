@@ -5,10 +5,10 @@ const AboutSection = () => {
     return (
         <section id="about">
             <div className="wrapper">
-                <h1 className="text-[clamp(1.5rem,8vw,3rem)] font-bold max-w-[450px] mb-16">
+                <h1 className="text-[clamp(1.5rem,8vw,3rem)] font-bold max-w-[450px] mb-24">
                     Tentang LAPMAS
                 </h1>
-                <div className="mb-10 lg:mb-44">
+                <div className="mb-10 lg:mb-36">
                     <div className="grid grid-cols-1 lg:grid-cols-[450px,1fr] items-center gap-10">
                         <div className="hidden lg:block">
                             <FcAbout className="text-[20rem] mx-auto" />
