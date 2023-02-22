@@ -6,6 +6,7 @@ use App\Exceptions\ExceptionResponse;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Society\UpdateSocietyRequest;
 use App\Models\Society;
+use App\Services\Job\JobService;
 use App\Services\Society\SocietyService;
 use Illuminate\Http\Request;
 
@@ -69,11 +70,21 @@ class SocietyController extends Controller
      * @param  Society $society
      * @return \Illuminate\Http\Response
      */
-    public function edit(Society $society)
+    public function edit(Society $society, JobService $jobService)
     {
         $society->load(['user', 'location']);
 
-        return view('society.edit', compact('society'));
+        try {
+
+            $jobs = $jobService->orderByIdDesc();
+
+            //
+        } catch (\Exception $exception) {
+
+            return (new ExceptionResponse($exception))->json();
+        }
+
+        return view('society.edit', compact('society', 'jobs'));
     }
 
     /**
@@ -87,7 +98,7 @@ class SocietyController extends Controller
     {
         try {
 
-            $society = $this->societyService->updateSociety($society, $request->all());
+            $this->societyService->updateSociety($society, $request->all());
 
             //
         } catch (\Exception $exception) {
@@ -95,7 +106,7 @@ class SocietyController extends Controller
             return (new ExceptionResponse($exception))->json();
         }
 
-        return redirect()->route('societies')->with('success', 'Berhasil memperbarui masyarakat.');
+        return redirect()->route('societies.edit', ['society' => $society])->with('success', 'Berhasil memperbarui masyarakat.');
     }
 
     /**
