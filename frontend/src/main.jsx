@@ -12,6 +12,8 @@ import AuthProvider from "./providers/AuthProvider";
  */
 
 axios.defaults.baseURL = import.meta.env.VITE_BACKEND_API;
+axios.defaults.headers["Accept"] = "application/json";
+axios.defaults.headers["Content-Type"] = "application/json";
 
 /**
  * Render application.
