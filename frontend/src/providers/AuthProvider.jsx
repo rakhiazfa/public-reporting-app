@@ -45,6 +45,7 @@ export default function AuthProvider({ children }) {
     const [user, setUser] = useState(null);
 
     const login = async (payload) => {
+        setErrors(null);
         setLoading(true);
 
         try {
@@ -53,6 +54,24 @@ export default function AuthProvider({ children }) {
             localStorage.setItem("at", data?.token);
 
             setUser(data?.user);
+        } catch (error) {
+            setErrors(error.response.data.errors);
+        } finally {
+            setLoading(false);
+        }
+    };
+
+    const register = async (payload) => {
+        setErrors(null);
+        setLoading(true);
+
+        try {
+            const { data } = await axios.post("/societies", payload);
+
+            login({
+                email_or_username: payload?.email,
+                password: payload?.password,
+            });
         } catch (error) {
             setErrors(error.response.data.errors);
         } finally {
@@ -97,6 +116,7 @@ export default function AuthProvider({ children }) {
         user,
         setUser,
         login,
+        register,
         logout,
         loading,
         errors,

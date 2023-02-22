@@ -15,7 +15,7 @@ const genders = [
     },
 ];
 
-const SignUpForm = ({ onSubmit }) => {
+const SignUpForm = ({ onSubmit, loading, errors }) => {
     const [jobs, setJobs] = useState([]);
     const [provinces, setProvinces] = useState([]);
     const [cities, setCities] = useState([]);
@@ -213,6 +213,7 @@ const SignUpForm = ({ onSubmit }) => {
                     name="nik"
                     value={data?.nik}
                     onChange={handleChange}
+                    error={errors?.nik}
                 />
                 <Input
                     type="number"
@@ -221,6 +222,7 @@ const SignUpForm = ({ onSubmit }) => {
                     name="phone"
                     value={data?.phone}
                     onChange={handleChange}
+                    error={errors?.phone}
                 />
                 <Input
                     type="text"
@@ -229,6 +231,7 @@ const SignUpForm = ({ onSubmit }) => {
                     name="name"
                     value={data?.name}
                     onChange={handleChange}
+                    error={errors?.name}
                 />
                 <Select
                     label="Pekerjaan"
@@ -239,6 +242,7 @@ const SignUpForm = ({ onSubmit }) => {
                             job_id: value?.value,
                         }))
                     }
+                    error={errors?.job_id}
                 />
                 <Date
                     label="Tanggal Lahir"
@@ -246,6 +250,7 @@ const SignUpForm = ({ onSubmit }) => {
                     useRange={false}
                     value={dateOfBith}
                     onChange={handleDateOfBirthChange}
+                    error={errors?.date_of_birth}
                 />
                 <Select
                     label="Jenis Kelamin"
@@ -256,6 +261,7 @@ const SignUpForm = ({ onSubmit }) => {
                             gender: value?.value,
                         }))
                     }
+                    error={errors?.gender}
                 />
                 <Input
                     type="text"
@@ -264,6 +270,7 @@ const SignUpForm = ({ onSubmit }) => {
                     name="email"
                     value={data?.email}
                     onChange={handleChange}
+                    error={errors?.email}
                 />
                 <Input
                     type="text"
@@ -272,6 +279,7 @@ const SignUpForm = ({ onSubmit }) => {
                     name="username"
                     value={data?.username}
                     onChange={handleChange}
+                    error={errors?.username}
                 />
                 <Input
                     type="password"
@@ -279,6 +287,7 @@ const SignUpForm = ({ onSubmit }) => {
                     name="password"
                     value={data?.password}
                     onChange={handleChange}
+                    error={errors?.password}
                     placeholder="Masukan kata sandi anda . . ."
                 />
                 <Input
@@ -302,6 +311,7 @@ const SignUpForm = ({ onSubmit }) => {
                         }));
                         fetchCities(value?.value);
                     }}
+                    error={errors?.province}
                 />
                 <Select
                     label="Kota / Kabupaten"
@@ -313,6 +323,7 @@ const SignUpForm = ({ onSubmit }) => {
                         }));
                         fetchSubDistrict(value?.value);
                     }}
+                    error={errors?.city}
                     disabled={!data?.province}
                 />
                 <Select
@@ -325,6 +336,7 @@ const SignUpForm = ({ onSubmit }) => {
                         }));
                         fetchUrbanVillages(value?.value);
                     }}
+                    error={errors?.sub_district}
                     disabled={!data?.city}
                 />
                 <Select
@@ -336,6 +348,7 @@ const SignUpForm = ({ onSubmit }) => {
                             urban_village: value?.label,
                         }))
                     }
+                    error={errors?.urban_village}
                     disabled={!data?.sub_district}
                 />
                 <Input
@@ -345,6 +358,7 @@ const SignUpForm = ({ onSubmit }) => {
                     name="postal_code"
                     value={data?.postal_code}
                     onChange={handleChange}
+                    error={errors?.postal_code}
                     className="lg:col-span-2"
                 />
                 <Input
@@ -354,6 +368,7 @@ const SignUpForm = ({ onSubmit }) => {
                     name="address"
                     value={data?.address}
                     onChange={handleChange}
+                    error={errors?.address}
                     className="lg:col-span-2"
                 />
 
@@ -361,6 +376,7 @@ const SignUpForm = ({ onSubmit }) => {
                     <button
                         type="submit"
                         className="button bg-blue-500 text-white"
+                        disabled={loading}
                     >
                         Register
                     </button>
