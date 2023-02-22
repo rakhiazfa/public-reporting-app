@@ -16,6 +16,7 @@
                     <thead>
                         <tr>
                             <th>No</th>
+                            <th>NIK</th>
                             <th>Nama</th>
                             <th>Email</th>
                             <th>#</th>
@@ -25,6 +26,7 @@
                         @foreach ($societies as $society)
                             <tr>
                                 <td>{{ $loop->iteration }}</td>
+                                <td>{{ $society->nik ?? '' }}</td>
                                 <th>{{ $society->name ?? '' }}</th>
                                 <td>{{ $society->user->email ?? '' }}</td>
                                 <td>
