@@ -13,7 +13,7 @@ const Layout = ({ children, title, className }) => {
 
             <main>{children}</main>
 
-            <footer className="pb-20 lg:pb-0 mt-16">
+            <footer className="bg-gray-50 pb-20 lg:pb-0 mt-16">
                 <div className="wrapper lg:border-t py-10">
                     <p className="text-sm lg:text-base text-center">
                         Copyright &copy; {new Date().getFullYear()} by{" "}
