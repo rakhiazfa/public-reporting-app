@@ -84,7 +84,7 @@ export default function AuthProvider({ children }) {
             setUser(data?.user);
         } catch (_) {
         } finally {
-            setPending(false);
+            setTimeout(() => setPending(false), 1000);
         }
     };
 
