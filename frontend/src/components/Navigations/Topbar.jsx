@@ -1,9 +1,10 @@
-import React, { useState } from "react";
+import React, { useContext } from "react";
 import TopbarDropdown from "./Topbar/TopbarDropdown";
 import TopbarLink from "./Topbar/TopbarLink";
 import { FcHome, FcAbout, FcDocument } from "react-icons/fc";
 import { Link } from "react-router-dom";
 import logo from "../../assets/images/logo.png";
+import { AuthContext } from "../../providers/AuthProvider";
 
 const links = [
     {
@@ -27,7 +28,7 @@ const links = [
 ];
 
 const Topbar = () => {
-    const [user, setUser] = useState(null);
+    const { user } = useContext(AuthContext);
 
     return (
         <header className="topbar">
