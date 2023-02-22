@@ -17,7 +17,7 @@ const SignInForm = ({ onSubmit, loading, errors }) => {
     const handleSubmit = (event) => {
         event.preventDefault();
 
-        onSubmit && onSubmit(event, data);
+        onSubmit && onSubmit(data);
     };
 
     return (
