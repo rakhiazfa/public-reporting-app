@@ -17,11 +17,16 @@ const genders = [
 
 const SignUpForm = ({ onSubmit }) => {
     const [jobs, setJobs] = useState([]);
+    const [provinces, setProvinces] = useState([]);
+    const [cities, setCities] = useState([]);
+    const [subDistricts, setSubDistricts] = useState([]);
+    const [urbanVillages, setUrbanVillages] = useState([]);
 
     //
 
     const [data, setData] = useState({
         nik: "",
+        phone: "",
         name: "",
         job_id: null,
         username: "",
@@ -30,6 +35,12 @@ const SignUpForm = ({ onSubmit }) => {
         email: "",
         password: "",
         password_confirmation: "",
+        province: null,
+        city: null,
+        sub_district: null,
+        urban_village: null,
+        postal_code: "",
+        address: "",
     });
 
     const [dateOfBith, setDateOfBith] = useState({
@@ -50,6 +61,113 @@ const SignUpForm = ({ onSubmit }) => {
             ...old,
             [event.target.name]: event.target.value,
         }));
+    };
+
+    /**
+     * Fetch all provinces.
+     *
+     */
+
+    const fetchProvinces = async () => {
+        try {
+            const { data } = await axios.get(
+                "https://dev.farizdotid.com/api/daerahindonesia/provinsi"
+            );
+
+            const provinsi = data?.provinsi?.reduce((prev, next) => {
+                prev.push({
+                    value: next?.id,
+                    label: next?.nama,
+                });
+
+                return prev;
+            }, []);
+
+            setProvinces(provinsi);
+        } catch (error) {
+            console.log(error);
+        }
+    };
+
+    /**
+     * Fetch all cities.
+     *
+     */
+
+    const fetchCities = async (provinceId) => {
+        try {
+            const { data } = await axios.get(
+                `https://dev.farizdotid.com/api/daerahindonesia/kota?id_provinsi=${provinceId}`
+            );
+
+            const kota_kabupaten = data?.kota_kabupaten?.reduce(
+                (prev, next) => {
+                    prev.push({
+                        value: next?.id,
+                        label: next?.nama,
+                    });
+
+                    return prev;
+                },
+                []
+            );
+
+            setCities(kota_kabupaten);
+        } catch (error) {
+            console.log(error);
+        }
+    };
+
+    /**
+     * Fetch all sub districts.
+     *
+     */
+
+    const fetchSubDistrict = async (cityId) => {
+        try {
+            const { data } = await axios.get(
+                `https://dev.farizdotid.com/api/daerahindonesia/kecamatan?id_kota=${cityId}`
+            );
+
+            const kecamatan = data?.kecamatan?.reduce((prev, next) => {
+                prev.push({
+                    value: next?.id,
+                    label: next?.nama,
+                });
+
+                return prev;
+            }, []);
+
+            setSubDistricts(kecamatan);
+        } catch (error) {
+            console.log(error);
+        }
+    };
+
+    /**
+     * Fetch all urban villages.
+     *
+     */
+
+    const fetchUrbanVillages = async (subDistrictId) => {
+        try {
+            const { data } = await axios.get(
+                `https://dev.farizdotid.com/api/daerahindonesia/kelurahan?id_kecamatan=${subDistrictId}`
+            );
+
+            const kelurahan = data?.kelurahan?.reduce((prev, next) => {
+                prev.push({
+                    value: next?.id,
+                    label: next?.nama,
+                });
+
+                return prev;
+            }, []);
+
+            setUrbanVillages(kelurahan);
+        } catch (error) {
+            console.log(error);
+        }
     };
 
     /**
@@ -89,6 +207,7 @@ const SignUpForm = ({ onSubmit }) => {
 
     useEffect(() => {
         fetchJobs();
+        fetchProvinces();
     }, []);
 
     return (
@@ -104,7 +223,14 @@ const SignUpForm = ({ onSubmit }) => {
                     name="nik"
                     value={data?.nik}
                     onChange={handleChange}
-                    className="lg:col-span-2"
+                />
+                <Input
+                    type="number"
+                    label="Nomor Telepon"
+                    placeholder="Masukan nomor telepon anda . . ."
+                    name="phone"
+                    value={data?.phone}
+                    onChange={handleChange}
                 />
                 <Input
                     type="text"
@@ -173,12 +299,80 @@ const SignUpForm = ({ onSubmit }) => {
                     onChange={handleChange}
                     placeholder="Konfirmasi kata sandi anda . . ."
                 />
+
+                <div className="lg:col-span-2 border-t"></div>
+
+                <Select
+                    label="Provinsi"
+                    options={provinces}
+                    onChange={(value) => {
+                        setData((old) => ({
+                            ...old,
+                            province: value?.label,
+                        }));
+                        fetchCities(value?.value);
+                    }}
+                />
+                <Select
+                    label="Kota / Kabupaten"
+                    options={cities}
+                    onChange={(value) => {
+                        setData((old) => ({
+                            ...old,
+                            city: value?.label,
+                        }));
+                        fetchSubDistrict(value?.value);
+                    }}
+                    disabled={!data?.province}
+                />
+                <Select
+                    label="Kecamatan"
+                    options={subDistricts}
+                    onChange={(value) => {
+                        setData((old) => ({
+                            ...old,
+                            sub_district: value?.label,
+                        }));
+                        fetchUrbanVillages(value?.value);
+                    }}
+                    disabled={!data?.city}
+                />
+                <Select
+                    label="Kelurahan / Desa"
+                    options={urbanVillages}
+                    onChange={(value) =>
+                        setData((old) => ({
+                            ...old,
+                            urban_village: value?.label,
+                        }))
+                    }
+                    disabled={!data?.sub_district}
+                />
+                <Input
+                    type="text"
+                    label="Kode Pos"
+                    placeholder="Masukan kode pos anda . . ."
+                    name="postal_code"
+                    value={data?.postal_code}
+                    onChange={handleChange}
+                    className="lg:col-span-2"
+                />
+                <Input
+                    type="textarea"
+                    label="Alamat"
+                    placeholder="Masukan alamat anda . . ."
+                    name="address"
+                    value={data?.address}
+                    onChange={handleChange}
+                    className="lg:col-span-2"
+                />
+
                 <div className="lg:col-span-2 flex justify-end">
                     <button
                         type="submit"
                         className="button bg-blue-500 text-white"
                     >
-                        Login
+                        Register
                     </button>
                 </div>
             </div>
