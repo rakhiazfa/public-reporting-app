@@ -4,6 +4,7 @@ namespace App\Http\Requests\Employee;
 
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 
 class StoreEmployeeRequest extends FormRequest
 {
@@ -43,5 +44,17 @@ class StoreEmployeeRequest extends FormRequest
             'password' => ['required', 'min:8', 'confirmed'],
             'agency_id' => [$isAdmin ? 'required' : 'nullable'],
         ];
+    }
+
+    /**
+     * @return void
+     */
+    protected function passedValidation()
+    {
+        $password = $this->input('password', false);
+
+        $this->merge([
+            'password' => Hash::make($password),
+        ]);
     }
 }
