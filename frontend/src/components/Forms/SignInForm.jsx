@@ -36,7 +36,7 @@ const SignInForm = ({ onSubmit }) => {
                 />
                 <Input
                     type="password"
-                    label="Password"
+                    label="Kata Sandi"
                     name="password"
                     value={data?.password}
                     onChange={handleChange}
