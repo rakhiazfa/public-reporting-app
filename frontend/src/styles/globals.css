@@ -73,3 +73,72 @@
     }
 
 }
+
+/* - Topbar - */
+
+.topbar {
+    @apply w-full h-[100px] flex items-center;
+}
+
+.topbar .topbar-container {
+    @apply w-full lg:max-w-[1280px] 2xl:max-w-[1560px] 
+    mx-auto px-6 sm:px-8 md:px-12 flex justify-between 
+    items-center;
+}
+
+.topbar .topbar-brand {
+    @apply flex items-center gap-x-3 select-none;
+}
+
+.topbar .logo {
+    @apply w-[50px] md:w-[57.5px] lg:w-[65px] aspect-square;
+}
+
+.topbar .topbar-center {
+    @apply fixed bottom-0 left-0 
+    lg:static block border-t 
+    lg:border-none w-full py-4  
+    bg-white lg:bg-transparent 
+    z-[500];
+}
+
+.topbar .topbar-menu {
+    @apply flex justify-center items-center 
+    gap-10 sm:gap-16 md:gap-20;
+}
+
+.topbar .topbar-link {
+    @apply text-sm lg:text-base 
+    font-medium lg:font-normal flex flex-col 
+    items-center gap-2;
+}
+
+.topbar .topbar-link.active {
+    @apply font-bold lg:font-medium;
+}
+
+.topbar .dropdown {
+    @apply relative;
+}
+
+.topbar .dropdown-toggler {
+    @apply flex items-center gap-x-3;
+}
+
+.topbar .dropdown-menu {
+    @apply absolute top-10 right-0 w-[225px] 
+    md:w-[250px] bg-white border rounded-md p-2 
+    hidden;
+}
+
+.topbar .dropdown-menu.active {
+    @apply flex flex-col gap-1;
+}
+
+.topbar .dropdown .topbar-link {
+    @apply flex hover:bg-gray-50 
+    text-sm rounded-md px-5 py-2 
+    items-start justify-center;
+}
+
+/* - Topbar - */
