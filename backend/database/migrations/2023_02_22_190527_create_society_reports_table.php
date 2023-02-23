@@ -27,11 +27,11 @@ return new class extends Migration
             $table->string('attachment');
             $table->string('slug')->unique();
 
-            $table->foreignId('report_subcategory_id')->constrained('report_subcategories');
+            $table->foreignId('category_id')->constrained('report_subcategories');
 
-            $table->foreignId('agency_id')->constrained('agencies');
+            $table->foreignId('destination_agency_id')->constrained('agencies');
 
-            $table->foreignId('society_id')->constrained('societies');
+            $table->foreignId('author_id')->constrained('societies');
 
             $table->timestamps();
         });
