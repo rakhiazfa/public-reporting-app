@@ -5,7 +5,6 @@ import { FcHome, FcAbout, FcDocument } from "react-icons/fc";
 import { Link } from "react-router-dom";
 import logo from "../../assets/images/logo.png";
 import { AuthContext } from "../../providers/AuthProvider";
-import axios from "axios";
 
 const links = [
     {
@@ -23,7 +22,7 @@ const links = [
     },
     {
         content: "Laporan",
-        to: "/report",
+        to: "/reports",
         icon: FcDocument,
     },
 ];

@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import heroImage from "../../../assets/images/illustrations/hero-image.svg";
 
 const HeroSection = () => {
@@ -13,12 +14,12 @@ const HeroSection = () => {
                         <p className="text-lg text-gray-400 font-normal mb-5">
                             Sigap dalam menangani laporan anda.
                         </p>
-                        <a
+                        <Link
                             className="button bg-blue-600 hover:bg-blue-700 text-white rounded-full"
-                            href="/report"
+                            to="/reports"
                         >
                             Sampaikan Laporan Anda
-                        </a>
+                        </Link>
                     </div>
                     <img
                         className="order-1 lg:order-2"

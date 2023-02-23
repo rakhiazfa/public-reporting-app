@@ -5,6 +5,7 @@ import SignIn from "../pages/Auth/SignIn";
 import SignUp from "../pages/Auth/SignUp";
 import Home from "../pages/Home";
 import Report from "../pages/Report";
+import ReportDetail from "../pages/ReportDetail";
 
 const Router = () => {
     const { pathname, hash, key } = useLocation();
@@ -27,7 +28,10 @@ const Router = () => {
     return (
         <Routes>
             <Route index element={<Home />} />
-            <Route path="report" element={<Report />} />
+            <Route path="reports">
+                <Route index element={<Report />} />
+                <Route path=":slug" element={<ReportDetail />} />
+            </Route>
             <Route element={<GuestMiddleware />}>
                 <Route path="auth/signup" element={<SignUp />} />
                 <Route path="auth/signin" element={<SignIn />} />
