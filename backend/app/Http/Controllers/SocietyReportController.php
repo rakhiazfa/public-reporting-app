@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Exceptions\ExceptionResponse;
 use App\Http\Requests\SocietyReport\StoreSocietyReportRequest;
+use App\Models\SocietyReport;
 use App\Services\SocietyReport\SocietyReportService;
 use Illuminate\Http\Request;
 
@@ -29,7 +30,23 @@ class SocietyReportController extends Controller
      */
     public function index()
     {
-        //
+        try {
+
+            $societyReports = $this->societyReportService->orderByIdDesc();
+            $societyReports->load('author', 'category', 'destination');
+
+            // 
+        } catch (\Exception $exception) {
+
+            return (new ExceptionResponse($exception))->json();
+        }
+
+
+        return response()->json([
+            'success' => true,
+            'code' => 200,
+            'society_reports' => $societyReports,
+        ], 200);
     }
 
     /**
@@ -78,12 +95,29 @@ class SocietyReportController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param  string $slug
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(string $slug)
     {
-        //
+        $societyReport = SocietyReport::where('slug', $slug)->first() ?? null;
+
+        if (!$societyReport) {
+
+            return response()->json([
+                'success' => false,
+                'code' => 404,
+                'message' => 'Not found',
+            ], 404);
+        }
+
+        $societyReport->load('author', 'category', 'destination');
+
+        return response()->json([
+            'success' => true,
+            'code' => 200,
+            'society_report' => $societyReport,
+        ], 200);
     }
 
     /**
