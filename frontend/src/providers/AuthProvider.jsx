@@ -24,6 +24,8 @@ axiosJWT.interceptors.request.use((config) => {
     return config;
 });
 
+export { axiosJWT };
+
 /**
  * Auth context.
  *

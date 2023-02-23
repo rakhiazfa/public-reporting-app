@@ -11,7 +11,7 @@ const reportTypes = [
     { value: "permintaan-informasi", label: "Permintaan Informasi" },
 ];
 
-const ReportSubmissionForm = ({ onSubmit }) => {
+const ReportSubmissionForm = ({ onSubmit, loading, errors }) => {
     const [reportCategories, setReportCategories] = useState([]);
     const [agencies, setAgencies] = useState([]);
 
@@ -138,9 +138,10 @@ const ReportSubmissionForm = ({ onSubmit }) => {
                     onChange={(value) =>
                         setData((old) => ({
                             ...old,
-                            report_type: value?.value,
+                            type: value?.value,
                         }))
                     }
+                    error={errors?.type}
                     className="lg:col-span-2"
                 />
                 <Input
@@ -150,6 +151,7 @@ const ReportSubmissionForm = ({ onSubmit }) => {
                     name="title"
                     value={data?.title}
                     onChange={handleChange}
+                    error={errors?.title}
                     className="lg:col-span-2"
                 />
                 <Input
@@ -159,6 +161,7 @@ const ReportSubmissionForm = ({ onSubmit }) => {
                     name="body"
                     value={data?.body}
                     onChange={handleChange}
+                    error={errors?.body}
                     className="lg:col-span-2"
                 />
                 <Date
@@ -167,6 +170,7 @@ const ReportSubmissionForm = ({ onSubmit }) => {
                     useRange={false}
                     value={reportDate}
                     onChange={handleReportDateChange}
+                    error={errors?.date}
                     className="lg:col-span-2"
                 />
                 <Select
@@ -178,6 +182,7 @@ const ReportSubmissionForm = ({ onSubmit }) => {
                             category_id: value?.value,
                         }))
                     }
+                    error={errors?.category_id}
                 />
                 <Select
                     label="Instansi Tujuan"
@@ -188,16 +193,19 @@ const ReportSubmissionForm = ({ onSubmit }) => {
                             destination_agency_id: value?.value,
                         }))
                     }
+                    error={errors?.destination_agency_id}
                 />
                 <File
                     label="Lampiran"
                     onChange={handleAttachmentChange}
+                    error={errors?.attachment}
                     className="lg:col-span-2"
                 />
                 <div className="lg:col-span-2 flex justify-end">
                     <button
                         type="submit"
                         className="button bg-blue-500 text-white"
+                        disabled={loading}
                     >
                         Kirim
                     </button>
