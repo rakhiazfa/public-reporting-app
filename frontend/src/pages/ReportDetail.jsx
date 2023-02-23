@@ -35,11 +35,12 @@ export default function ReportDetail() {
                         </div>
                     </div>
                     <div>
-                        <h1 className="text-[clamp(1.5rem,6vw,2.5rem)] font-bold max-w-[450px] whitespace-nowrap mb-10">
-                            {report?.title} ( {report?.ticket_id} )
+                        <h1 className="text-xl lg:text-3xl font-bold mb-7">
+                            {report?.title}
                         </h1>
                         <p className="mb-5">{nl2br(report?.body)}</p>
                         <Link
+                            className="text-blue-500 hover:underline"
                             target="_blank"
                             to={
                                 import.meta.env.VITE_BACKEND_URL +
