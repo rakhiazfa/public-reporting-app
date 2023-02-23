@@ -35,14 +35,25 @@
                 @endif
             </div>
 
-            <form action="" method="POST">
-                @csrf
-                @method('DELETE')
+            <div class="flex flex-wrap justify-between items-center gap-5">
+                <div class="flex flex-wrap items-center gap-5">
+                    @if ($report->status == 'process')
+                        <button type="submit" class="btn btn-sm bg-success">
+                            Terima
+                        </button><button type="submit" class="btn btn-sm bg-danger">
+                            Tolak
+                        </button>
+                    @endif
+                </div>
+                <form action="" method="POST">
+                    @csrf
+                    @method('DELETE')
 
-                <button type="submit" class="btn bg-danger">
-                    Delete
-                </button>
-            </form>
+                    <button type="submit" class="btn btn-sm bg-danger">
+                        Delete
+                    </button>
+                </form>
+            </div>
 
         </x-cube.card>
 

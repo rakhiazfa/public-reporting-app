@@ -308,7 +308,7 @@
 }
 
 .btn.btn-sm {
-    @apply text-[0.8rem];
+    @apply text-xs;
 }
 
 .btn.btn-rounded {
