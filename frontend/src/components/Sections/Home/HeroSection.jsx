@@ -11,7 +11,7 @@ const HeroSection = () => {
                         <h1 className="text-[clamp(1.5rem,8vw,3rem)] font-bold max-w-[450px] mb-5">
                             Selamat datang di LAPMAS
                         </h1>
-                        <p className="text-lg text-gray-400 font-normal mb-5">
+                        <p className="text-lg text-gray-400 font-normal mb-7">
                             Sigap dalam menangani laporan anda.
                         </p>
                         <Link
