@@ -1,6 +1,8 @@
 import axios from "axios";
 import React, { useContext, useEffect, useState } from "react";
+import nl2br from "react-nl2br";
 import { Link } from "react-router-dom";
+import ReactShowMoreText from "react-show-more-text";
 import ReportSubmissionForm from "../components/Forms/ReportSubmissionForm";
 import Layout from "../components/Layouts/Layout";
 import { AuthContext, axiosJWT } from "../providers/AuthProvider";
@@ -72,7 +74,7 @@ export default function Report() {
             </section>
             <section>
                 <div className="wrapper">
-                    <div className="grid grid-cols-1 lg:grid-cols-2 gap-10">
+                    <div className="grid grid-cols-1 gap-10">
                         {societyReports?.map((report, index) => (
                             <div key={index}>
                                 <div className="flex items-center gap-5 mb-7">
@@ -94,7 +96,12 @@ export default function Report() {
                                         {report?.title} ( {report?.ticket_id} )
                                     </Link>
                                     <p className="text-sm mb-5">
-                                        {report?.body}
+                                        <ReactShowMoreText
+                                            lines={5}
+                                            anchorClass="text-blue-500 hover:underline cursor-pointer"
+                                        >
+                                            {nl2br(report?.body)}
+                                        </ReactShowMoreText>
                                     </p>
                                 </div>
                             </div>
