@@ -16,13 +16,12 @@ Route::name('society-reports')->prefix('society-reports')->group(function () {
     Route::get('/{slug}', [SocietyReportController::class, 'show'])->name('.show');
 });
 
-Route::name('societies.reports')->prefix('{username}/society-reports')->group(function () {
+Route::name('societies.reports')->prefix('{username}/society-reports')
+    ->middleware(['auth:api', 'role:society'])->group(function () {
 
-    Route::get('/', [SocietyReportController::class, 'societyReports']);
+        Route::get('/', [SocietyReportController::class, 'societyReports']);
 
-    Route::get('/{slug}', [SocietyReportController::class, 'showSocietyReport'])->name('.show');
-
-    Route::middleware(['auth:api', 'role:society'])->group(function () {
+        Route::get('/{slug}', [SocietyReportController::class, 'showSocietyReport'])->name('.show');
 
         Route::post('/', [SocietyReportController::class, 'store'])->name('.store');
 
@@ -30,4 +29,3 @@ Route::name('societies.reports')->prefix('{username}/society-reports')->group(fu
 
         Route::delete('/{societyReport}', [SocietyReportController::class, 'destroy'])->name('.destroy');
     });
-});
