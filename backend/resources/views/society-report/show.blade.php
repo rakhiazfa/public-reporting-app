@@ -18,6 +18,11 @@
                 {!! nl2br(e($report->body)) !!}
             </p>
 
+            <a class="block text-sm text-blue-500 hover:underline mb-7"
+                href="{{ url('storage/' . $report->attachment ?? '') }}" target="_blank">
+                Lampiran
+            </a>
+
             <div class="flex justify-between items-center gap-20 mb-7">
                 <p class="text-sm text-gray-400">{{ $report->date ?? '' }}</p>
                 @if ($report->status == 'process')
