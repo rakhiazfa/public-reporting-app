@@ -4,6 +4,7 @@ import { Link, useNavigate, useParams } from "react-router-dom";
 import ReactShowMoreText from "react-show-more-text";
 import Layout from "../components/Layouts/Layout";
 import BackButton from "../components/Navigations/BackButton";
+import { escapeHtml } from "../helpers/sting";
 import { axiosJWT } from "../providers/AuthProvider";
 
 export default function MyReportDetail() {
@@ -65,8 +66,9 @@ export default function MyReportDetail() {
                                 lines={10}
                                 className="text-sm mb-10"
                                 anchorClass="text-blue-500 hover:underline cursor-pointer"
-                                children={nl2br(report?.body + "\n\n")}
-                            ></ReactShowMoreText>
+                            >
+                                {nl2br(escapeHtml(report?.body + "\n\n"))}
+                            </ReactShowMoreText>
                             <div className="flex items-center justify-between gap-10 flex-wrap">
                                 <div className="flex items-center gap-20">
                                     <p className="text-gray-400">

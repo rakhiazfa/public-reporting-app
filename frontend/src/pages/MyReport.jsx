@@ -3,6 +3,7 @@ import nl2br from "react-nl2br";
 import { Link, useParams } from "react-router-dom";
 import ReactShowMoreText from "react-show-more-text";
 import Layout from "../components/Layouts/Layout";
+import { escapeHtml } from "../helpers/sting";
 import { AuthContext, axiosJWT } from "../providers/AuthProvider";
 
 export default function MyReport() {
@@ -71,10 +72,13 @@ export default function MyReport() {
                                                 lines={5}
                                                 className="text-sm mb-10"
                                                 anchorClass="text-blue-500 hover:underline cursor-pointer"
-                                                children={nl2br(
-                                                    report?.body + "\n\n"
+                                            >
+                                                {nl2br(
+                                                    escapeHtml(
+                                                        report?.body + "\n\n"
+                                                    )
                                                 )}
-                                            ></ReactShowMoreText>
+                                            </ReactShowMoreText>
                                             <div className="flex justify-end">
                                                 <button
                                                     className="button bg-red-500 hover:bg-red-600 text-white"
