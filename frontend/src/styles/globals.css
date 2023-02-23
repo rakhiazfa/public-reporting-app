@@ -81,7 +81,7 @@
     .button {
         @apply outline-none flex justify-center items-center 
         gap-3 font-medium rounded-md w-max px-8 md:px-10 py-[.625rem] 
-        shadow-lg text-sm;
+        shadow-lg text-xs md:text-sm;
     }
 
     .field {
