@@ -16,7 +16,7 @@ export default function Report() {
 
     //
 
-    const [societyReports, setSocietyReports] = useState([]);
+    const [societyReports, setSocietyReports] = useState(null);
 
     //
 
@@ -87,36 +87,48 @@ export default function Report() {
             </section>
             <section>
                 <div className="wrapper">
+                    <h1 className="text-[clamp(1.5rem,8vw,3rem)] font-bold max-w-[450px] mb-14">
+                        Laporan
+                    </h1>
                     <div className="grid grid-cols-1 gap-10">
-                        {societyReports?.map((report, index) => (
-                            <div className="border-b pb-10" key={index}>
-                                <div className="flex items-center gap-5 mb-7">
-                                    <div className="w-[45px] h-[45px] bg-gray-400 rounded-full"></div>
-                                    <div>
-                                        <span className="block mb-1">
-                                            {report?.author?.name}
-                                        </span>
-                                        <p className="text-xs">
-                                            {report?.date}
-                                        </p>
+                        {societyReports ? (
+                            <>
+                                {societyReports?.map((report, index) => (
+                                    <div className="border-b pb-10" key={index}>
+                                        <div className="flex items-center gap-5 mb-7">
+                                            <div className="w-[45px] h-[45px] bg-gray-400 rounded-full"></div>
+                                            <div>
+                                                <span className="block mb-1">
+                                                    {report?.author?.name}
+                                                </span>
+                                                <p className="text-xs">
+                                                    {report?.date}
+                                                </p>
+                                            </div>
+                                        </div>
+                                        <div>
+                                            <Link
+                                                className="block text-sm md:text-lg font-medium text-blue-500 hover:underline mb-10"
+                                                to={`/reports/${report?.slug}`}
+                                            >
+                                                {report?.title} ({" "}
+                                                {report?.ticket_id} )
+                                            </Link>
+                                            <ReactShowMoreText
+                                                lines={5}
+                                                className="text-sm mb-5"
+                                                anchorClass="text-blue-500 hover:underline cursor-pointer"
+                                                children={nl2br(
+                                                    report?.body + "\n\n"
+                                                )}
+                                            ></ReactShowMoreText>
+                                        </div>
                                     </div>
-                                </div>
-                                <div>
-                                    <Link
-                                        className="block text-sm md:text-lg font-medium text-blue-500 hover:underline mb-10"
-                                        to={`/reports/${report?.slug}`}
-                                    >
-                                        {report?.title} ( {report?.ticket_id} )
-                                    </Link>
-                                    <ReactShowMoreText
-                                        lines={5}
-                                        className="text-sm mb-5"
-                                        anchorClass="text-blue-500 hover:underline cursor-pointer"
-                                        children={nl2br(report?.body + "\n\n")}
-                                    ></ReactShowMoreText>
-                                </div>
-                            </div>
-                        ))}
+                                ))}
+                            </>
+                        ) : (
+                            <>Loading . . .</>
+                        )}
                     </div>
                 </div>
             </section>

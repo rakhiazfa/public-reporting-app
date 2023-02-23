@@ -18,7 +18,7 @@ export default function MyReport() {
 
     //
 
-    const [reports, setReports] = useState([]);
+    const [reports, setReports] = useState(null);
 
     //
 
@@ -55,38 +55,47 @@ export default function MyReport() {
                         Laporan Saya
                     </h1>
                     <div className="grid grid-cols-1 gap-10">
-                        {reports?.map((report, index) => (
-                            <div className="border-b pb-10" key={index}>
-                                <div>
-                                    <Link
-                                        className="block text-sm md:text-lg font-medium text-blue-500 hover:underline mb-10"
-                                        to={`/${username}/reports/${report?.slug}`}
-                                    >
-                                        {report?.title} ( {report?.ticket_id} )
-                                    </Link>
-                                    <ReactShowMoreText
-                                        lines={5}
-                                        className="text-sm mb-10"
-                                        anchorClass="text-blue-500 hover:underline cursor-pointer"
-                                        children={nl2br(report?.body + "\n\n")}
-                                    ></ReactShowMoreText>
-                                    <div className="flex justify-end">
-                                        <button
-                                            className="button bg-red-500 text-white"
-                                            onClick={() =>
-                                                handleDeleteReport(
-                                                    username,
-                                                    report?.id
-                                                )
-                                            }
-                                            disabled={loading}
-                                        >
-                                            Delete
-                                        </button>
+                        {reports ? (
+                            <>
+                                {reports?.map((report, index) => (
+                                    <div className="border-b pb-10" key={index}>
+                                        <div>
+                                            <Link
+                                                className="block text-sm md:text-lg font-medium text-blue-500 hover:underline mb-10"
+                                                to={`/${username}/reports/${report?.slug}`}
+                                            >
+                                                {report?.title} ({" "}
+                                                {report?.ticket_id} )
+                                            </Link>
+                                            <ReactShowMoreText
+                                                lines={5}
+                                                className="text-sm mb-10"
+                                                anchorClass="text-blue-500 hover:underline cursor-pointer"
+                                                children={nl2br(
+                                                    report?.body + "\n\n"
+                                                )}
+                                            ></ReactShowMoreText>
+                                            <div className="flex justify-end">
+                                                <button
+                                                    className="button bg-red-500 text-white"
+                                                    onClick={() =>
+                                                        handleDeleteReport(
+                                                            username,
+                                                            report?.id
+                                                        )
+                                                    }
+                                                    disabled={loading}
+                                                >
+                                                    Delete
+                                                </button>
+                                            </div>
+                                        </div>
                                     </div>
-                                </div>
-                            </div>
-                        ))}
+                                ))}
+                            </>
+                        ) : (
+                            <>Loading . . .</>
+                        )}
                     </div>
                 </div>
             </section>
