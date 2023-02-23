@@ -18,7 +18,9 @@
     "react-router-dom": "^6.8.1",
     "react-select": "^5.7.0",
     "react-show-more-text": "^1.6.2",
-    "react-tailwindcss-datepicker": "^1.4.2"
+    "react-tailwindcss-datepicker": "^1.4.2",
+    "sweetalert2": "^11.7.2",
+    "sweetalert2-react-content": "^5.0.7"
   },
   "devDependencies": {
     "@types/react": "^18.0.27",
