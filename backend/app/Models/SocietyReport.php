@@ -24,7 +24,7 @@ class SocietyReport extends Model
      */
     public function category()
     {
-        return $this->belongsTo(ReportSubcategory::class, 'report_subcategories_id', 'id');
+        return $this->belongsTo(ReportSubcategory::class, 'category_id', 'id');
     }
 
     /**
@@ -32,7 +32,7 @@ class SocietyReport extends Model
      */
     public function destination()
     {
-        return $this->belongsTo(Agency::class, 'agency_id', 'id');
+        return $this->belongsTo(Agency::class, 'destination_agency_id', 'id');
     }
 
     /**
@@ -40,6 +40,6 @@ class SocietyReport extends Model
      */
     public function author()
     {
-        return $this->belongsTo(Society::class, 'society_id', 'id');
+        return $this->belongsTo(Society::class, 'author_id', 'id');
     }
 }
