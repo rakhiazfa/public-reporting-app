@@ -18,12 +18,12 @@ const ReportSubmissionForm = ({ onSubmit }) => {
     //
 
     const [data, setData] = useState({
-        report_type: null,
+        type: null,
         title: "",
         body: "",
-        report_date: null,
-        report_category: null,
-        destination_agency: null,
+        date: null,
+        category_id: null,
+        destination_agency_id: null,
         attachment: null,
     });
 
@@ -36,7 +36,7 @@ const ReportSubmissionForm = ({ onSubmit }) => {
         setReportDate(newValue);
         setData((old) => ({
             ...old,
-            report_date: newValue?.startDate,
+            date: newValue?.startDate,
         }));
     };
 
@@ -175,7 +175,7 @@ const ReportSubmissionForm = ({ onSubmit }) => {
                     onChange={(value) =>
                         setData((old) => ({
                             ...old,
-                            report_category: value?.value,
+                            category_id: value?.value,
                         }))
                     }
                 />
@@ -185,7 +185,7 @@ const ReportSubmissionForm = ({ onSubmit }) => {
                     onChange={(value) =>
                         setData((old) => ({
                             ...old,
-                            destination_agency: value?.value,
+                            destination_agency_id: value?.value,
                         }))
                     }
                 />
