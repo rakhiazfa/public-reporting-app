@@ -3,10 +3,24 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\SocietyReport\StoreSocietyReportRequest;
+use App\Services\SocietyReport\SocietyReportService;
 use Illuminate\Http\Request;
 
 class SocietyReportController extends Controller
 {
+    /**
+     * @var SocietyReportService
+     */
+    protected SocietyReportService $societyReportService;
+
+    /**
+     * @param SocietyReportService $societyReportService
+     */
+    public function __construct(SocietyReportService $societyReportService)
+    {
+        $this->societyReportService = $societyReportService;
+    }
+
     /**
      * Display a listing of the resource.
      *
