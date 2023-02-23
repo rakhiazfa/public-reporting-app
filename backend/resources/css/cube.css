@@ -293,7 +293,7 @@
 
 .btn {
     @apply flex justify-center items-center gap-3 
-    rounded-md text-[0.9rem] font-normal px-5 py-2 md:px-10;
+    rounded-md text-sm font-normal px-5 py-2 md:px-8;
 }
 
 .btn span,
