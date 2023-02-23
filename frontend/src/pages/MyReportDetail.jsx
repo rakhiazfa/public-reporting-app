@@ -59,7 +59,7 @@ export default function MyReportDetail() {
                                 {report?.title}
                             </h1>
                             <p className="mb-10">{nl2br(report?.body)}</p>
-                            <div className="flex items-center justify-between">
+                            <div className="flex items-center justify-between gap-10 flex-wrap">
                                 <div className="flex items-center gap-20">
                                     <p className="text-gray-400">
                                         {report?.ticket_id}
