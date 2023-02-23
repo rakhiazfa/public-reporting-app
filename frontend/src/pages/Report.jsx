@@ -8,6 +8,7 @@ import withReactContent from "sweetalert2-react-content";
 import ReportSubmissionForm from "../components/Forms/ReportSubmissionForm";
 import Layout from "../components/Layouts/Layout";
 import { AuthContext, axiosJWT } from "../providers/AuthProvider";
+import avatar from "../assets/images/avatar.jpg";
 
 const ReactSwal = withReactContent(Swal);
 
@@ -95,8 +96,14 @@ export default function Report() {
                             <>
                                 {societyReports?.map((report, index) => (
                                     <div className="border-b pb-10" key={index}>
-                                        <div className="flex items-center gap-5 mb-7">
-                                            <div className="w-[45px] h-[45px] bg-gray-400 rounded-full"></div>
+                                        <div className="flex items-center gap-5 mb-10">
+                                            <div className="w-[50px] h-[50px] bg-gray-400 rounded-full">
+                                                <img
+                                                    className="rounded-full"
+                                                    src={avatar}
+                                                    alt="Avatar Image"
+                                                />
+                                            </div>
                                             <div>
                                                 <span className="block mb-1">
                                                     {report?.author?.name}
