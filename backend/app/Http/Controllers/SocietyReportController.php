@@ -60,7 +60,7 @@ class SocietyReportController extends Controller
     {
         $user = User::where('username', $username)->first() ?? null;
 
-        if (!$user) {
+        if (!$user || ($request->user()->username ?? null) !== $username) {
 
             return response()->json([
                 'success' => false,
@@ -155,11 +155,15 @@ class SocietyReportController extends Controller
      * @param  string $slug
      * @return \Illuminate\Http\Response
      */
-    public function showSocietyReport(string $username, string $slug)
+    public function showSocietyReport(Request $request, string $username, string $slug)
     {
         $societyReport = SocietyReport::where('slug', $slug)->first() ?? null;
 
-        if (!$societyReport || $societyReport->author->user->username !== $username) {
+        if (
+            !$societyReport ||
+            $societyReport->author->user->username !== $username ||
+            ($request->user()->username ?? null) !== $username
+        ) {
 
             return response()->json([
                 'success' => false,
@@ -197,7 +201,11 @@ class SocietyReportController extends Controller
      */
     public function destroy(Request $request, string $username, SocietyReport $societyReport)
     {
-        if (!$societyReport || $societyReport->author->user->username !== $username ||  $request->user()->username !== $username) {
+        if (
+            !$societyReport ||
+            $societyReport->author->user->username !== $username ||
+            ($request->user()->username ?? null) !== $username
+        ) {
 
             return response()->json([
                 'success' => false,
