@@ -31,11 +31,20 @@ class SocietyReportController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
+        $user = $request->user();
+
         try {
 
-            $societyReports = $this->societyReportService->orderByIdDesc();
+            if ($user->hasRole('admin')) {
+                $societyReports = $this->societyReportService->orderByIdDesc();
+            } else if ($user->hasRole('agency')) {
+                $societyReports = SocietyReport::where('destination_agency_id', $user->agency->id)->get();
+            } else if ($user->hasRole('employee')) {
+                $societyReports = SocietyReport::where('destination_agency_id', $user->employee->agency->id)->get();
+            }
+
             $societyReports->load('author', 'category', 'destination');
 
             // 
@@ -53,17 +62,22 @@ class SocietyReportController extends Controller
      * @param  string $slug
      * @return \Illuminate\Http\Response
      */
-    public function show(string $slug)
+    public function show(Request $request, string $slug)
     {
+        $user = $request->user();
+
+        $destinationAgencyId = $user->hasRole('agency') ?
+            ($user->agency->id ?? null) : ($user->employee->agency->id ?? null);
+
         $report = SocietyReport::where('slug', $slug)->first() ?? null;
 
-        if (!$report) {
+        if (!$report || ($user->hasRole('admin') ? false : $report->destination_agency_id !== $destinationAgencyId)) {
 
-            return response()->json([
+            return $request->expectsJson() ? response()->json([
                 'success' => false,
                 'code' => 404,
                 'message' => 'Not found',
-            ], 404);
+            ], 404) : abort(404);
         }
 
         $report->load('author', 'category', 'destination');
