@@ -2,6 +2,7 @@
 
 namespace App\Repositories\Society;
 
+use Illuminate\Database\Eloquent\Model;
 use Rakhiazfa\LaravelSarp\Repository\RepositoryInterface;
 
 /**
@@ -11,5 +12,5 @@ use Rakhiazfa\LaravelSarp\Repository\RepositoryInterface;
 
 interface SocietyRepository extends RepositoryInterface
 {
-    //
+    // 
 }

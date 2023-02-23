@@ -8,11 +8,11 @@ use App\Models\Society;
 use App\Repositories\Society\SocietyRepository;
 
 /**
-* SocietyRepositoryModel class.
-*
-*/
+ * SocietyRepositoryModel class.
+ *
+ */
 
-class SocietyRepositoryModel extends RepositoryModel implements SocietyRepository 
+class SocietyRepositoryModel extends RepositoryModel implements SocietyRepository
 {
     /**
      * @param Model $model

@@ -14,9 +14,9 @@ class SocietyReport extends Model
      * @var array
      */
     protected $fillable = [
-        'ticket_id', 'image', 'title', 'body', 'data',
+        'ticket_id', 'image', 'title', 'body', 'date',
         'status', 'attachment', 'category_id',
-        'destination_agency_id',
+        'destination_agency_id', 'slug',
     ];
 
     /**
@@ -41,5 +41,17 @@ class SocietyReport extends Model
     public function author()
     {
         return $this->belongsTo(Society::class, 'author_id', 'id');
+    }
+
+    public static function generateTicketId()
+    {
+        $ticketId = '#' . mt_rand(1000000000, 9999999999);
+
+        if (SocietyReport::where('ticket_id', $ticketId)->first() ?? false) {
+
+            return self::generateTicketId();
+        }
+
+        return $ticketId;
     }
 }

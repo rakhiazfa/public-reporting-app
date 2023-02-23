@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Exceptions\ExceptionResponse;
 use App\Http\Requests\SocietyReport\StoreSocietyReportRequest;
 use App\Services\SocietyReport\SocietyReportService;
 use Illuminate\Http\Request;
@@ -39,8 +40,39 @@ class SocietyReportController extends Controller
      */
     public function store(StoreSocietyReportRequest $request, string $username)
     {
-        return $username;
-        dd($request->all());
+        /**
+         * Upload attachment file.
+         * 
+         */
+
+        $attachment = $request->file('attachment');
+
+        $attachment = $attachment->storeAs(
+            'attachments/' . $username,
+            date('Y_m_d_H_i_s') . '.' . $attachment->getClientOriginalExtension(),
+            'public'
+        );
+
+        $data = $request->except('attachment');
+        $data['attachment'] = $attachment;
+
+        try {
+
+            $societyReport = $this->societyReportService->createReport($request->user()->society, $data);
+
+            // 
+        } catch (\Exception $exception) {
+
+            return (new ExceptionResponse($exception))->json();
+        }
+
+
+        return response()->json([
+            'success' => true,
+            'code' => 201,
+            'message' => 'Successfully created a new society report.',
+            'society_report' => $societyReport,
+        ], 201);
     }
 
     /**
