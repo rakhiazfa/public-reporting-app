@@ -69,7 +69,7 @@ class SocietyReportController extends Controller
             ], 404);
         }
 
-        $societyReports = SocietyReport::where('author_id', $user->society->id)->get();
+        $societyReports = SocietyReport::where('author_id', $user->society->id)->orderBy('id', 'DESC')->get();
 
         return response()->json([
             'success' => true,
