@@ -105,6 +105,23 @@ class SocietyReportController extends Controller
      */
     public function destroy(Request $request, SocietyReport $societyReport)
     {
+        $user = $request->user();
+
+        $destinationAgencyId = $user->hasRole('agency') ?
+            ($user->agency->id ?? null) : ($user->employee->agency->id ?? null);
+
+        if (
+            !$societyReport ||
+            ($user->hasRole('admin') ? false : $societyReport->destination_agency_id !== $destinationAgencyId)
+        ) {
+
+            return $request->expectsJson() ? response()->json([
+                'success' => false,
+                'code' => 404,
+                'message' => 'Not found',
+            ], 404) : abort(404);
+        }
+
         if (Storage::disk('public')->exists($societyReport->attachment)) {
 
             Storage::disk('public')->delete($societyReport->attachment);
@@ -112,10 +129,6 @@ class SocietyReportController extends Controller
 
         $societyReport->delete();
 
-        return response()->json([
-            'success' => true,
-            'code' => 200,
-            'message' => 'Successfully deleted society report.',
-        ], 200);
+        return redirect()->route('society-reports')->with('success', 'Berhasil menghapus laporan.');
     }
 }

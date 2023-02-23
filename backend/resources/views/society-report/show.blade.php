@@ -45,7 +45,7 @@
                         </button>
                     @endif
                 </div>
-                <form action="" method="POST">
+                <form action="{{ route('society-reports.destroy', ['societyReport' => $report]) }}" method="POST">
                     @csrf
                     @method('DELETE')
 

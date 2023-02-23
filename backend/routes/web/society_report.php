@@ -15,4 +15,6 @@ Route::name('society-reports')->prefix('society-reports')
         Route::get('/', [SocietyReportController::class, 'index']);
 
         Route::get('/{slug}', [SocietyReportController::class, 'show'])->name('.show');
+
+        Route::delete('/{societyReport}', [SocietyReportController::class, 'destroy'])->name('.destroy');
     });
