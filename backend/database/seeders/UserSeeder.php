@@ -20,8 +20,8 @@ class UserSeeder extends Seeder
 
         $user = new User([
             'name' => 'Admin',
-            'email' => 'lapmas@example.co.id',
-            'username' => 'lapmas',
+            'email' => 'admin@example.co.id',
+            'username' => 'admin',
             'password' => Hash::make('q1w2e3r4t5y6'),
         ]);
 
