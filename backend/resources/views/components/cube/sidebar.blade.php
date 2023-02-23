@@ -21,7 +21,7 @@
                         <li class="sidebar-dropdown">
                             <a class="sidebar-link dropdown-toggler" href="#">
                                 <i class="uil uil-user"></i>
-                                <span> Pengguna </span>
+                                <span> {{ $item['text'] ?? '' }} </span>
                                 <i class="uil uil-angle-down"></i>
                             </a>
                             <ul class="dropdown-menu">

@@ -89,8 +89,9 @@ class Sidebar extends Component
             [
                 'type' => 'link',
                 'icon' => 'uil uil-file-upload-alt',
-                'url' => '#',
+                'url' => route('society-reports'),
                 'text' => 'Laporan Masyarakat',
+                'is_active' => request()->routeIs('society-reports*'),
             ],
 
             ['type' => 'title', 'title' => 'Laporan'],
