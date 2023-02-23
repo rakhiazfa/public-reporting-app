@@ -97,8 +97,6 @@ export default function AuthProvider({ children }) {
         } catch (_) {
         } finally {
             setLoading(false);
-
-            window.location.reload();
         }
     };
 

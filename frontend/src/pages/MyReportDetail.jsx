@@ -19,6 +19,8 @@ export default function MyReportDetail() {
 
     const navigate = useNavigate();
 
+    //
+
     const handleDeleteReport = async (username, id) => {
         setLoading(true);
 
@@ -27,6 +29,7 @@ export default function MyReportDetail() {
 
             navigate(`/${username}/reports`);
         } catch (_) {
+            navigate("/404");
         } finally {
             setLoading(false);
         }

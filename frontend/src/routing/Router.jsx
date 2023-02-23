@@ -1,8 +1,10 @@
 import React, { useEffect } from "react";
 import { Route, Routes, useLocation } from "react-router-dom";
+import AuthMiddleware from "../middlewares/AuthMiddleware";
 import GuestMiddleware from "../middlewares/GuestMiddleware";
 import SignIn from "../pages/Auth/SignIn";
 import SignUp from "../pages/Auth/SignUp";
+import NotFound from "../pages/Errors/NotFound";
 import Home from "../pages/Home";
 import MyReport from "../pages/MyReport";
 import MyReportDetail from "../pages/MyReportDetail";
@@ -39,12 +41,14 @@ const Router = () => {
                 <Route path="auth/signin" element={<SignIn />} />
             </Route>
             <Route path=":username">
-                <Route path="reports">
+                <Route index element={<NotFound />} />
+                <Route path="reports" element={<AuthMiddleware />}>
                     <Route index element={<MyReport />} />
                     <Route path=":slug" element={<MyReportDetail />} />
                 </Route>
             </Route>
-            <Route path="*" element={<>404</>} />
+            <Route path="404" element={<NotFound />} />
+            <Route path="*" element={<NotFound />} />
         </Routes>
     );
 };

@@ -1,20 +1,30 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import nl2br from "react-nl2br";
-import { Link, useParams } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
 import Layout from "../components/Layouts/Layout";
 
 export default function ReportDetail() {
     const { slug } = useParams();
 
+    //
+
     const [report, setReport] = useState(null);
+
+    //
+
+    const navigate = useNavigate();
+
+    //
 
     const getSocietyReportBySlug = async (slug) => {
         try {
             const { data } = await axios.get(`/society-reports/${slug}`);
 
             setReport(data?.society_report);
-        } catch (_) {}
+        } catch (_) {
+            navigate("/404");
+        }
     };
 
     useEffect(() => {
