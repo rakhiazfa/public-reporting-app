@@ -8,6 +8,7 @@ use App\Models\SocietyReport;
 use App\Models\User;
 use App\Services\SocietyReport\SocietyReportService;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class SocietyReportController extends Controller
 {
@@ -191,11 +192,31 @@ class SocietyReportController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param  SocietyReport $societyReport
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(string $username, SocietyReport $societyReport)
     {
-        //
+        if (!$societyReport || $societyReport->author->user->username !== $username) {
+
+            return response()->json([
+                'success' => false,
+                'code' => 404,
+                'message' => 'Not found',
+            ], 404);
+        }
+
+        if (Storage::disk('public')->exists($societyReport->attachment)) {
+
+            Storage::disk('public')->delete($societyReport->attachment);
+        }
+
+        $societyReport->delete();
+
+        return response()->json([
+            'success' => true,
+            'code' => 200,
+            'message' => 'Successfully deleted society report.',
+        ], 200);
     }
 }
