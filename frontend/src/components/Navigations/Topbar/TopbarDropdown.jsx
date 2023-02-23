@@ -8,6 +8,10 @@ const TopbarDropdown = ({ text, items }) => {
 
     const [isActive, setIsActive] = useState(false);
 
+    const handleLinkClick = () => {
+        setIsActive(false);
+    };
+
     useClickOutside(dropdownRef, () => setIsActive(false));
 
     return (
@@ -35,7 +39,11 @@ const TopbarDropdown = ({ text, items }) => {
                                 {item?.content}
                             </button>
                         ) : (
-                            <Link className="topbar-link" to={item?.to}>
+                            <Link
+                                className="topbar-link"
+                                onClick={handleLinkClick}
+                                to={item?.to}
+                            >
                                 {item?.content}
                             </Link>
                         )}

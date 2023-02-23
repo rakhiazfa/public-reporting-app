@@ -103,7 +103,7 @@ export default function Report() {
                                 </div>
                                 <div>
                                     <Link
-                                        className="block text-lg font-medium text-blue-500 hover:underline mb-3"
+                                        className="block text-sm md:text-lg font-medium text-blue-500 hover:underline mb-10"
                                         to={`/reports/${report?.slug}`}
                                     >
                                         {report?.title} ( {report?.ticket_id} )
@@ -112,7 +112,7 @@ export default function Report() {
                                         lines={5}
                                         className="text-sm mb-5"
                                         anchorClass="text-blue-500 hover:underline cursor-pointer"
-                                        children={nl2br(report?.body)}
+                                        children={nl2br(report?.body + "\n\n")}
                                     ></ReactShowMoreText>
                                 </div>
                             </div>

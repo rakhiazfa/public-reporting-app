@@ -71,6 +71,10 @@ const Topbar = () => {
                                             to: "/profile",
                                         },
                                         {
+                                            content: "Laporan Saya",
+                                            to: `/${user?.username}/reports`,
+                                        },
+                                        {
                                             type: "button",
                                             content: "Logout",
                                             onClick: logout,

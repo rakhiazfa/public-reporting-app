@@ -4,6 +4,8 @@ import GuestMiddleware from "../middlewares/GuestMiddleware";
 import SignIn from "../pages/Auth/SignIn";
 import SignUp from "../pages/Auth/SignUp";
 import Home from "../pages/Home";
+import MyReport from "../pages/MyReport";
+import MyReportDetail from "../pages/MyReportDetail";
 import Report from "../pages/Report";
 import ReportDetail from "../pages/ReportDetail";
 
@@ -36,6 +38,13 @@ const Router = () => {
                 <Route path="auth/signup" element={<SignUp />} />
                 <Route path="auth/signin" element={<SignIn />} />
             </Route>
+            <Route path=":username">
+                <Route path="reports">
+                    <Route index element={<MyReport />} />
+                    <Route path=":slug" element={<MyReportDetail />} />
+                </Route>
+            </Route>
+            <Route path="*" element={<>404</>} />
         </Routes>
     );
 };
