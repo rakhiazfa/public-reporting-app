@@ -89,7 +89,7 @@ export default function Report() {
                 <div className="wrapper">
                     <div className="grid grid-cols-1 gap-10">
                         {societyReports?.map((report, index) => (
-                            <div key={index}>
+                            <div className="border-b pb-10" key={index}>
                                 <div className="flex items-center gap-5 mb-7">
                                     <div className="w-[45px] h-[45px] bg-gray-400 rounded-full"></div>
                                     <div>
