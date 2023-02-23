@@ -25,6 +25,7 @@ return new class extends Migration
             $table->date('date');
             $table->enum('status', ['process', 'accepted', 'rejected'])->default('process');
             $table->string('attachment');
+            $table->string('slug')->unique();
 
             $table->foreignId('report_subcategory_id')->constrained('report_subcategories');
 
