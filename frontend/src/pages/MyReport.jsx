@@ -77,7 +77,7 @@ export default function MyReport() {
                                             ></ReactShowMoreText>
                                             <div className="flex justify-end">
                                                 <button
-                                                    className="button bg-red-500 text-white"
+                                                    className="button bg-red-500 hover:bg-red-600 text-white"
                                                     onClick={() =>
                                                         handleDeleteReport(
                                                             username,

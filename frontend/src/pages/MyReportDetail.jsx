@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import nl2br from "react-nl2br";
 import { Link, useNavigate, useParams } from "react-router-dom";
 import Layout from "../components/Layouts/Layout";
+import BackButton from "../components/Navigations/BackButton";
 import { axiosJWT } from "../providers/AuthProvider";
 
 export default function MyReportDetail() {
@@ -51,6 +52,7 @@ export default function MyReportDetail() {
 
     return (
         <Layout title={`${report?.title} - Lapmas`}>
+            <BackButton />
             <section>
                 <div className="wrapper">
                     {report ? (
@@ -77,7 +79,7 @@ export default function MyReportDetail() {
                                     </Link>
                                 </div>
                                 <button
-                                    className="button bg-red-500 text-white"
+                                    className="button bg-red-500 hover:bg-red-500 text-white"
                                     onClick={() =>
                                         handleDeleteReport(username, report?.id)
                                     }

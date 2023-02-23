@@ -3,6 +3,7 @@ import React, { useEffect, useState } from "react";
 import nl2br from "react-nl2br";
 import { Link, useNavigate, useParams } from "react-router-dom";
 import Layout from "../components/Layouts/Layout";
+import BackButton from "../components/Navigations/BackButton";
 
 export default function ReportDetail() {
     const { slug } = useParams();
@@ -33,6 +34,7 @@ export default function ReportDetail() {
 
     return (
         <Layout title={`${report?.title} - Lapmas`}>
+            <BackButton />
             <section>
                 <div className="wrapper">
                     {report ? (
