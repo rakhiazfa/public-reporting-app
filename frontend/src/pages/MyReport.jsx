@@ -1,6 +1,6 @@
 import React, { useContext, useEffect, useState } from "react";
 import nl2br from "react-nl2br";
-import { Link, useParams } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
 import ReactShowMoreText from "react-show-more-text";
 import Layout from "../components/Layouts/Layout";
 import { escapeHtml } from "../helpers/sting";

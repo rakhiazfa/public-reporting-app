@@ -45,7 +45,9 @@ export default function MyReportDetail() {
             );
 
             setReport(data?.society_report);
-        } catch (_) {}
+        } catch (_) {
+            navigate("/404");
+        }
     };
 
     useEffect(() => {
