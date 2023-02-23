@@ -195,9 +195,9 @@ class SocietyReportController extends Controller
      * @param  SocietyReport $societyReport
      * @return \Illuminate\Http\Response
      */
-    public function destroy(string $username, SocietyReport $societyReport)
+    public function destroy(Request $request, string $username, SocietyReport $societyReport)
     {
-        if (!$societyReport || $societyReport->author->user->username !== $username) {
+        if (!$societyReport || $societyReport->author->user->username !== $username ||  $request->user()->username !== $username) {
 
             return response()->json([
                 'success' => false,
