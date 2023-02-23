@@ -55,7 +55,11 @@ export default function AuthProvider({ children }) {
 
             setUser(data?.user);
         } catch (error) {
-            setErrors(error.response.data.errors);
+            error.response.data?.code === 401
+                ? setErrors({
+                      email_or_username: [error.response.data?.message],
+                  })
+                : setErrors(error.response.data.errors);
         } finally {
             setLoading(false);
         }
