@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import nl2br from "react-nl2br";
 import { Link, useNavigate, useParams } from "react-router-dom";
+import ReactShowMoreText from "react-show-more-text";
 import Layout from "../components/Layouts/Layout";
 import BackButton from "../components/Navigations/BackButton";
 import { axiosJWT } from "../providers/AuthProvider";
@@ -60,7 +61,12 @@ export default function MyReportDetail() {
                             <h1 className="text-xl lg:text-3xl font-bold mb-7">
                                 {report?.title}
                             </h1>
-                            <p className="mb-10">{nl2br(report?.body)}</p>
+                            <ReactShowMoreText
+                                lines={10}
+                                className="text-sm mb-10"
+                                anchorClass="text-blue-500 hover:underline cursor-pointer"
+                                children={nl2br(report?.body + "\n\n")}
+                            ></ReactShowMoreText>
                             <div className="flex items-center justify-between gap-10 flex-wrap">
                                 <div className="flex items-center gap-20">
                                     <p className="text-gray-400">
