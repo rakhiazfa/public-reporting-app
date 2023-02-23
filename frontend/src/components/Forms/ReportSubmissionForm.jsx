@@ -163,6 +163,7 @@ const ReportSubmissionForm = ({ onSubmit, loading, errors }) => {
                     onChange={handleChange}
                     error={errors?.body}
                     className="lg:col-span-2"
+                    rows={5}
                 />
                 <Date
                     label="Tanggal Laporan"
