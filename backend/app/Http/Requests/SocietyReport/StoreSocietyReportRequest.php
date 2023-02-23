@@ -31,9 +31,9 @@ class StoreSocietyReportRequest extends FormRequest
             'title' => ['required'],
             'body' => ['required'],
             'date' => ['required', 'date'],
-            'attachment' => ['required'],
-            'report_subcategory_id' => ['required'],
-            'agency_id' => ['required'],
+            'attachment' => ['required', 'file'],
+            'category_id' => ['required'],
+            'destination_agency_id' => ['required'],
         ];
     }
 }

@@ -15,8 +15,8 @@ class SocietyReport extends Model
      */
     protected $fillable = [
         'ticket_id', 'image', 'title', 'body', 'data',
-        'status', 'attachment', 'report_subcategories_id',
-        'agency_id',
+        'status', 'attachment', 'category_id',
+        'destination_agency_id',
     ];
 
     /**

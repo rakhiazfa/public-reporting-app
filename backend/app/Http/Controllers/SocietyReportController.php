@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\SocietyReport\StoreSocietyReportRequest;
 use Illuminate\Http\Request;
 
 class SocietyReportController extends Controller
@@ -17,24 +18,15 @@ class SocietyReportController extends Controller
     }
 
     /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StoreSocietyReportRequest $request, string $username)
     {
-        //
+        return $username;
+        dd($request->all());
     }
 
     /**
@@ -44,17 +36,6 @@ class SocietyReportController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function show($id)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
     {
         //
     }
