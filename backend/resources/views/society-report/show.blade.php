@@ -12,7 +12,7 @@
 
     <section class="mb-7">
 
-        <x-cube.card title=" {{ Str::of($report->title ?? '')->words(4, ' . . . ') ?? '' }}" class="">
+        <x-cube.card title=" {{ $report->title ?? '' }}" class="">
 
             <p class="text-sm mb-7">
                 {!! nl2br(e($report->body)) !!}
