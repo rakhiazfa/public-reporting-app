@@ -313,8 +313,7 @@
 */
 
 .topbar {
-    @apply w-full h-[75px] 
-    lg:h-[115px] flex items-center;
+    @apply w-full h-[115px] flex items-center;
 }
 
 .topbar .topbar-container {
@@ -323,7 +322,7 @@
 }
 
 .topbar .topbar-left {
-    @apply flex items-center gap-x-5;
+    @apply flex items-center gap-x-7;
 }
 
 .topbar .sidebar-toggler {
