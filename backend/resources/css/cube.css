@@ -313,7 +313,8 @@
 */
 
 .topbar {
-    @apply w-full h-[115px] flex items-center;
+    @apply w-full h-[75px] 
+    md:h-[115px] flex items-center;
 }
 
 .topbar .topbar-container {
