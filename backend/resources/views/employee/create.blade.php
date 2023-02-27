@@ -22,7 +22,7 @@
 
                     <div class="grid grid-cols-1 gap-10 mb-7">
 
-                        <div>
+                        <div class="form-group">
                             <label class="label">NIP</label>
                             <input type="text" class="field" name="nip" placeholder="Masukan NIP petugas"
                                 value="{{ old('nip') }}">
@@ -35,7 +35,7 @@
 
                     <div class="grid grid-cols-1 xl:grid-cols-3 gap-10 mb-7">
 
-                        <div>
+                        <div class="form-group">
                             <label class="label">Nama</label>
                             <input type="text" class="field" name="name" placeholder="Masukan nama petugas"
                                 value="{{ old('name') }}">
@@ -44,7 +44,7 @@
                             @enderror
                         </div>
 
-                        <div>
+                        <div class="form-group">
                             <label class="label">Email</label>
                             <input type="text" class="field" name="email" placeholder="Masukan email petugas"
                                 value="{{ old('email') }}">
@@ -53,7 +53,7 @@
                             @enderror
                         </div>
 
-                        <div>
+                        <div class="form-group">
                             <label class="label">Username</label>
                             <input type="text" class="field" name="username" placeholder="Masukan username petugas"
                                 value="{{ old('username') }}">
@@ -66,7 +66,7 @@
 
                     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-1 xl:grid-cols-2 gap-10 mb-10">
 
-                        <div>
+                        <div class="form-group">
                             <label class="label">Password</label>
                             <input type="password" class="field" name="password"
                                 placeholder="Masukan kata sandi petugas">
@@ -75,7 +75,7 @@
                             @enderror
                         </div>
 
-                        <div>
+                        <div class="form-group">
                             <label class="label">Kofirmasi Password</label>
                             <input type="password" class="field" name="password_confirmation"
                                 placeholder="Konfirmasi kata sandi petugas">
@@ -86,7 +86,7 @@
                     @if (auth()->user()->role->name === 'admin')
                         <div class="grid grid-cols-1 gap-10 mb-10">
 
-                            <div>
+                            <div class="form-group">
                                 <label class="label">Instansi</label>
                                 <select name="agency_id" class="field">
                                     <option selected disabled>- Pilih instansi petugas -</option>
@@ -103,7 +103,7 @@
                     @endif
 
                     <div class="flex justify-end">
-                        <button type="submit" class="btn bg-primary">Daftarkan</button>
+                        <button type="submit" class="btn btn-primary">Daftarkan</button>
                     </div>
 
                 </form>

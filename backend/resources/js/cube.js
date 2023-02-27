@@ -1,5 +1,5 @@
 /**
- * Setup lodasn.
+ * Setup lodash.
  *
  */
 
@@ -25,6 +25,13 @@ import $ from "jquery";
 
 window.jQuery = window.$ = $;
 
+/**
+ * Setup select2.
+ *
+ */
+
+import select2 from "select2";
+
 $(document).ready(() => {
     /**
      * Preloader
@@ -33,7 +40,28 @@ $(document).ready(() => {
 
     setTimeout(() => {
         $(".preloader").remove();
-    }, 1500);
+    }, 250);
+
+    /**
+     * Select2
+     *
+     */
+
+    select2();
+
+    $(".select2").select2();
+
+    $(document).on("click", ".select2-search__field", (e) => {
+        e.stopPropagation();
+    });
+
+    $(document).on("click", ".select2-container--open", (e) => {
+        e.stopPropagation();
+    });
+
+    $(document).on("click", ".select2-selection__choice", (e) => {
+        e.stopPropagation();
+    });
 
     /**
      * Handle topbar dropdown.
@@ -56,6 +84,12 @@ $(document).ready(() => {
     });
 
     $(".wrapper .topbar-dropdown .dropdown-menu").on("dropdown:show", (e) => {
+        // Change arrow icon
+        $(".wrapper .topbar .dropdown-toggler .arrow").removeClass(
+            "uil-angle-down"
+        );
+        $(".wrapper .topbar .dropdown-toggler .arrow").addClass("uil-angle-up");
+
         $(".wrapper .topbar-dropdown .dropdown-menu")
             .not(e.target)
             .trigger("dropdown:hide");
@@ -64,6 +98,14 @@ $(document).ready(() => {
     });
 
     $(".wrapper .topbar-dropdown .dropdown-menu").on("dropdown:hide", (e) => {
+        // Change arrow icon
+        $(".wrapper .topbar .dropdown-toggler .arrow").addClass(
+            "uil-angle-down"
+        );
+        $(".wrapper .topbar .dropdown-toggler .arrow").removeClass(
+            "uil-angle-up"
+        );
+
         $(e.target).removeClass("active");
     });
 
@@ -113,6 +155,14 @@ $(document).ready(() => {
     });
 
     $(".wrapper .sidebar-dropdown .dropdown-menu").on("dropdown:show", (e) => {
+        // Change arrow icon
+        $(".wrapper .sidebar .dropdown-toggler .arrow").removeClass(
+            "uil-angle-down"
+        );
+        $(".wrapper .sidebar .dropdown-toggler .arrow").addClass(
+            "uil-angle-up"
+        );
+
         $(".wrapper .sidebar-dropdown .dropdown-menu")
             .not(e.target)
             .trigger("dropdown:hide");
@@ -131,6 +181,14 @@ $(document).ready(() => {
     });
 
     $(".wrapper .sidebar-dropdown .dropdown-menu").on("dropdown:hide", (e) => {
+        // Change arrow icon
+        $(".wrapper .sidebar .dropdown-toggler .arrow").removeClass(
+            "uil-angle-up"
+        );
+        $(".wrapper .sidebar .dropdown-toggler .arrow").addClass(
+            "uil-angle-down"
+        );
+
         $(e.target).removeClass("active");
 
         $(e.target).css({
@@ -153,6 +211,37 @@ $(document).ready(() => {
     }
 
     /**
+     * Handle modal.
+     *
+     */
+
+    $(".modal-trigger").on("click", (e) => {
+        e.stopPropagation();
+
+        const target = e.target.getAttribute("data-target");
+
+        $(target).trigger("modal:show");
+    });
+
+    $(".modal-cancel-trigger").on("click", (e) => {
+        $(e.target).closest(".modal").trigger("modal:hide");
+    });
+
+    $(".modal").on("modal:show", (e) => {
+        $(e.target).addClass("show");
+    });
+
+    $(".modal").on("modal:hide", (e) => {
+        $(e.target).removeClass("show");
+    });
+
+    if ($(".modal .invalid-field").length) {
+        $($(".modal .invalid-field")[0].closest(".modal")).trigger(
+            "modal:show"
+        );
+    }
+
+    /**
      * Handle click outside.
      *
      */
@@ -170,5 +259,62 @@ $(document).ready(() => {
                 "dropdown:hide"
             );
         }
+
+        // Modal
+
+        if ($(e.target).closest(".modal .modal-content").length === 0) {
+            $(".modal").trigger("modal:hide");
+        }
+    });
+
+    /**
+     * Form trigger.
+     *
+     */
+
+    $(".form-trigger").on("click", (e) => {
+        const target = e.target.getAttribute("data-target");
+
+        $(target).submit();
+    });
+
+    /**
+     * Handle last scroll position.
+     *
+     */
+
+    $(window).on("beforeunload", function () {
+        localStorage.setItem(
+            "scrollPosition",
+            $(".wrapper .content").scrollTop()
+        );
+    });
+
+    const scrollPosition = localStorage.getItem("scrollPosition");
+
+    if (scrollPosition && !$(".alert").length) {
+        $(".wrapper .content").animate({
+            scrollTop: parseInt(scrollPosition),
+        });
+    }
+
+    /**
+     * Handle alert.
+     *
+     */
+
+    $(".alert .close-alert").on("click", (e) => {
+        const alert = $(e.target).closest(".alert");
+
+        alert.animate(
+            {
+                opacity: 0,
+            },
+            200
+        );
+
+        setTimeout(() => {
+            alert.remove();
+        }, 300);
     });
 });

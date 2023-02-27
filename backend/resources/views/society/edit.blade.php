@@ -29,7 +29,7 @@
 
                     <div class="grid grid-cols-1 lg:grid-cols-2 gap-10 mb-7">
 
-                        <div class="lg:col-span-2">
+                        <div class="form-group lg:col-span-2">
                             <label class="label">NIK</label>
                             <input type="text" class="field" name="nik" placeholder="Masukan NIK masyarakat"
                                 value="{{ $society->nik }}">
@@ -38,7 +38,7 @@
                             @enderror
                         </div>
 
-                        <div>
+                        <div class="form-group">
                             <label class="label">Tanggal Lahir</label>
                             <input type="date" class="field" name="date_of_birth"
                                 placeholder="Masukan tanggal lahir masyarakat" value="{{ $society->date_of_birth }}">
@@ -47,7 +47,7 @@
                             @enderror
                         </div>
 
-                        <div>
+                        <div class="form-group">
                             <label class="label">Jenis Kelamin</label>
                             <select class="field" name="gender">
                                 <option {{ $society->gender === 'Pria' ? 'selected' : '' }} value="Pria">
@@ -62,7 +62,7 @@
                             @enderror
                         </div>
 
-                        <div>
+                        <div class="form-group">
                             <label class="label">Nomor Telepon</label>
                             <input type="text" class="field" name="phone"
                                 placeholder="Masukan nomor telepon masyarakat" value="{{ $society->phone }}">
@@ -71,7 +71,7 @@
                             @enderror
                         </div>
 
-                        <div>
+                        <div class="form-group">
                             <label class="label">Pekerjaan</label>
                             <select class="field" name="job_id">
                                 @foreach ($jobs as $job)
@@ -90,7 +90,7 @@
 
                     <div class="grid grid-cols-1 xl:grid-cols-3 gap-10 mb-7">
 
-                        <div>
+                        <div class="form-group">
                             <label class="label">Nama</label>
                             <input type="text" class="field" name="name" placeholder="Masukan nama masyarakat"
                                 value="{{ $society->user->name }}">
@@ -99,7 +99,7 @@
                             @enderror
                         </div>
 
-                        <div>
+                        <div class="form-group">
                             <label class="label">Email</label>
                             <input type="text" class="field" name="email" placeholder="Masukan email masyarakat"
                                 value="{{ $society->user->email }}">
@@ -108,7 +108,7 @@
                             @enderror
                         </div>
 
-                        <div>
+                        <div class="form-group">
                             <label class="label">Username</label>
                             <input type="text" class="field" name="username"
                                 placeholder="Masukan username masyarakat" value="{{ $society->user->username }}">
@@ -121,7 +121,7 @@
 
                     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-1 xl:grid-cols-2 gap-10 mb-10">
 
-                        <div>
+                        <div class="form-group">
                             <label class="label">Password Baru</label>
                             <input type="password" class="field" name="password"
                                 placeholder="Masukan kata sandi baru masyarakat">
@@ -130,7 +130,7 @@
                             @enderror
                         </div>
 
-                        <div>
+                        <div class="form-group">
                             <label class="label">Kofirmasi Password Baru</label>
                             <input type="password" class="field" name="password_confirmation"
                                 placeholder="Konfirmasi kata sandi baru masyarakat">
@@ -142,12 +142,12 @@
 
                     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-1 xl:grid-cols-2 gap-10 mb-7">
 
-                        <div>
+                        <div class="form-group">
                             <label class="label">Negara</label>
                             <input type="text" class="field" placeholder="" value="Indonesia" disabled readonly>
                         </div>
 
-                        <div>
+                        <div class="form-group">
                             <label class="label">Provinsi</label>
                             <input type="text" class="field" name="province" placeholder=""
                                 value="{{ $society->location->province }}">
@@ -156,7 +156,7 @@
                             @enderror
                         </div>
 
-                        <div>
+                        <div class="form-group">
                             <label class="label">Kota</label>
                             <input type="text" class="field" name="city" placeholder=""
                                 value="{{ $society->location->city }}">
@@ -165,7 +165,7 @@
                             @enderror
                         </div>
 
-                        <div>
+                        <div class="form-group">
                             <label class="label">Kota</label>
                             <input type="text" class="field" name="sub_district" placeholder=""
                                 value="{{ $society->location->sub_district }}">
@@ -174,7 +174,7 @@
                             @enderror
                         </div>
 
-                        <div>
+                        <div class="form-group">
                             <label class="label">Kelurahan / Desa</label>
                             <input type="text" class="field" name="urban_village" placeholder=""
                                 value="{{ $society->location->urban_village }}">
@@ -183,7 +183,7 @@
                             @enderror
                         </div>
 
-                        <div>
+                        <div class="form-group">
                             <label class="label">Kode Pos</label>
                             <input type="text" class="field" name="postal_code" placeholder=""
                                 value="{{ $society->location->postal_code }}">
@@ -203,7 +203,7 @@
                     </div>
 
                     <div class="flex justify-end">
-                        <button type="submit" class="btn bg-primary">Simpan</button>
+                        <button type="submit" class="btn btn-primary">Simpan</button>
                     </div>
 
                 </form>

@@ -43,9 +43,9 @@
             <div class="flex flex-wrap justify-between items-center gap-5">
                 <div class="flex flex-wrap items-center gap-5">
                     @if ($report->status == 'process')
-                        <button type="submit" class="btn btn-sm bg-success">
+                        <button type="submit" class="btn btn-sm btn-success">
                             Terima
-                        </button><button type="submit" class="btn btn-sm bg-danger">
+                        </button><button type="submit" class="btn btn-sm btn-danger">
                             Tolak
                         </button>
                     @endif
@@ -54,7 +54,7 @@
                     @csrf
                     @method('DELETE')
 
-                    <button type="submit" class="btn btn-sm bg-danger">
+                    <button type="submit" class="btn btn-sm btn-danger">
                         Delete
                     </button>
                 </form>

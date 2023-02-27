@@ -8,9 +8,9 @@ use Illuminate\View\Component;
 class Sidebar extends Component
 {
     /**
-     * @var array
+     * @var SidebarMenu
      */
-    public array $items = [];
+    public SidebarMenu $sidebarMenu;
 
     /**
      * @var User|null
@@ -24,11 +24,11 @@ class Sidebar extends Component
      */
     public function __construct(User|null $user = null)
     {
-        $user->load('role');
-
         $this->user = $user;
 
-        $this->items = $this->items();
+        $this->sidebarMenu = new SidebarMenu();
+
+        $this->registerItems();
     }
 
     /**
@@ -44,68 +44,126 @@ class Sidebar extends Component
     /**
      * @return array
      */
-    public function items()
+    protected function registerItems()
     {
-        $adminOrAgency = $this->user->hasRole('admin', 'agency');
+        $isAdmin = $this->user->hasRole('admin');
 
-        $users = [
-            'type' => 'dropdown',
-            'icon' => 'uil uil-user',
-            'text' => 'Pengguna',
-            'items' => [
+        $this->sidebarMenu->addMenuTitle('Navigation');
+
+        $this->sidebarMenu->addLinkItem(
+            'Dashboard',
+            'uil uil-apps',
+            route('dashboard'),
+            request()->routeIs('dashboard*'),
+        );
+
+        $this->sidebarMenu->addMenuTitle('Menu / Item');
+
+        $this->sidebarMenu->addDropdownItem(
+            'Pengguna',
+            'uil uil-user',
+            [
+                [
+                    'url' => route('agencies'),
+                    'text' => 'Instansi',
+                    'is_active' =>  request()->routeIs('agencies*'),
+                    'condition' => $isAdmin,
+                ],
                 [
                     'url' => route('employees'),
                     'text' => 'Petugas',
-                    'is_active' => request()->routeIs('employees*'),
+                    'is_active' =>  request()->routeIs('employees*'),
+                ],
+                [
+                    'url' => route('societies'),
+                    'text' => 'Masyarakat',
+                    'is_active' =>  request()->routeIs('societies*'),
+                    'condition' => $isAdmin,
                 ],
             ],
-        ];
+        );
 
-        $this->user->hasRole('admin') && array_unshift($users['items'], [
-            'url' => route('agencies'),
-            'text' => 'Instansi',
-            'is_active' => request()->routeIs('agencies*'),
-        ]);
+        $this->sidebarMenu->addLinkItem(
+            'Laporan Masyarakat',
+            'uil uil-file-upload-alt',
+            route('society-reports'),
+            request()->routeIs('society-reports*'),
+        );
 
-        $this->user->hasRole('admin') && array_push($users['items'],  [
-            'url' => route('societies'),
-            'text' => 'Masyarakat',
-            'is_active' => request()->routeIs('societies*'),
-        ],);
+        $this->sidebarMenu->addMenuTitle('Laporan');
 
-        $items = [
-            ['type' => 'title', 'title' => 'Navigasi'],
+        $this->sidebarMenu->addLinkItem(
+            'Laporan',
+            'uil uil-file-alt',
+            '#',
+        );
+    }
+}
 
+class SidebarMenu
+{
+    /**
+     * @var array
+     */
+    public array $items = [];
+
+    /**
+     * @param string $title
+     * 
+     * @return void
+     */
+    public function addMenuTitle(string $title, bool $condition = true)
+    {
+        $condition && array_push($this->items, ['type' => 'title', 'title' => $title]);
+    }
+
+    /**
+     * @param string $text
+     * @param string $icon
+     * @param string $route
+     * @param bool $isActive
+     * @param bool $condition
+     * 
+     * @return void
+     */
+    public function addLinkItem(string $text, string $icon, string $route, bool $isActive = false, bool $condition = true)
+    {
+        $condition && array_push(
+            $this->items,
             [
                 'type' => 'link',
-                'icon' => 'uil uil-apps',
-                'url' => route('dashboard'),
-                'text' => 'Dashboard',
-                'is_active' => request()->routeIs('dashboard*'),
-            ],
+                'icon' => $icon,
+                'url' => $route,
+                'text' => $text,
+                'is_active' => $isActive,
+            ]
+        );
+    }
 
-            ['type' => 'title', 'title' => 'Menu / Item'],
+    /**
+     * @param string $text
+     * @param string $icon
+     * @param array $items
+     * @param bool $condition
+     * 
+     * @return void
+     */
+    public function addDropdownItem(string $text, string $icon, array $items = [], bool $condition = true)
+    {
+        $renderedItems = [];
 
+        foreach ($items as $item) {
+            ($item['condition'] ?? true) && array_push($renderedItems, $item);
+        }
+
+        $condition && array_push(
+            $this->items,
             [
-                'type' => 'link',
-                'icon' => 'uil uil-file-upload-alt',
-                'url' => route('society-reports'),
-                'text' => 'Laporan Masyarakat',
-                'is_active' => request()->routeIs('society-reports*'),
-            ],
-
-            ['type' => 'title', 'title' => 'Laporan'],
-
-            [
-                'type' => 'link',
-                'icon' => 'uil uil-file-alt',
-                'url' => '#',
-                'text' => 'Laporan',
-            ],
-        ];
-
-        $adminOrAgency && array_splice($items, 3, 0, [$users]);
-
-        return $items;
+                'type' => 'dropdown',
+                'icon' => $icon,
+                'text' => $text,
+                'items' => $renderedItems,
+            ]
+        );
     }
 }

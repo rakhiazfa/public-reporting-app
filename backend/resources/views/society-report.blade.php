@@ -15,8 +15,8 @@
                     <x-cube.card title=" {{ Str::of($report->title ?? '')->words(4, ' . . . ') ?? '' }}"
                         class="hover:shadow-md transition-all duration-300 h-full relative">
 
-                        <p class="text-sm mb-7">
-                            {{ Str::of($report->body ?? '')->words(11, ' . . . ') ?? '' }}
+                        <p class="text-sm mb-10">
+                            {{ Str::limit($report->body ?? '', 50, ' . . . ') }}
                         </p>
 
                         <div class="flex justify-between items-center gap-20 absolute bottom-0 left-0 w-full p-5">

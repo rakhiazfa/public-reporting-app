@@ -14,7 +14,7 @@
                     <form class="grid gap-5" method="POST">
                         @csrf
 
-                        <div>
+                        <div class="form-group">
                             <label class="label">Email atau Username</label>
                             <input type="text" class="field" name="email_or_username"
                                 value="{{ old('email_or_username') }}"
@@ -24,7 +24,7 @@
                             @enderror
                         </div>
 
-                        <div>
+                        <div class="form-group">
                             <label class="label">Kata Sandi</label>
                             <input type="password" class="field" name="password"
                                 placeholder="Masukan kata sandi anda . . .">
@@ -34,7 +34,7 @@
                         </div>
 
                         <div class="flex justify-end mt-3">
-                            <button class="btn bg-primary">Login</button>
+                            <button class="btn btn-primary">Login</button>
                         </div>
 
                     </form>

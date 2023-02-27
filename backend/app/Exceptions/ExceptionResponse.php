@@ -33,6 +33,6 @@ class ExceptionResponse
             'success' => false,
             'code' => $this->exception->getCode() ?? 500,
             'message' => $this->exception->getMessage() ?? 'Internal server error',
-        ], ((int) $this->exception->getCode()) ? ((int) $this->exception->getCode()) : 500);
+        ], 502);
     }
 }
