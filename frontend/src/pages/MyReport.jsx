@@ -79,7 +79,20 @@ export default function MyReport() {
                                                     )
                                                 )}
                                             </ReactShowMoreText>
-                                            <div className="flex justify-end">
+                                            <div className="flex flex-wrap justify-between items-center gap-10">
+                                                <div
+                                                    className={`${
+                                                        report?.status ==
+                                                        "rejected"
+                                                            ? "bg-red-500"
+                                                            : report?.status ==
+                                                              "accepted"
+                                                            ? "bg-emerald-500"
+                                                            : "bg-blue-500"
+                                                    } px-3 py-1 rounded-full font-medium text-white`}
+                                                >
+                                                    <p>{report?.status}</p>
+                                                </div>
                                                 <button
                                                     className="button bg-red-500 hover:bg-red-600 text-white"
                                                     onClick={() =>

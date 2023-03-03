@@ -60,45 +60,94 @@ export default function MyReportDetail() {
             <section>
                 <div className="wrapper">
                     {report ? (
-                        <div>
-                            <h1 className="text-xl lg:text-3xl font-bold mb-7">
-                                {report?.title}
-                            </h1>
-                            <ReactShowMoreText
-                                lines={10}
-                                className="text-sm mb-10"
-                                anchorClass="text-blue-500 hover:underline cursor-pointer"
-                            >
-                                {nl2br(escapeHtml(report?.body + "\n\n"))}
-                            </ReactShowMoreText>
-                            <div className="flex items-center justify-between gap-10 flex-wrap">
-                                <div className="flex items-center gap-20">
-                                    <p className="text-gray-400">
-                                        {report?.ticket_id}
-                                    </p>
-                                    <Link
-                                        className="text-blue-500 hover:underline"
-                                        target="_blank"
-                                        to={
-                                            import.meta.env.VITE_BACKEND_URL +
-                                            "/storage/" +
-                                            report?.attachment
-                                        }
-                                    >
-                                        Lampiran
-                                    </Link>
-                                </div>
-                                <button
-                                    className="button bg-red-500 hover:bg-red-500 text-white"
-                                    onClick={() =>
-                                        handleDeleteReport(username, report?.id)
-                                    }
-                                    disabled={loading}
+                        <>
+                            <div>
+                                <h1 className="text-xl lg:text-3xl font-bold mb-7">
+                                    {report?.title}
+                                </h1>
+                                <ReactShowMoreText
+                                    lines={10}
+                                    className="text-sm mb-10"
+                                    anchorClass="text-blue-500 hover:underline cursor-pointer"
                                 >
-                                    Delete
-                                </button>
+                                    {nl2br(escapeHtml(report?.body + "\n\n"))}
+                                </ReactShowMoreText>
+                                <div className="flex items-center justify-between gap-10 flex-wrap">
+                                    <div className="flex items-center gap-20">
+                                        <p className="text-gray-400">
+                                            {report?.ticket_id}
+                                        </p>
+                                        <Link
+                                            className="text-blue-500 hover:underline"
+                                            target="_blank"
+                                            to={
+                                                import.meta.env
+                                                    .VITE_BACKEND_URL +
+                                                "/storage/" +
+                                                report?.attachment
+                                            }
+                                        >
+                                            Lampiran
+                                        </Link>
+                                        <div
+                                            className={`${
+                                                report?.status == "rejected"
+                                                    ? "bg-red-500"
+                                                    : report?.status ==
+                                                      "accepted"
+                                                    ? "bg-emerald-500"
+                                                    : "bg-blue-500"
+                                            } px-3 py-1 rounded-full font-medium text-white`}
+                                        >
+                                            <p>{report?.status}</p>
+                                        </div>
+                                    </div>
+                                    <button
+                                        className="button bg-red-500 hover:bg-red-500 text-white"
+                                        onClick={() =>
+                                            handleDeleteReport(
+                                                username,
+                                                report?.id
+                                            )
+                                        }
+                                        disabled={loading}
+                                    >
+                                        Delete
+                                    </button>
+                                </div>
                             </div>
-                        </div>
+                            {report?.responses?.length > 0 && (
+                                <div className="mt-10">
+                                    <h1 className="text-xl font-bold mb-5">
+                                        Tanggapan
+                                    </h1>
+                                    {report?.responses?.map(
+                                        (response, index) => (
+                                            <div key={index} className="py-10">
+                                                <div className="flex items-center gap-5 mb-10">
+                                                    <div className="w-[50px] h-[50px] bg-gray-400 rounded-full"></div>
+                                                    <div>
+                                                        <span className="block mb-1">
+                                                            {response?.agency
+                                                                ?.name ?? "-"}
+                                                        </span>
+                                                    </div>
+                                                </div>
+                                                <div className="py-2">
+                                                    <p
+                                                        dangerouslySetInnerHTML={{
+                                                            __html: nl2br(
+                                                                response?.response
+                                                            ),
+                                                        }}
+                                                    ></p>
+                                                </div>
+                                            </div>
+                                        )
+                                    )}
+                                </div>
+                            )}
+                        </>
                     ) : (
                         <>Loading . . .</>
                     )}
