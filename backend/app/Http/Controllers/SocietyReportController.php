@@ -140,7 +140,7 @@ class SocietyReportController extends Controller
             ], 404);
         }
 
-        $societyReport->load('author', 'category', 'destination');
+        $societyReport->load('author', 'category', 'destination', 'responses');
 
         return response()->json([
             'success' => true,

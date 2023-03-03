@@ -19,7 +19,7 @@ return new class extends Migration
 
             $table->foreignId('society_report_id')->constrained('society_reports');
 
-            $table->foreignId('agency_id')->constrained('agencies');
+            $table->foreignId('agency_id')->nullable()->constrained('agencies')->nullOnDelete();
 
             $table->timestamps();
         });

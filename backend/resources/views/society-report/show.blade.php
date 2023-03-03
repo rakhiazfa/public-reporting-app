@@ -10,7 +10,13 @@
         </nav>
     </x-cube.card>
 
-    <section class="mb-7">
+    @if (session('success'))
+        <div class="bg-emerald-400 rounded-lg px-5 py-3">
+            <p class="text-gray-50 font-normal">{{ session('success') }}</p>
+        </div>
+    @endif
+
+    <section class="grid grid-cols-1 gap-7 mb-7">
 
         <x-cube.card title=" {{ $report->title ?? '' }}" class="">
 
@@ -47,9 +53,16 @@
                             data-target="#sendResponseModal">
                             Tanggapi
                         </button>
-                        <button type="submit" class="btn btn-sm btn-danger">
-                            Tolak
-                        </button>
+                        <form
+                            action="{{ route('society-reports.reject', [
+                                'slug' => request()->route('slug'),
+                            ]) }}"
+                            method="POST">
+                            @csrf
+                            <button type="submit" class="btn btn-sm btn-danger">
+                                Tolak
+                            </button>
+                        </form>
                     @endif
                 </div>
                 <form action="{{ route('society-reports.destroy', ['societyReport' => $report]) }}" method="POST">
@@ -64,6 +77,20 @@
 
         </x-cube.card>
 
+        @if ($report->responses->count() > 0)
+            <x-cube.card title="Tanggapan">
+
+                @foreach ($report->responses ?? [] as $response)
+                    <div class="bg-gray-50 p-5">
+                        <p>{!! $response->response ?? '' !!}</p>
+                        <p class="text-sm text-gray-500 mt-5">
+                            {{ date('d F Y', strtotime($response->created_at ?? '')) }}</p>
+                    </div>
+                @endforeach
+
+            </x-cube.card>
+        @endif
+
     </section>
 
     <div class="modal modal-xl" id="sendResponseModal">
@@ -72,7 +99,11 @@
                 <h4>Kirim Tanggapan</h4>
             </div>
             <div class="body">
-                <form action="" method="POST" id="sendResponseForm">
+                <form
+                    action="{{ route('society-reports.send_response', [
+                        'slug' => request()->route('slug'),
+                    ]) }}"
+                    method="POST" id="sendResponseForm">
                     @csrf
 
                     <div class="form-group">

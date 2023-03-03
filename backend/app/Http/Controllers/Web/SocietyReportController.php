@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Web;
 use App\Exceptions\ExceptionResponse;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\SocietyReport\StoreSocietyReportRequest;
+use App\Models\Response;
 use App\Models\SocietyReport;
 use App\Models\User;
 use App\Services\SocietyReport\SocietyReportService;
@@ -69,7 +70,7 @@ class SocietyReportController extends Controller
         $destinationAgencyId = $user->hasRole('agency') ?
             ($user->agency->id ?? null) : ($user->employee->agency->id ?? null);
 
-        $report = SocietyReport::where('slug', $slug)->first() ?? null;
+        $report = SocietyReport::with('responses')->where('slug', $slug)->first() ?? null;
 
         if (!$report || ($user->hasRole('admin') ? false : $report->destination_agency_id !== $destinationAgencyId)) {
 
@@ -86,15 +87,53 @@ class SocietyReportController extends Controller
     }
 
     /**
-     * Update the specified resource in storage.
+     * Send response.
      *
      * @param  \Illuminate\Http\Request  $request
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function sendResponse(Request $request, string $slug)
     {
-        //
+        $user = $request->user();
+        $agencyId = null;
+
+        if ($user->hasRole('agency')) {
+            $agencyId = $user->agency->id;
+        } elseif ($user->hasRole('employee')) {
+            $agencyId = $user->employee->agency->id;
+        }
+
+        $request->validate(['response' => ['required']]);
+
+        $report = SocietyReport::where('slug', $slug)->first() ?? null;
+        $report->status = 'accepted';
+        $report->save();
+
+        $response = new Response($request->all());
+        $response->societyReport()->associate($report->id);
+        $response->agency()->associate($agencyId);
+        $response->save();
+
+        return back()->with('success', 'Berhasil mengirim tanggapan.');
+    }
+
+    /**
+     * Reject the society report.
+     * 
+     * @param Request $request
+     * @param string $slug
+     * 
+     * @return Response
+     */
+    public function reject(Request $request, string $slug)
+    {
+        $report = SocietyReport::where('slug', $slug)->first() ?? null;
+
+        $report->status = 'rejected';
+        $report->save();
+
+        return back()->with('success', 'Laporan berhasil ditolak.');
     }
 
     /**

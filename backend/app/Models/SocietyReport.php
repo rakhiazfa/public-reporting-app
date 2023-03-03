@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class SocietyReport extends Model
 {
@@ -41,6 +42,14 @@ class SocietyReport extends Model
     public function author()
     {
         return $this->belongsTo(Society::class, 'author_id', 'id');
+    }
+
+    /**
+     * @return HasMany
+     */
+    public function responses()
+    {
+        return $this->hasMany(Response::class, 'society_report_id', 'id');
     }
 
     public static function generateTicketId()
