@@ -43,9 +43,11 @@
             <div class="flex flex-wrap justify-between items-center gap-5">
                 <div class="flex flex-wrap items-center gap-5">
                     @if ($report->status == 'process')
-                        <button type="submit" class="btn btn-sm btn-success">
-                            Terima
-                        </button><button type="submit" class="btn btn-sm btn-danger">
+                        <button type="button" class="btn btn-sm btn-success modal-trigger"
+                            data-target="#sendResponseModal">
+                            Tanggapi
+                        </button>
+                        <button type="submit" class="btn btn-sm btn-danger">
                             Tolak
                         </button>
                     @endif
@@ -63,5 +65,34 @@
         </x-cube.card>
 
     </section>
+
+    <div class="modal modal-xl" id="sendResponseModal">
+        <div class="modal-content top">
+            <div class="header">
+                <h4>Kirim Tanggapan</h4>
+            </div>
+            <div class="body">
+                <form action="" method="POST" id="sendResponseForm">
+                    @csrf
+
+                    <div class="form-group">
+                        <label class="label">Tanggapan</label>
+                        <textarea class="field editor" name="response" rows="10"></textarea>
+                        @error('response')
+                            <p class="invalid-field">{{ $message }}</p>
+                        @enderror
+                    </div>
+
+                </form>
+            </div>
+            <div class="footer flex justify-end gap-x-5">
+                <button type="button" class="btn btn-sm btn-info modal-cancel-trigger"
+                    aria-label="Cancel Modal">Batal</button>
+                <button type="button" class="btn btn-sm btn-primary form-trigger" data-target="#sendResponseForm">
+                    Kirim
+                </button>
+            </div>
+        </div>
+    </div>
 
 </x-cube.layout>
