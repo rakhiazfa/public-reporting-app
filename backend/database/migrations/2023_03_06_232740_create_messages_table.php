@@ -13,14 +13,13 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('responses', function (Blueprint $table) {
+        Schema::create('messages', function (Blueprint $table) {
             $table->id();
-            $table->text('response');
-
-            $table->foreignId('society_report_id')->constrained('society_reports');
-
-            $table->foreignId('agency_id')->nullable()->constrained('agencies')->nullOnDelete();
-
+            $table->text('message');
+            $table->boolean('has_been_read')->default(false);
+            $table->foreignId('society_report_id')->constrained('society_reports')->cascadeOnDelete();
+            $table->foreignId('from')->constrained('users')->cascadeOnDelete();
+            $table->foreignId('to')->constrained('users')->cascadeOnDelete();
             $table->timestamps();
         });
     }
@@ -32,6 +31,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('responses');
+        Schema::dropIfExists('messages');
     }
 };

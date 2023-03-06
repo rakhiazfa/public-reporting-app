@@ -23,7 +23,7 @@ return new class extends Migration
             $table->string('title');
             $table->text('body');
             $table->date('date');
-            $table->enum('status', ['process', 'accepted', 'rejected'])->default('process');
+            $table->enum('status', ['process', 'accepted', 'rejected', 'closed'])->default('process');
             $table->string('attachment');
             $table->string('slug')->unique();
 

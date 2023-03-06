@@ -16,7 +16,7 @@ Route::name('society-reports')->prefix('society-reports')
 
         Route::get('/{slug}', [SocietyReportController::class, 'show'])->name('.show');
 
-        Route::post('/{slug}/send-response', [SocietyReportController::class, 'sendResponse'])->name('.send_response');
+        Route::post('/{slug}/accept', [SocietyReportController::class, 'accept'])->name('.accept');
 
         Route::post('/{slug}/reject', [SocietyReportController::class, 'reject'])->name('.reject');
 

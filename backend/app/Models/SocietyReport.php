@@ -44,14 +44,6 @@ class SocietyReport extends Model
         return $this->belongsTo(Society::class, 'author_id', 'id');
     }
 
-    /**
-     * @return HasMany
-     */
-    public function responses()
-    {
-        return $this->hasMany(Response::class, 'society_report_id', 'id');
-    }
-
     public static function generateTicketId()
     {
         $ticketId = '#' . mt_rand(1000000000, 9999999999);
