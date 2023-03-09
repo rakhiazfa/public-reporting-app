@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Web;
 use App\Exceptions\ExceptionResponse;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\SocietyReport\StoreSocietyReportRequest;
+use App\Models\Message;
 use App\Models\Response;
 use App\Models\SocietyReport;
 use App\Models\User;
@@ -81,7 +82,7 @@ class SocietyReportController extends Controller
             ], 404) : abort(404);
         }
 
-        $report->load('author', 'category', 'destination');
+        $report->load('author', 'category', 'destination', 'messages');
 
         return view('society-report.show', compact('report'));
     }
@@ -120,6 +121,21 @@ class SocietyReportController extends Controller
         $report->save();
 
         return back()->with('success', 'Laporan berhasil diterima.');
+    }
+
+    public function sendResponse(Request $request, string $slug)
+    {
+        $report = SocietyReport::where('slug', $slug)->first() ?? null;
+
+        $request->validate(['message' => ['required']]);
+
+        $message = new Message($request->all());
+        $message->societyReport()->associate($report);
+        $message->messageOrigin()->associate($request->user());
+        $message->messageDestination()->associate($report->author->user);
+        $message->save();
+
+        return back();
     }
 
     /**

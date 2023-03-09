@@ -83,6 +83,58 @@
 
         </x-cube.card>
 
+        @if ($report->status == 'accepted')
+            <x-cube.card title="Tanggapan" class="">
+
+                <div class="grid gap-5 mb-5">
+                    @foreach ($report->messages as $message)
+                        <div
+                            class="{{ $message->from === auth()->id() ? 'bg-blue-400 text-white' : 'bg-gray-100 text-black' }} p-5 rounded-md">
+                            <div class="flex items-center gap-x-3 mb-5">
+                                <div class="w-[40px] lg:w-[45px] aspect-square bg-gray-300 rounded-full">
+                                    <img class="rounded-full"
+                                        src="{{ $message->messageOrigin->avatar ? url('storage/' . $message->messageOrigin->avatar) : $defaultAvatarImage }}"
+                                        alt="Avatar">
+                                </div>
+                                <div>
+                                    <p
+                                        class="text-xs lg:text-sm font-medium max-w-[175px] overflow-hidden whitespace-nowrap mb-1 {{ $message->from === auth()->id() ? 'text-white' : 'text-black' }}">
+                                        {{ $message->messageOrigin->name ?? '' }}
+                                    </p>
+                                    <p
+                                        class="text-[0.65rem] lg:text-[0.7rem] {{ $message->from === auth()->id() ? 'text-white' : 'text-gray-500' }} font-normal max-w-[175px] overflow-hidden whitespace-nowrap">
+                                        {{ date('d F Y', strtotime($message->created_at)) }}
+                                    </p>
+                                </div>
+                            </div>
+                            <p class="text-[0.8rem] text-inherit font-normal">
+                                {{ $message->message }}
+                            </p>
+                        </div>
+                    @endforeach
+                </div>
+
+                <form action="{{ route('society-reports.send_response', ['slug' => request()->route('slug')]) }}"
+                    method="POST">
+                    @csrf
+
+                    <div class="form-group mb-7">
+                        <label class="label">Pesan</label>
+                        <textarea class="field" name="message" rows="3" placeholder="Ketik tanggapan anda . . ."></textarea>
+                        @error('message')
+                            <p class="invalid-field">{{ $message }}</p>
+                        @enderror
+                    </div>
+
+                    <div class="flex justify-end">
+                        <button type="submit" class="btn btn-primary">Kirim</button>
+                    </div>
+
+                </form>
+
+            </x-cube.card>
+        @endif
+
     </section>
 
 </x-cube.layout>
