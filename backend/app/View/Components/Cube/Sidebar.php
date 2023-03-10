@@ -47,6 +47,7 @@ class Sidebar extends Component
     protected function registerItems()
     {
         $isAdmin = $this->user->hasRole('admin');
+        $isAgency = $this->user->hasRole('agency');
 
         $this->sidebarMenu->addMenuTitle('Navigation');
 
@@ -73,6 +74,7 @@ class Sidebar extends Component
                     'url' => route('employees'),
                     'text' => 'Petugas',
                     'is_active' =>  request()->routeIs('employees*'),
+                    'condition' => $isAdmin || $isAgency,
                 ],
                 [
                     'url' => route('societies'),
@@ -81,6 +83,7 @@ class Sidebar extends Component
                     'condition' => $isAdmin,
                 ],
             ],
+            $isAdmin || $isAgency,
         );
 
         $this->sidebarMenu->addLinkItem(
