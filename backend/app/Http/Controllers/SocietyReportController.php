@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Exceptions\ExceptionResponse;
 use App\Http\Requests\SocietyReport\StoreSocietyReportRequest;
+use App\Models\Message;
 use App\Models\SocietyReport;
 use App\Models\User;
 use App\Services\SocietyReport\SocietyReportService;
@@ -172,12 +173,42 @@ class SocietyReportController extends Controller
             ], 404);
         }
 
-        $societyReport->load('author', 'category', 'destination');
+        $societyReport->load('author', 'category', 'destination', 'messages', 'messages.messageOrigin');
 
         return response()->json([
             'success' => true,
             'code' => 200,
             'society_report' => $societyReport,
+        ], 200);
+    }
+
+    public function sendMessage(Request $request, string $username, string $slug)
+    {
+        $report = SocietyReport::where('slug', $slug)->first() ?? null;
+
+        if (
+            !$report ||
+            $report->author->user->username !== $username ||
+            ($request->user()->username ?? null) !== $username
+        ) {
+
+            return response()->json([
+                'success' => false,
+                'code' => 404,
+                'message' => 'Not found',
+            ], 404);
+        }
+
+        $request->validate(['message' => ['required']]);
+
+        $message = new Message($request->all());
+        $message->societyReport()->associate($report);
+        $message->messageOrigin()->associate($request->user());
+        $message->messageDestination()->associate($report->destination_agency_id);
+        $message->save();
+
+        return response()->json([
+            'success' => true,
         ], 200);
     }
 

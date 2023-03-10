@@ -2,10 +2,12 @@ import React, { useEffect, useState } from "react";
 import nl2br from "react-nl2br";
 import { Link, useNavigate, useParams } from "react-router-dom";
 import ReactShowMoreText from "react-show-more-text";
+import Input from "../components/Fields/Input";
 import Layout from "../components/Layouts/Layout";
 import BackButton from "../components/Navigations/BackButton";
 import { escapeHtml } from "../helpers/sting";
 import { axiosJWT } from "../providers/AuthProvider";
+import avatar from "../assets/images/avatar.jpg";
 
 export default function MyReportDetail() {
     const { username, slug } = useParams();
@@ -13,6 +15,8 @@ export default function MyReportDetail() {
     //
 
     const [loading, setLoading] = useState(false);
+    const [formMessageLoading, setFormMessageLoading] = useState(false);
+    const [message, setMessage] = useState("");
 
     //
 
@@ -44,11 +48,46 @@ export default function MyReportDetail() {
                 `/${username}/society-reports/${slug}`
             );
 
+            console.log(data);
+
             setReport(data?.society_report);
         } catch (_) {
             navigate("/404");
         }
     };
+
+    const handleSendMessage = async (e) => {
+        e.preventDefault();
+
+        setFormMessageLoading(true);
+
+        try {
+            await axiosJWT.post(
+                `${username}/society-reports/${slug}/send-message`,
+                {
+                    message,
+                }
+            );
+
+            getSocietyReportBySlug(username, slug);
+        } catch (_) {
+        } finally {
+            setFormMessageLoading(false);
+            setMessage("");
+        }
+    };
+
+    function formatDate(date) {
+        var d = new Date(date),
+            month = "" + (d.getMonth() + 1),
+            day = "" + d.getDate(),
+            year = d.getFullYear();
+
+        if (month.length < 2) month = "0" + month;
+        if (day.length < 2) day = "0" + day;
+
+        return [year, month, day].join("-");
+    }
 
     useEffect(() => {
         getSocietyReportBySlug(username, slug);
@@ -116,37 +155,88 @@ export default function MyReportDetail() {
                                     </button>
                                 </div>
                             </div>
-                            {report?.responses?.length > 0 && (
-                                <div className="mt-10">
-                                    <h1 className="text-xl font-bold mb-5">
-                                        Tanggapan
-                                    </h1>
-                                    {report?.responses?.map(
-                                        (response, index) => (
-                                            <div key={index} className="py-10">
-                                                <div className="flex items-center gap-5 mb-10">
-                                                    <div className="w-[50px] h-[50px] bg-gray-400 rounded-full"></div>
-                                                    <div>
-                                                        <span className="block mb-1">
-                                                            {response?.agency
-                                                                ?.name ?? "-"}
-                                                        </span>
-                                                    </div>
-                                                </div>
-                                                <div className="py-2">
-                                                    <p
-                                                        dangerouslySetInnerHTML={{
-                                                            __html: nl2br(
-                                                                response?.response
-                                                            ),
-                                                        }}
-                                                    ></p>
-                                                </div>
+                            <div className="mt-20">
+                                <h1 className="text-xl lg:text-3xl font-bold mb-7">
+                                    Tanggapan
+                                </h1>
+                                <div className="mb-10">
+                                    <div>
+                                        {report?.messages?.length > 0 && (
+                                            <div className="grid gap-7">
+                                                {report.messages.map(
+                                                    (message, index) => (
+                                                        <div
+                                                            className={`p-5 rounded-md ${
+                                                                username ==
+                                                                message
+                                                                    ?.message_origin
+                                                                    ?.username
+                                                                    ? "bg-blue-400 text-white"
+                                                                    : "bg-gray-100"
+                                                            }`}
+                                                            key={index}
+                                                        >
+                                                            <div className="flex items-center gap-5 mb-7">
+                                                                <div className="w-[45px] h-[45px] bg-gray-400 rounded-full">
+                                                                    <img
+                                                                        className="rounded-full"
+                                                                        src={
+                                                                            avatar
+                                                                        }
+                                                                        alt="Avatar Image"
+                                                                    />
+                                                                </div>
+                                                                <div>
+                                                                    <span className="text-sm block mb-1">
+                                                                        {
+                                                                            message
+                                                                                ?.message_origin
+                                                                                ?.name
+                                                                        }
+                                                                    </span>
+                                                                    <p className="text-xs">
+                                                                        {formatDate(
+                                                                            message?.created_at
+                                                                        )}
+                                                                    </p>
+                                                                </div>
+                                                            </div>
+                                                            <p className="text-sm">
+                                                                {
+                                                                    message?.message
+                                                                }
+                                                            </p>
+                                                        </div>
+                                                    )
+                                                )}
                                             </div>
-                                        )
-                                    )}
+                                        )}
+                                    </div>
                                 </div>
-                            )}
+                                <form onSubmit={handleSendMessage}>
+                                    <Input
+                                        type="textarea"
+                                        placeholder="Ketik pesan anda . . ."
+                                        value={message}
+                                        onChange={(e) =>
+                                            setMessage(e.target.value)
+                                        }
+                                        className="mb-6"
+                                    />
+                                    <div className="flex justify-end">
+                                        <button
+                                            type="submit"
+                                            className="button bg-blue-500 text-white"
+                                            disabled={
+                                                message === "" ||
+                                                formMessageLoading
+                                            }
+                                        >
+                                            Kirim
+                                        </button>
+                                    </div>
+                                </form>
+                            </div>
                         </>
                     ) : (
                         <>Loading . . .</>

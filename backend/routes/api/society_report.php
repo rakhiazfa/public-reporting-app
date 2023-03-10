@@ -23,6 +23,8 @@ Route::name('societies.reports')->prefix('{username}/society-reports')
 
         Route::get('/{slug}', [SocietyReportController::class, 'showSocietyReport'])->name('.show');
 
+        Route::post('/{slug}/send-message', [SocietyReportController::class, 'sendMessage'])->name('.send_message');
+
         Route::post('/', [SocietyReportController::class, 'store'])->name('.store');
 
         Route::put('/{societyReport}', [SocietyReportController::class, 'update'])->name('.update');

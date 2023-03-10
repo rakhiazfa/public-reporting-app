@@ -82,7 +82,7 @@ class SocietyReportController extends Controller
             ], 404) : abort(404);
         }
 
-        $report->load('author', 'category', 'destination', 'messages');
+        $report->load('author', 'category', 'destination', 'messages', 'messages.messageOrigin');
 
         return view('society-report.show', compact('report'));
     }
