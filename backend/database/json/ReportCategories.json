@@ -10,6 +10,9 @@
             },
             {
                 "name": "Penyediaan Fasilitas Ibadah"
+            },
+            {
+                "name": "Apapun Yang Berhubugan Dengan Agama"
             }
         ]
     },
@@ -21,6 +24,9 @@
             },
             {
                 "name": "Bea dan Cukai"
+            },
+            {
+                "name": "Apapun Yang Berhubugan Dengan Ekonomi dan Keuangan"
             }
         ]
     },
@@ -29,6 +35,31 @@
         "report_subcategories": [
             {
                 "name": "Gizi Buruk/Stunting"
+            },
+            {
+                "name": "Apapun Yang Berhubugan Dengan Kesehatan"
+            }
+        ]
+    },
+    {
+        "name": "Politik dan Hukum",
+        "report_subcategories": [
+            {
+                "name": "Korupsi"
+            },
+            {
+                "name": "Hak Asasi Manusia"
+            },
+            {
+                "name": "Apapun Yang Berhubugan Dengan Politik dan Hukum"
+            }
+        ]
+    },
+    {
+        "name": "Lain - Lain",
+        "report_subcategories": [
+            {
+                "name": "Lain - Lain"
             }
         ]
     }
