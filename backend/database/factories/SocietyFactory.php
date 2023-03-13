@@ -27,7 +27,7 @@ class SocietyFactory extends Factory
             'gender' => $genders[array_rand($genders)],
             'phone' => fake()->phoneNumber(),
             'job_id' => Job::inRandomOrder()->first()->id,
-            'user_id' => User::factory()->create()->id,
+            'user_id' => User::factory()->state(['role_id' => 4])->create()->id,
         ];
     }
 }

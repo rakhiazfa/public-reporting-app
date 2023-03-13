@@ -20,7 +20,7 @@ class EmployeeFactory extends Factory
     {
         return [
             'nip' => fake()->numberBetween(100000000, 999999999),
-            'user_id' => User::factory()->create()->id,
+            'user_id' => User::factory()->state(['role_id' => 3])->create()->id,
             'agency_id' => Agency::inRandomOrder()->first()->id,
         ];
     }
