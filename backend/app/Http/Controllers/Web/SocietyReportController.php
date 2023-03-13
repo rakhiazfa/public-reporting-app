@@ -40,11 +40,11 @@ class SocietyReportController extends Controller
         try {
 
             if ($user->hasRole('admin')) {
-                $societyReports = $this->societyReportService->orderByIdDesc();
+                $societyReports = SocietyReport::orderBy('id', 'DESC')->paginate(15);
             } else if ($user->hasRole('agency')) {
-                $societyReports = SocietyReport::where('destination_agency_id', $user->agency->id)->get();
+                $societyReports = SocietyReport::where('destination_agency_id', $user->agency->id)->orderBy('id', 'DESC')->paginate(15);
             } else if ($user->hasRole('employee')) {
-                $societyReports = SocietyReport::where('destination_agency_id', $user->employee->agency->id)->get();
+                $societyReports = SocietyReport::where('destination_agency_id', $user->employee->agency->id)->orderBy('id', 'DESC')->paginate(15);
             }
 
             $societyReports->load('author', 'category', 'destination');

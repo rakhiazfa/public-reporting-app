@@ -98,8 +98,8 @@ class Sidebar extends Component
         $this->sidebarMenu->addLinkItem(
             'Laporan',
             'uil uil-file-alt',
-            route('society-reports'),
-            request()->routeIs('society-reports*'),
+            route('reports'),
+            request()->routeIs('reports*'),
             $isAdmin || $isAgency
         );
     }

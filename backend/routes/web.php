@@ -50,3 +50,10 @@ require_once __DIR__ . '/web/society.php';
  */
 
 require_once __DIR__ . '/web/society_report.php';
+
+/**
+ * Load report routes.
+ * 
+ */
+
+require_once __DIR__ . '/web/report.php';
