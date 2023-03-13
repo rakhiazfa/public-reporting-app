@@ -12,46 +12,50 @@
 
             <x-cube.card title="Daftar Masyarakat">
 
-                <table class="table">
-                    <thead>
-                        <tr>
-                            <th>No</th>
-                            <th>NIK</th>
-                            <th>Nama</th>
-                            <th>Email</th>
-                            <th>#</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        @foreach ($societies as $society)
+                <div class="table-responsive">
+                    <table class="table">
+                        <thead>
                             <tr>
-                                <td>{{ $loop->iteration }}</td>
-                                <td>{{ $society->nik ?? '' }}</td>
-                                <th>{{ $society->name ?? '' }}</th>
-                                <td>{{ $society->user->email ?? '' }}</td>
-                                <td>
-                                    <div class="table-actions">
-                                        <a href="{{ route('societies.show', ['society' => $society]) }}" title="Detail">
-                                            <i class="uil uil-eye"></i>
-                                        </a>
-                                        <a href="{{ route('societies.edit', ['society' => $society]) }}" title="Edit">
-                                            <i class="uil uil-pen"></i>
-                                        </a>
-                                        <form action="{{ route('societies.destroy', ['society' => $society]) }}"
-                                            method="POST">
-                                            @csrf
-                                            @method('DELETE')
-
-                                            <button type="submit" title="Delete">
-                                                <i class="uil uil-trash-alt"></i>
-                                            </button>
-                                        </form>
-                                    </div>
-                                </td>
+                                <th>No</th>
+                                <th>NIK</th>
+                                <th>Nama</th>
+                                <th>Email</th>
+                                <th>#</th>
                             </tr>
-                        @endforeach
-                    </tbody>
-                </table>
+                        </thead>
+                        <tbody>
+                            @foreach ($societies as $society)
+                                <tr>
+                                    <td>{{ $loop->iteration }}</td>
+                                    <td>{{ $society->nik ?? '' }}</td>
+                                    <th>{{ $society->name ?? '' }}</th>
+                                    <td>{{ $society->user->email ?? '' }}</td>
+                                    <td>
+                                        <div class="table-actions">
+                                            <a href="{{ route('societies.show', ['society' => $society]) }}"
+                                                title="Detail">
+                                                <i class="uil uil-eye"></i>
+                                            </a>
+                                            <a href="{{ route('societies.edit', ['society' => $society]) }}"
+                                                title="Edit">
+                                                <i class="uil uil-pen"></i>
+                                            </a>
+                                            <form action="{{ route('societies.destroy', ['society' => $society]) }}"
+                                                method="POST">
+                                                @csrf
+                                                @method('DELETE')
+
+                                                <button type="submit" title="Delete">
+                                                    <i class="uil uil-trash-alt"></i>
+                                                </button>
+                                            </form>
+                                        </div>
+                                    </td>
+                                </tr>
+                            @endforeach
+                        </tbody>
+                    </table>
+                </div>
 
             </x-cube.card>
 

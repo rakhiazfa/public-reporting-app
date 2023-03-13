@@ -1,6 +1,6 @@
 <aside class="sidebar">
     <div class="sidebar-container">
-        <a class="sidebar-header border-b border-[#1f1f1f]" href="#">
+        <a class="sidebar-header border-b border-[#1f1f1f]" href="javascript:void(0);">
             <div class="flex items-center gap-x-3 px-5">
                 <div class="w-[40px] lg:w-[45px] aspect-square bg-gray-300 rounded-full">
                     <img class="rounded-full"
@@ -34,7 +34,7 @@
                         </li>
                     @elseif($item['type'] === 'dropdown')
                         <li class="sidebar-dropdown">
-                            <a class="sidebar-link dropdown-toggler" href="#">
+                            <a class="sidebar-link dropdown-toggler" href="javascript:void(0);">
                                 <i class="uil uil-user"></i>
                                 <span> {{ $item['text'] ?? '' }} </span>
                                 <i class="arrow uil uil-angle-down"></i>

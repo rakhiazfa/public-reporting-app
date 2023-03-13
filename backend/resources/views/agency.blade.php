@@ -8,7 +8,18 @@
 
     <section class="mb-7">
 
-        <div class="grid grid-cols-1">
+        <div class="grid grid-cols-1 gap-7">
+
+            <x-cube.card title="Filter">
+                <form class="-mt-2 flex items-center gap-5" method="GET">
+                    <div class="form-group">
+                        <input type="text" class="field rounded" name="q" value="{{ request()->get('q') }}"
+                            placeholder="Cari instansi . . .">
+                    </div>
+                    <button type="submit" class="btn btn-primary">Search</button>
+                    <a href="{{ route('agencies') }}" class="btn btn-primary">Refresh</a>
+                </form>
+            </x-cube.card>
 
             <x-cube.card title="Daftar Instansi" :actions="[
                 [
@@ -35,7 +46,8 @@
                                     <td>{{ $agency->user->email ?? '' }}</td>
                                     <td>
                                         <div class="table-actions">
-                                            <a href="{{ route('agencies.show', ['agency' => $agency]) }}" title="Detail">
+                                            <a href="{{ route('agencies.show', ['agency' => $agency]) }}"
+                                                title="Detail">
                                                 <i class="uil uil-eye"></i>
                                             </a>
                                             <a href="{{ route('agencies.edit', ['agency' => $agency]) }}"

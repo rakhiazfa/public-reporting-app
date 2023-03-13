@@ -33,9 +33,16 @@ class AgencyController extends Controller
      */
     public function index(Request $request)
     {
+        $q = $request->get('q', false);
+
         try {
 
-            $agencies = Agency::with('user', 'location')->orderBy('id', 'DESC')->paginate(10);
+            $agencies = Agency::when($q, function ($query) use ($q) {
+                $query->whereHas('user', function ($query) use ($q) {
+                    $query->where('name', 'LIKE', "%$q%")->orWhere('email', 'LIKE', "%$q%");
+                });
+            })->with('user', 'location')->orderBy('id', 'DESC')->paginate(10);
+            $agencies->withQueryString();
 
             // 
         } catch (\Exception $exception) {

@@ -406,83 +406,65 @@
     font-normal px-7 py-2 sm:px-10 tracking-wider 
     shadow-xxs;
 }
-
 .btn span,
 .btn .uil,
 .btn .uis {
     @apply text-inherit;
 }
-
 .btn .uil,
 .btn .uis {
     @apply text-lg md:text-xl;
 }
-
 .btn.btn-sm {
     @apply text-[0.7rem] md:text-[0.75rem] px-5;
 }
-
 .btn.btn-xs {
     @apply text-[0.65rem] md:text-[0.7rem] px-5;
 }
-
 .btn.btn-rounded {
     @apply rounded-full;
 }
-
 .btn.btn-primary {
     @apply bg-blue-500 hover:bg-blue-600 text-white;
 }
-
 .btn.btn-secondary {
     @apply bg-pink-500 hover:bg-pink-600 text-white;
 }
-
 .btn.btn-success {
     @apply bg-emerald-400 hover:bg-emerald-500 text-white;
 }
-
 .btn.btn-danger {
     @apply bg-red-500 hover:bg-red-600 text-white;
 }
-
 .btn.btn-info {
     @apply bg-gray-100 hover:bg-gray-200 text-gray-800;
 }
-
 .btn.btn-dark {
     @apply bg-gray-800 hover:bg-gray-900 text-white;
 }
-
 .btn.btn-border {
     @apply bg-transparent hover:bg-transparent border font-medium;
 }
-
 .btn.btn-border.btn-primary {
     @apply bg-blue-50 hover:bg-blue-500 border-blue-600 
     text-blue-500 hover:text-white;
 }
-
 .btn.btn-border.btn-secondary {
     @apply bg-pink-50 hover:bg-pink-500 border-pink-500 
     text-pink-500 hover:text-white;
 }
-
 .btn.btn-border.btn-success {
     @apply bg-emerald-50 hover:bg-emerald-500 border-emerald-500 
     text-emerald-500 hover:text-white;
 }
-
 .btn.btn-border.btn-danger {
     @apply bg-red-50 hover:bg-red-500 border-red-500 
     text-red-500 hover:text-white;
 }
-
 .btn.btn-border.btn-info {
     @apply bg-gray-50 hover:bg-gray-200 border-gray-400 
     text-gray-500 hover:text-gray-600;
 }
-
 .btn.btn-border.btn-dark {
     @apply bg-gray-200 hover:bg-gray-800 border-gray-800 
     text-gray-800 hover:text-white;
@@ -504,6 +486,9 @@
     border px-3 py-[0.65rem] placeholder:text-sm 
     rounded-md focus:outline-blue-500 
     transition-all duration-200 text-sm;
+}
+.field.rounded {
+    @apply rounded-full px-5;
 }
 
 select {
