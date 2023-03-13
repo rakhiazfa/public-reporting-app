@@ -1,17 +1,18 @@
 <aside class="sidebar">
     <div class="sidebar-container">
-        <a class="sidebar-header border-b" href="#">
+        <a class="sidebar-header border-b border-[#1f1f1f]" href="#">
             <div class="flex items-center gap-x-3 px-5">
                 <div class="w-[40px] lg:w-[45px] aspect-square bg-gray-300 rounded-full">
                     <img class="rounded-full"
                         src="{{ $user->avatar ? url('storage/' . $user->avatar) : $defaultAvatarImage }}" alt="Avatar">
                 </div>
                 <div>
-                    <p class="text-xs lg:text-sm font-medium max-w-[175px] overflow-hidden whitespace-nowrap mb-1">
+                    <p
+                        class="text-xs lg:text-sm font-medium max-w-[175px] text-gray-300 overflow-hidden whitespace-nowrap mb-1">
                         {{ $user->name ?? '' }}
                     </p>
                     <p
-                        class="text-[0.65rem] lg:text-[0.7rem] text-gray-400 font-normal max-w-[175px] overflow-hidden whitespace-nowrap">
+                        class="text-[0.65rem] lg:text-[0.7rem] text-gray-300 font-normal max-w-[175px] overflow-hidden whitespace-nowrap">
                         {{ $user->email ?? '' }}
                     </p>
                 </div>
