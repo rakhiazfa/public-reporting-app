@@ -67,10 +67,6 @@ const Topbar = () => {
                                     text={user?.name}
                                     items={[
                                         {
-                                            content: "Profil Saya",
-                                            to: "/profile",
-                                        },
-                                        {
                                             content: "Laporan Saya",
                                             to: `/${user?.username}/reports`,
                                         },
