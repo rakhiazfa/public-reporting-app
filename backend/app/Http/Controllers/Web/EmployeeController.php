@@ -33,13 +33,19 @@ class EmployeeController extends Controller
      */
     public function index(Request $request)
     {
+        $q = $request->get('q', false);
+
         try {
 
-            $employees = $request->user()->hasRole('admin') ?
-                $this->employeeService->orderByIdDesc() :
-                $this->employeeService->getByAgency($request->user()->agency->id);
+            $employees = Employee::when($q, function ($query) use ($q) {
+                $query->whereHas('user', function ($query) use ($q) {
+                    $query->where('name', 'LIKE', "%$q%")->orWhere('email', 'LIKE', "%$q%");
+                });
+            })->with('user', 'agency')->orderBy('id', 'DESC')->paginate(10);
+            $employees->withQueryString();
 
-            $employees->load('agency', 'user');
+            if (!$request->user()->hasRole('admin')) {
+            }
 
             // 
         } catch (\Exception $exception) {

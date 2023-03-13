@@ -22,6 +22,7 @@ class DatabaseSeeder extends Seeder
             JobSeeder::class,
             AgencySeeder::class,
             ReportCategorySeeder::class,
+            EmployeeSeeder::class,
         ]);
     }
 }
