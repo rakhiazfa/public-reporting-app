@@ -30,13 +30,20 @@ class SocietyController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
+        $q = $request->get('q', false);
+
         try {
 
-            $societies = $this->societyService->orderByIdDesc();
 
-            $societies->load('user');
+            $societies = Society::when($q, function ($query) use ($q) {
+                $query->whereHas('user', function ($query) use ($q) {
+                    $query->where('name', 'LIKE', "%$q%")->orWhere('email', 'LIKE', "%$q%");
+                });
+            })->with('user', 'location')->orderBy('id', 'DESC')->paginate(10);
+
+            $societies->withQueryString();
 
             //
         } catch (\Exception $exception) {

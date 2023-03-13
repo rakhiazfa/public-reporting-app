@@ -17,7 +17,7 @@
                             placeholder="Cari instansi . . .">
                     </div>
                     <button type="submit" class="btn btn-primary">Search</button>
-                    <a href="{{ route('agencies') }}" class="btn btn-primary">Refresh</a>
+                    <a href="{{ route('employees') }}" class="btn btn-primary">Refresh</a>
                 </form>
             </x-cube.card>
 

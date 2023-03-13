@@ -42,9 +42,19 @@ class EmployeeController extends Controller
                     $query->where('name', 'LIKE', "%$q%")->orWhere('email', 'LIKE', "%$q%");
                 });
             })->with('user', 'agency')->orderBy('id', 'DESC')->paginate(10);
+
             $employees->withQueryString();
 
             if (!$request->user()->hasRole('admin')) {
+
+                $employees = Employee::when($q, function ($query) use ($q) {
+                    $query->whereHas('user', function ($query) use ($q) {
+                        $query->where('name', 'LIKE', "%$q%")->orWhere('email', 'LIKE', "%$q%");
+                    });
+                })->with('user', 'agency')->where('agency_id', $request->user()->agency->id)
+                    ->orderBy('id', 'DESC')->paginate(10);
+
+                $employees->withQueryString();
             }
 
             // 
@@ -105,6 +115,8 @@ class EmployeeController extends Controller
      */
     public function show(Employee $employee)
     {
+        $this->authorize('view', [Employee::class, $employee]);
+
         $employee->load(['user', 'agency']);
 
         return view('employee.show', compact('employee'));
@@ -118,6 +130,8 @@ class EmployeeController extends Controller
      */
     public function edit(Employee $employee, AgencyService $agencyService)
     {
+        $this->authorize('update', [Employee::class, $employee]);
+
         $employee->load(['user', 'agency']);
 
         try {
@@ -142,6 +156,8 @@ class EmployeeController extends Controller
      */
     public function update(UpdateEmployeeRequest $request, Employee $employee)
     {
+        $this->authorize('update', [Employee::class, $employee]);
+
         try {
 
             $this->employeeService->updateEmployee($employee, $request->all());
@@ -164,6 +180,8 @@ class EmployeeController extends Controller
      */
     public function destroy(Employee $employee)
     {
+        $this->authorize('delete', [Employee::class, $employee]);
+
         try {
 
             $this->employeeService->deleteEmployee($employee);
