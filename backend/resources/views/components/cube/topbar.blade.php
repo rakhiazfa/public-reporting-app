@@ -24,12 +24,6 @@
                         </button>
                         <ul class="dropdown-menu">
                             <li>
-                                <a class="dropdown-link" href="#">
-                                    <i class="uil uil-user"></i>
-                                    <span> Profile </span>
-                                </a>
-                            </li>
-                            <li>
                                 <a class="dropdown-link" href="{{ route('auth.logout') }}">
                                     <i class="uil uil-sign-out-alt"></i>
                                     <span> Logout </span>

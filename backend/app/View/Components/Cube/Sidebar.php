@@ -93,12 +93,14 @@ class Sidebar extends Component
             request()->routeIs('society-reports*'),
         );
 
-        $this->sidebarMenu->addMenuTitle('Laporan');
+        $this->sidebarMenu->addMenuTitle('Laporan', $isAdmin || $isAgency);
 
         $this->sidebarMenu->addLinkItem(
             'Laporan',
             'uil uil-file-alt',
-            '#',
+            route('society-reports'),
+            request()->routeIs('society-reports*'),
+            $isAdmin || $isAgency
         );
     }
 }
