@@ -31,13 +31,11 @@ class AgencyController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
         try {
 
-            $agencies = $this->agencyService->orderByIdDesc();
-
-            $agencies->load('location', 'user');
+            $agencies = Agency::with('user', 'location')->orderBy('id', 'DESC')->paginate(10);
 
             // 
         } catch (\Exception $exception) {

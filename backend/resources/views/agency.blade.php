@@ -17,44 +17,50 @@
                 ],
             ]">
 
-                <table class="table">
-                    <thead>
-                        <tr>
-                            <th>No</th>
-                            <th>Nama</th>
-                            <th>Email</th>
-                            <th>#</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        @foreach ($agencies as $agency)
+                <div class="table-responsive">
+                    <table class="table">
+                        <thead>
                             <tr>
-                                <td>{{ $loop->iteration }}</td>
-                                <th>{{ $agency->name ?? '' }}</th>
-                                <td>{{ $agency->user->email ?? '' }}</td>
-                                <td>
-                                    <div class="table-actions">
-                                        <a href="{{ route('agencies.show', ['agency' => $agency]) }}" title="Detail">
-                                            <i class="uil uil-eye"></i>
-                                        </a>
-                                        <a href="{{ route('agencies.edit', ['agency' => $agency]) }}" title="Edit">
-                                            <i class="uil uil-pen"></i>
-                                        </a>
-                                        <form action="{{ route('agencies.destroy', ['agency' => $agency]) }}"
-                                            method="POST">
-                                            @csrf
-                                            @method('DELETE')
-
-                                            <button type="submit" title="Delete">
-                                                <i class="uil uil-trash-alt"></i>
-                                            </button>
-                                        </form>
-                                    </div>
-                                </td>
+                                <th>No</th>
+                                <th>Nama</th>
+                                <th>Email</th>
+                                <th>#</th>
                             </tr>
-                        @endforeach
-                    </tbody>
-                </table>
+                        </thead>
+                        <tbody>
+                            @foreach ($agencies as $agency)
+                                <tr>
+                                    <td>{{ $loop->iteration }}</td>
+                                    <th>{{ $agency->name ?? '' }}</th>
+                                    <td>{{ $agency->user->email ?? '' }}</td>
+                                    <td>
+                                        <div class="table-actions">
+                                            <a href="{{ route('agencies.show', ['agency' => $agency]) }}" title="Detail">
+                                                <i class="uil uil-eye"></i>
+                                            </a>
+                                            <a href="{{ route('agencies.edit', ['agency' => $agency]) }}"
+                                                title="Edit">
+                                                <i class="uil uil-pen"></i>
+                                            </a>
+                                            <form action="{{ route('agencies.destroy', ['agency' => $agency]) }}"
+                                                method="POST">
+                                                @csrf
+                                                @method('DELETE')
+
+                                                <button type="submit" title="Delete">
+                                                    <i class="uil uil-trash-alt"></i>
+                                                </button>
+                                            </form>
+                                        </div>
+                                    </td>
+                                </tr>
+                            @endforeach
+                        </tbody>
+                    </table>
+                </div>
+                <div class="mt-5">
+                    {{ $agencies->links('pagination.tailwind') }}
+                </div>
 
             </x-cube.card>
 
