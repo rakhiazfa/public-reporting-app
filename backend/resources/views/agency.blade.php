@@ -41,7 +41,8 @@
                         <tbody>
                             @foreach ($agencies as $agency)
                                 <tr>
-                                    <td>{{ $loop->iteration }}</td>
+                                    <td>{{ ($agencies->currentPage() - 1) * $agencies->perPage() + $loop->iteration }}
+                                    </td>
                                     <th>{{ $agency->name ?? '' }}</th>
                                     <td>{{ $agency->user->email ?? '' }}</td>
                                     <td>

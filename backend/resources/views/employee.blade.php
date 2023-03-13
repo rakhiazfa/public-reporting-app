@@ -42,7 +42,8 @@
                         <tbody>
                             @foreach ($employees as $employee)
                                 <tr>
-                                    <td>{{ $loop->iteration }}</td>
+                                    <td>{{ ($employees->currentPage() - 1) * $employees->perPage() + $loop->iteration }}
+                                    </td>
                                     <td>{{ $employee->nip ?? '' }}</td>
                                     <th>{{ $employee->user->name ?? '' }}</th>
                                     <td>{{ $employee->user->email ?? '' }}</td>

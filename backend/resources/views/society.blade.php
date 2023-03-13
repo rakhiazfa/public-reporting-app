@@ -37,7 +37,8 @@
                         <tbody>
                             @foreach ($societies as $society)
                                 <tr>
-                                    <td>{{ $loop->iteration }}</td>
+                                    <td>{{ ($societies->currentPage() - 1) * $societies->perPage() + $loop->iteration }}
+                                    </td>
                                     <td>{{ $society->nik ?? '' }}</td>
                                     <th>{{ $society->name ?? '' }}</th>
                                     <td>{{ $society->user->email ?? '' }}</td>
