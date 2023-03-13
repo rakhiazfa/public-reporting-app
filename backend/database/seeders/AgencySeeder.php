@@ -208,5 +208,53 @@ class AgencySeeder extends Seeder
         ]);
 
         AgencyLocation::factory()->state(['agency_id' => $agency->id])->create();
+
+        // 
+
+        $agency = Agency::create([
+            'name' => 'Pemerintahan Kab Sukabumi',
+            'user_id' => User::factory()->state([
+                'name' => 'Pemerintahan Kab Sukabumi',
+                'role_id' => 2
+            ])->create()->id,
+        ]);
+
+        AgencyLocation::factory()->state(['agency_id' => $agency->id])->create();
+
+        // 
+
+        $agency = Agency::create([
+            'name' => 'Pemerintahan Kab Cianjur',
+            'user_id' => User::factory()->state([
+                'name' => 'Pemerintahan Kab Cianjur',
+                'role_id' => 2
+            ])->create()->id,
+        ]);
+
+        AgencyLocation::factory()->state(['agency_id' => $agency->id])->create();
+
+        // 
+
+        $agency = Agency::create([
+            'name' => 'Pemerintahan Kota Diponorogo',
+            'user_id' => User::factory()->state([
+                'name' => 'Pemerintahan Kota Diponorogo',
+                'role_id' => 2
+            ])->create()->id,
+        ]);
+
+        AgencyLocation::factory()->state(['agency_id' => $agency->id])->create();
+
+        // 
+
+        $agency = Agency::create([
+            'name' => 'Pemerintahan Provinsi Bali',
+            'user_id' => User::factory()->state([
+                'name' => 'Pemerintahan Provinsi Bali',
+                'role_id' => 2
+            ])->create()->id,
+        ]);
+
+        AgencyLocation::factory()->state(['agency_id' => $agency->id])->create();
     }
 }
