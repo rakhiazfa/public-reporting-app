@@ -4,7 +4,12 @@
 
         <div class="grid grid-cols-1 gap-7">
 
-            <x-cube.card title="Laporan">
+            <x-cube.card title="Laporan" :actions="[
+                [
+                    'text' => 'Print',
+                    'url' => route('reports.generate'),
+                ]
+            ]">
 
                 <div class="table-responsive">
                     <table class="table">
@@ -19,14 +24,14 @@
                         </thead>
                         <tbody>
                             @foreach ($reports as $report)
-                                <tr>
-                                    <td>{{ ($reports->currentPage() - 1) * $reports->perPage() + $loop->iteration }}
-                                    </td>
-                                    <td>{{ $report->author->nik ?? '' }}</td>
-                                    <th>{{ $report->author->name ?? '' }}</th>
-                                    <td>{{ $report->destination->name ?? '' }}</td>
-                                    <td>{{ date('d F Y', strtotime($report->created_at ?? '')) }}</td>
-                                </tr>
+                            <tr>
+                                <td>{{ ($reports->currentPage() - 1) * $reports->perPage() + $loop->iteration }}
+                                </td>
+                                <td>{{ $report->author->nik ?? '' }}</td>
+                                <th>{{ $report->author->name ?? '' }}</th>
+                                <td>{{ $report->destination->name ?? '' }}</td>
+                                <td>{{ date('d F Y', strtotime($report->created_at ?? '')) }}</td>
+                            </tr>
                             @endforeach
                         </tbody>
                     </table>

@@ -12,4 +12,6 @@ use Illuminate\Support\Facades\Route;
 Route::name('reports')->prefix('reports')->middleware(['auth:web', 'role:admin,agency'])->group(function () {
 
     Route::get('/', ReportController::class);
+
+    Route::get('/generate', [ReportController::class, 'generate'])->name('.generate');
 });
