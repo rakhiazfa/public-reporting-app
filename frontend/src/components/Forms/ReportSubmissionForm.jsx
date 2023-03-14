@@ -202,7 +202,7 @@ const ReportSubmissionForm = ({ onSubmit, loading, errors }) => {
                         onChange={handleAttachmentChange}
                         error={errors?.attachment}
                     />
-                    <p className="text-sm text-gray-500 font-normal ml-3 mt-2">
+                    <p className="text-sm text-gray-500 font-normal ml-3 mt-3">
                         PDF ( Max: 2MB )
                     </p>
                 </div>
