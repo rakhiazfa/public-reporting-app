@@ -196,12 +196,16 @@ const ReportSubmissionForm = ({ onSubmit, loading, errors }) => {
                     }
                     error={errors?.destination_agency_id}
                 />
-                <File
-                    label="Lampiran"
-                    onChange={handleAttachmentChange}
-                    error={errors?.attachment}
-                    className="lg:col-span-2"
-                />
+                <div className="lg:col-span-2">
+                    <File
+                        label="Lampiran"
+                        onChange={handleAttachmentChange}
+                        error={errors?.attachment}
+                    />
+                    <p className="text-sm text-gray-500 font-normal ml-3 mt-2">
+                        PDF ( Max: 2MB )
+                    </p>
+                </div>
                 <div className="lg:col-span-2 flex justify-end">
                     <button
                         type="submit"
