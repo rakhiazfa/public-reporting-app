@@ -31,6 +31,20 @@ export default function ReportDetail() {
         }
     };
 
+    //
+
+    function formatDate(date) {
+        var d = new Date(date),
+            month = "" + (d.getMonth() + 1),
+            day = "" + d.getDate(),
+            year = d.getFullYear();
+
+        if (month.length < 2) month = "0" + month;
+        if (day.length < 2) day = "0" + day;
+
+        return [year, month, day].join("-");
+    }
+
     useEffect(() => {
         getSocietyReportBySlug(slug);
     }, [slug]);
@@ -92,37 +106,58 @@ export default function ReportDetail() {
                                     </div>
                                 </div>
                             </div>
-                            {report?.responses?.length > 0 && (
-                                <div className="mt-10">
-                                    <h1 className="text-xl font-bold mb-5">
-                                        Tanggapan
-                                    </h1>
-                                    {report?.responses?.map(
-                                        (response, index) => (
-                                            <div key={index} className="py-10">
-                                                <div className="flex items-center gap-5 mb-10">
-                                                    <div className="w-[50px] h-[50px] bg-gray-400 rounded-full"></div>
-                                                    <div>
-                                                        <span className="block mb-1">
-                                                            {response?.agency
-                                                                ?.name ?? "-"}
-                                                        </span>
-                                                    </div>
-                                                </div>
-                                                <div className="py-2">
-                                                    <p
-                                                        dangerouslySetInnerHTML={{
-                                                            __html: nl2br(
-                                                                response?.response
-                                                            ),
-                                                        }}
-                                                    ></p>
-                                                </div>
+                            <div className="mt-20">
+                                <h1 className="text-xl lg:text-3xl font-bold mb-7">
+                                    Tanggapan
+                                </h1>
+                                <div className="mb-10">
+                                    <div>
+                                        {report?.messages?.length > 0 && (
+                                            <div className="grid gap-7">
+                                                {report.messages.map(
+                                                    (message, index) => (
+                                                        <div
+                                                            className={`p-5 rounded-md bg-gray-100`}
+                                                            key={index}
+                                                        >
+                                                            <div className="flex items-center gap-5 mb-7">
+                                                                <div className="w-[45px] h-[45px] bg-gray-400 rounded-full">
+                                                                    <img
+                                                                        className="rounded-full"
+                                                                        src={
+                                                                            avatar
+                                                                        }
+                                                                        alt="Avatar Image"
+                                                                    />
+                                                                </div>
+                                                                <div>
+                                                                    <span className="text-sm block mb-1">
+                                                                        {
+                                                                            message
+                                                                                ?.message_origin
+                                                                                ?.name
+                                                                        }
+                                                                    </span>
+                                                                    <p className="text-xs">
+                                                                        {formatDate(
+                                                                            message?.created_at
+                                                                        )}
+                                                                    </p>
+                                                                </div>
+                                                            </div>
+                                                            <p className="text-sm">
+                                                                {
+                                                                    message?.message
+                                                                }
+                                                            </p>
+                                                        </div>
+                                                    )
+                                                )}
                                             </div>
-                                        )
-                                    )}
+                                        )}
+                                    </div>
                                 </div>
-                            )}
+                            </div>
                         </>
                     ) : (
                         <>Loading . . .</>
