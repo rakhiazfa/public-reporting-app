@@ -5,7 +5,7 @@
         <div class="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-7">
 
             @if (auth()->user()->hasRole('admin'))
-            <x-cube.card title="Total Instansi">
+            <x-cube.card title="Total Lembaga">
                 <div class="flex items-center gap-5">
                     <i class="uil uil-building text-4xl text-blue-500"></i>
                     <h3 class="text-xl font-semibold">30</h3>
