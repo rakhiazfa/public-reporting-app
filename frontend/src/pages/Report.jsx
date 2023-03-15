@@ -136,6 +136,17 @@ export default function Report() {
                                                 {report?.title} ({" "}
                                                 {report?.ticket_id} )
                                             </Link>
+                                            <embed
+                                                className="border mb-5 object-contain"
+                                                src={
+                                                    import.meta.env
+                                                        .VITE_BACKEND_URL +
+                                                    "/storage/" +
+                                                    report?.attachment
+                                                }
+                                                width="100%"
+                                                height="300px"
+                                            />
                                             <ReactShowMoreText
                                                 lines={5}
                                                 className="text-sm mb-5"

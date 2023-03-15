@@ -78,6 +78,16 @@ export default function ReportDetail() {
                                     <h1 className="text-xl lg:text-3xl font-bold mb-7">
                                         {report?.title}
                                     </h1>
+                                    <embed
+                                        className="border mb-5 object-contain"
+                                        src={
+                                            import.meta.env.VITE_BACKEND_URL +
+                                            "/storage/" +
+                                            report?.attachment
+                                        }
+                                        width="100%"
+                                        height="300px"
+                                    />
                                     <ReactShowMoreText
                                         lines={10}
                                         className="text-sm mb-10"
