@@ -31,7 +31,7 @@ class StoreSocietyReportRequest extends FormRequest
             'title' => ['required'],
             'body' => ['required'],
             'date' => ['required', 'date'],
-            'attachment' => ['required', 'file', 'mimes:pdf', 'max:2056'],
+            'attachment' => ['required', 'file', 'mimes:pdf,jpg,jpeg,png', 'max:2056'],
             'category_id' => ['required'],
             'destination_agency_id' => ['required'],
         ];
