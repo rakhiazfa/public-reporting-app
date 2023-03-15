@@ -8,7 +8,14 @@
 
     <section class="mb-7">
 
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-1 xl:grid-cols-2 gap-10">
+        <form class="flex items-center gap-5 mb-7">
+            <input type="text" class="field rounded" name="q" value="{{ request()->get('q') }}"
+                placeholder="Cari Laporan . . .">
+            <button class="btn btn-primary" type="submit">Search</button>
+            <a class="btn btn-primary" href="{{ route('society-reports') }}">Refresh</a>
+        </form>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-1 xl:grid-cols-2 gap-7">
 
             @foreach ($societyReports as $report)
                 <a class="block" href="{{ route('society-reports.show', ['slug' => $report->slug ?? '']) }}">
@@ -23,15 +30,15 @@
                             <p class="text-sm text-gray-400">{{ $report->date ?? '' }}</p>
                             @if ($report->status == 'process')
                                 <span class="text-xs font-medium tracking-wide text-blue-500">
-                                    {{ $report->status ?? '' }}
+                                    {{ ucfirst($report->status ?? '') }}
                                 </span>
                             @elseif ($report->status == 'accepted')
                                 <span class="text-xs font-medium tracking-wide text-emerald-500">
-                                    {{ $report->status ?? '' }}
+                                    {{ ucfirst($report->status ?? '') }}
                                 </span>
                             @elseif ($report->status == 'rejected')
                                 <span class="text-xs font-medium tracking-wide text-red-500">
-                                    {{ $report->status ?? '' }}
+                                    {{ ucfirst($report->status ?? '') }}
                                 </span>
                             @endif
                         </div>

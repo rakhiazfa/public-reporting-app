@@ -6,6 +6,7 @@ use App\Exceptions\ExceptionResponse;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\SocietyReport\StoreSocietyReportRequest;
 use App\Models\Message;
+use App\Models\ReportRejected;
 use App\Models\Response;
 use App\Models\SocietyReport;
 use App\Models\User;
@@ -36,15 +37,22 @@ class SocietyReportController extends Controller
     public function index(Request $request)
     {
         $user = $request->user();
+        $q = $request->get('q', false);
 
         try {
 
             if ($user->hasRole('admin')) {
-                $societyReports = SocietyReport::orderBy('id', 'DESC')->paginate(15);
+                $societyReports = SocietyReport::when($q, function ($query) use ($q) {
+                    $query->where('title', 'LIKE', "%$q%")->orWhere('ticket_id', 'LIKE', "%$q%");
+                })->orderBy('id', 'DESC')->paginate(15);
             } else if ($user->hasRole('agency')) {
-                $societyReports = SocietyReport::where('destination_agency_id', $user->agency->id)->orderBy('id', 'DESC')->paginate(15);
+                $societyReports = SocietyReport::when($q, function ($query) use ($q) {
+                    $query->where('title', 'LIKE', "%$q%")->orWhere('ticket_id', 'LIKE', "%$q%");
+                })->where('destination_agency_id', $user->agency->id)->orderBy('id', 'DESC')->paginate(15);
             } else if ($user->hasRole('employee')) {
-                $societyReports = SocietyReport::where('destination_agency_id', $user->employee->agency->id)->orderBy('id', 'DESC')->paginate(15);
+                $societyReports = SocietyReport::when($q, function ($query) use ($q) {
+                    $query->where('title', 'LIKE', "%$q%")->orWhere('ticket_id', 'LIKE', "%$q%");
+                })->where('destination_agency_id', $user->employee->agency->id)->orderBy('id', 'DESC')->paginate(15);
             }
 
             $societyReports->load('author', 'category', 'destination');
@@ -97,10 +105,16 @@ class SocietyReportController extends Controller
      */
     public function reject(Request $request, string $slug)
     {
+        $request->validate(['reason' => ['required']]);
+
         $report = SocietyReport::where('slug', $slug)->first() ?? null;
 
         $report->status = 'rejected';
         $report->save();
+
+        $reportRejected = new ReportRejected($request->all());
+        $reportRejected->societyReport()->associate($report);
+        $reportRejected->save();
 
         return back()->with('success', 'Laporan berhasil ditolak.');
     }

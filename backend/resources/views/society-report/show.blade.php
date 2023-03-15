@@ -1,6 +1,6 @@
 <x-cube.layout title="Detail Laporan Masyarakat">
 
-    <x-cube.card class="mb-7" bodyClass="p-0" :scrollPadding="false">
+    <x-cube.card class="mb-5" bodyClass="p-0" :scrollPadding="false">
         <nav class="mt-3">
             <ul class="flex items-center gap-1">
                 <li><a class="text-blue-500" href="{{ route('society-reports') }}">Daftar Laporan Masyarakat</a> \</li>
@@ -24,24 +24,27 @@
                 {!! nl2br(e($report->body)) !!}
             </p>
 
-            <a class="block text-sm text-blue-500 hover:underline mb-7"
-                href="{{ url('storage/' . $report->attachment ?? '') }}" target="_blank">
-                Lampiran
-            </a>
+            <div class="flex items-center justify-between mb-7">
+                <p class="text-sm text-gray-500 font-normal">{{ $report->ticket_id }}</p>
+                <a class="block text-sm text-blue-500 hover:underline"
+                    href="{{ url('storage/' . $report->attachment ?? '') }}" target="_blank">
+                    Lampiran
+                </a>
+            </div>
 
             <div class="flex justify-between items-center gap-20 mb-7">
                 <p class="text-sm text-gray-400">{{ $report->date ?? '' }}</p>
                 @if ($report->status == 'process')
                     <span class="text-sm font-medium tracking-wide text-blue-500">
-                        {{ $report->status ?? '' }}
+                        {{ ucfirst($report->status ?? '') }}
                     </span>
                 @elseif ($report->status == 'accepted')
                     <span class="text-sm font-medium tracking-wide text-emerald-500">
-                        {{ $report->status ?? '' }}
+                        {{ ucfirst($report->status ?? '') }}
                     </span>
                 @elseif ($report->status == 'rejected')
                     <span class="text-sm font-medium tracking-wide text-red-500">
-                        {{ $report->status ?? '' }}
+                        {{ ucfirst($report->status ?? '') }}
                     </span>
                 @endif
             </div>
@@ -59,16 +62,10 @@
                                 Terima
                             </button>
                         </form>
-                        <form
-                            action="{{ route('society-reports.reject', [
-                                'slug' => request()->route('slug'),
-                            ]) }}"
-                            method="POST">
-                            @csrf
-                            <button type="submit" class="btn btn-sm btn-danger">
-                                Tolak
-                            </button>
-                        </form>
+                        <button type="button" class="btn btn-sm btn-danger modal-trigger"
+                            data-target="#rejectReportModal">
+                            Tolak
+                        </button>
                     @endif
                 </div>
                 <form action="{{ route('society-reports.destroy', ['societyReport' => $report]) }}" method="POST">
@@ -136,5 +133,37 @@
         @endif
 
     </section>
+
+    <div class="modal" id="rejectReportModal">
+        <div class="modal-content top">
+            <div class="header">
+                <h4>Masukan alasan anda menolak laporan ini</h4>
+            </div>
+            <div class="body">
+                <form
+                    action="{{ route('society-reports.reject', [
+                        'slug' => request()->route('slug'),
+                    ]) }}"
+                    method="POST" id="rejectReportForm">
+                    @csrf
+
+                    <div class="form-group">
+                        <label class="label">Alasan</label>
+                        <textarea type="text" class="field" name="reason" placeholder="Alasan"></textarea>
+                        @error('reason')
+                            <p class="invalid-field">{{ $message }}</p>
+                        @enderror
+                    </div>
+                </form>
+            </div>
+            <div class="footer flex justify-end gap-x-5">
+                <button type="button" class="btn btn-sm btn-info modal-cancel-trigger">Cancel</button>
+                <button type="button" class="btn btn-sm btn-border btn-danger form-trigger"
+                    data-target="#rejectReportForm" aria-label="Delete Account">
+                    Tolak
+                </button>
+            </div>
+        </div>
+    </div>
 
 </x-cube.layout>
