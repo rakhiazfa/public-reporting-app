@@ -15,12 +15,15 @@
             <a class="btn btn-primary" href="{{ route('society-reports') }}">Refresh</a>
         </form>
 
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-1 xl:grid-cols-2 gap-7">
+        <div class="grid grid-cols-1 xl:grid-cols-2 gap-7">
 
             @foreach ($societyReports as $report)
-                <a class="block" href="{{ route('society-reports.show', ['slug' => $report->slug ?? '']) }}">
+                <a class="block w-full" href="{{ route('society-reports.show', ['slug' => $report->slug ?? '']) }}">
                     <x-cube.card title=" {{ Str::of($report->title ?? '')->words(4, ' . . . ') ?? '' }}"
                         class="hover:shadow-md transition-all duration-300 h-full relative">
+
+                        <embed class="border mb-5 object-contain" src="{{ asset('storage/' . $report->attachment) }}"
+                            width="100%" height="250px">
 
                         <p class="text-sm mb-10">
                             {{ Str::limit($report->body ?? '', 50, ' . . . ') }}

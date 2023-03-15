@@ -20,6 +20,9 @@
 
         <x-cube.card title=" {{ $report->title ?? '' }}" class="">
 
+            <embed class="border mb-10 object-contain" src="{{ asset('storage/' . $report->attachment) }}"
+                width="100%" height="500px" alt="Cover">
+
             <p class="text-sm mb-7">
                 {!! nl2br(e($report->body)) !!}
             </p>
