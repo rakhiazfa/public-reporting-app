@@ -1,13 +1,12 @@
 <x-layout title="Login">
 
-    <main class="min-h-screen bg-gray-50">
+    <main class="min-h-screen bg-[#F8F8FB]">
 
         <section class="min-h-screen bg-bl">
 
             <div class="normal-wrapper min-h-screen flex justify-center items-center">
 
-
-                <x-cube.card class="w-[450px] shadow-sm px-3 py-10 pb-3">
+                <x-cube.card class="w-[425px] shadow-xxs px-3 py-3">
 
                     <h1 class="text-2xl font-semibold mb-10">Login</h1>
 
