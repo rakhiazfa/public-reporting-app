@@ -39,7 +39,7 @@ class SocietyReportController extends Controller
 
             $societyReports = SocietyReport::with('author', 'category', 'destination')
                 ->when($q, function ($query) use ($q) {
-                    $query->where('title', 'LIKE', "%$q%");
+                    $query->where('title', 'LIKE', "%$q%")->orWhere('ticket_id', 'LIKE', "%$q%");
                 })
                 ->orderBy('id', 'DESC')->get();
 

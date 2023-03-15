@@ -71,7 +71,7 @@ export default function Report() {
     };
 
     const handleSearch = (e) => {
-        const q = e.target.value;
+        const q = e.target.value.replace("#", "%23");
 
         fetchSocietyReports(q);
     };
