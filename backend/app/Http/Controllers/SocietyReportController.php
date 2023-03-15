@@ -31,12 +31,17 @@ class SocietyReportController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
+        $q = $request->get('q', false);
+
         try {
 
-            $societyReports = $this->societyReportService->orderByIdDesc();
-            $societyReports->load('author', 'category', 'destination');
+            $societyReports = SocietyReport::with('author', 'category', 'destination')
+                ->when($q, function ($query) use ($q) {
+                    $query->where('title', 'LIKE', "%$q%");
+                })
+                ->orderBy('id', 'DESC')->get();
 
             // 
         } catch (\Exception $exception) {

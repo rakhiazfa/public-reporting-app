@@ -10,6 +10,7 @@ import Layout from "../components/Layouts/Layout";
 import { AuthContext, axiosJWT } from "../providers/AuthProvider";
 import avatar from "../assets/images/avatar.jpg";
 import { escapeHtml } from "../helpers/sting";
+import Input from "../components/Fields/Input";
 
 const ReactSwal = withReactContent(Swal);
 
@@ -61,12 +62,18 @@ export default function Report() {
      *
      */
 
-    const fetchSocietyReports = async () => {
+    const fetchSocietyReports = async (q) => {
         try {
-            const { data } = await axios.get("/society-reports");
+            const { data } = await axios.get(`/society-reports?q=${q ?? ""}`);
 
             setSocietyReports(data?.society_reports);
         } catch (_) {}
+    };
+
+    const handleSearch = (e) => {
+        const q = e.target.value;
+
+        fetchSocietyReports(q);
     };
 
     useEffect(() => {
@@ -89,9 +96,16 @@ export default function Report() {
             </section>
             <section>
                 <div className="wrapper">
-                    <h1 className="text-[clamp(1.5rem,8vw,3rem)] font-bold max-w-[450px] mb-14">
+                    <h1 className="text-[clamp(1.5rem,8vw,3rem)] font-bold max-w-[450px] mb-12">
                         Laporan
                     </h1>
+                    <div className="mb-14">
+                        <Input
+                            type="text"
+                            onChange={handleSearch}
+                            placeholder="Cari Laporan . . ."
+                        />
+                    </div>
                     <div className="grid grid-cols-1 gap-10">
                         {societyReports ? (
                             <>

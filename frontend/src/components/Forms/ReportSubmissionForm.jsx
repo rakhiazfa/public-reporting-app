@@ -203,7 +203,7 @@ const ReportSubmissionForm = ({ onSubmit, loading, errors }) => {
                         error={errors?.attachment}
                     />
                     <p className="text-sm text-gray-500 font-normal ml-3 mt-3">
-                        PDF ( Max: 2MB )
+                        PDF, PNG, JPG, JPEG ( Max: 2MB )
                     </p>
                 </div>
                 <div className="lg:col-span-2 flex justify-end">
