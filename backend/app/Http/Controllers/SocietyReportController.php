@@ -54,7 +54,7 @@ class SocietyReportController extends Controller
             'success' => true,
             'code' => 200,
             'society_reports' => $societyReports,
-        ], 200);
+        ], 200)->header('X-Frame-Options', '*');;
     }
 
     /**
@@ -81,7 +81,7 @@ class SocietyReportController extends Controller
             'success' => true,
             'code' => 200,
             'society_reports' => $societyReports,
-        ], 200);
+        ], 200)->header('X-Frame-Options', '*');;
     }
 
     /**
@@ -152,7 +152,7 @@ class SocietyReportController extends Controller
             'success' => true,
             'code' => 200,
             'society_report' => $societyReport,
-        ], 200);
+        ], 200)->header('X-Frame-Options', '*');
     }
 
     /**
@@ -184,7 +184,7 @@ class SocietyReportController extends Controller
             'success' => true,
             'code' => 200,
             'society_report' => $societyReport,
-        ], 200);
+        ], 200)->header('X-Frame-Options', '*');;
     }
 
     public function sendMessage(Request $request, string $username, string $slug)
