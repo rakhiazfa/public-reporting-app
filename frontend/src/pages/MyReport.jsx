@@ -109,7 +109,9 @@ export default function MyReport() {
                                                             : "bg-blue-500"
                                                     } px-3 py-1 rounded-full font-medium text-white`}
                                                 >
-                                                    <p>{report?.status}</p>
+                                                    <p className="capitalize">
+                                                        {report?.status}
+                                                    </p>
                                                 </div>
                                                 <button
                                                     className="button bg-red-500 hover:bg-red-600 text-white"

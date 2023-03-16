@@ -48,8 +48,6 @@ export default function MyReportDetail() {
                 `/${username}/society-reports/${slug}`
             );
 
-            console.log(data);
-
             setReport(data?.society_report);
         } catch (_) {
             navigate("/404");
@@ -154,7 +152,9 @@ export default function MyReportDetail() {
                                                     : "bg-blue-500"
                                             } px-3 py-1 rounded-full font-medium text-white`}
                                         >
-                                            <p>{report?.status}</p>
+                                            <p className="capitalize">
+                                                {report?.status}
+                                            </p>
                                         </div>
                                     </div>
                                     <button
