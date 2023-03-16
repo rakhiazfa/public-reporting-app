@@ -45,6 +45,16 @@ export default function ReportDetail() {
         return [year, month, day].join("-");
     }
 
+    function checkAttachment(url) {
+        var ext = url.split(".").reverse()[0];
+
+        return ext == "pdf"
+            ? import.meta.env.VITE_BACKEND_API +
+                  "/society-reports/preview?file=" +
+                  url
+            : import.meta.env.VITE_BACKEND_URL + "/storage/" + url;
+    }
+
     useEffect(() => {
         getSocietyReportBySlug(slug);
     }, [slug]);
@@ -80,13 +90,11 @@ export default function ReportDetail() {
                                     </h1>
                                     <embed
                                         className="border mb-5 object-contain"
-                                        src={
-                                            import.meta.env.VITE_BACKEND_URL +
-                                            "/storage/" +
+                                        src={checkAttachment(
                                             report?.attachment
-                                        }
+                                        )}
                                         width="100%"
-                                        height="300px"
+                                        height="400px"
                                     />
                                     <ReactShowMoreText
                                         lines={10}
