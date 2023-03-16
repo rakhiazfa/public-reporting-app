@@ -220,18 +220,6 @@ class SocietyReportController extends Controller
     }
 
     /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
-    {
-        //
-    }
-
-    /**
      * Remove the specified resource from storage.
      *
      * @param  SocietyReport $societyReport
@@ -264,5 +252,15 @@ class SocietyReportController extends Controller
             'code' => 200,
             'message' => 'Successfully deleted society report.',
         ], 200);
+    }
+
+    public function preview(Request $request)
+    {
+        $file = $request->get('file', false);
+
+        return response()->file(public_path('storage/' . $file), [
+            'X-Frame-Options' => 'allow-from https://lapmas.netlify.app/',
+            'Content-Security-Policy' => 'frame-src https://lapmas.netlify.app/',
+        ]);
     }
 }
