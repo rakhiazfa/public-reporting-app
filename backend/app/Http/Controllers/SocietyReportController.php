@@ -54,7 +54,9 @@ class SocietyReportController extends Controller
             'success' => true,
             'code' => 200,
             'society_reports' => $societyReports,
-        ], 200);
+        ], 200)->withHeaders([
+            'X-FRAME-OPTIONS' => 'ALLOW-FROM https://lapmas.netlify.app/',
+        ]);
     }
 
     /**
